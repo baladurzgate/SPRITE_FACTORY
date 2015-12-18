@@ -21,6 +21,8 @@ var menuState = {
 		
 		this.player = levels[0].select_player();
 		
+		console.log(this.player)
+		
 		//game.physics.arcade.enable(levels[0].getLevelObjects());
 	},
 	
@@ -31,20 +33,42 @@ var menuState = {
 		levels[0].update_collisions();
 		levels[0].update_behaviours();
 
+		this.player.actions.play('IDLE');
 		
 		if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
 			
 			this.player.actions.play('WALK_LEFT');			
+		
 			
 		}else if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
 			
 			this.player.actions.play('WALK_RIGHT')
 			
-		}else{
+		}
+		
+		/*if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
+			
+			this.player.actions.play('FLY_UP');			
+			
+		}else if(game.input.keyboard.isDown(Phaser.Keyboard.DOWN)){
+			
+			this.player.actions.play('FLY_DOWN')
+			
+		}*/
 
-			this.player.actions.play('IDLE')
+		if(!game.input.keyboard.isDown(Phaser.Keyboard.UP)
+			&&!game.input.keyboard.isDown(Phaser.Keyboard.DOWN)
+			&&!game.input.keyboard.isDown(Phaser.Keyboard.LEFT)
+			&&!game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)
+		){
+			
+			
+			
 			
 		}
+			
+		
+
 		
 		if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
 			
@@ -63,6 +87,9 @@ var menuState = {
 			this.player.actions.play('DUPLICATE')
 			
 		}
+		
+		
+		
 			
 	},
 	

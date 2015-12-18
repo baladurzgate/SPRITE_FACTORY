@@ -113,8 +113,11 @@
 			
 			"animations" :[
 				{"name":"idle","frames":[0],"frameRate":4,"loop":true},
-				{"name":"walk","frames":[0,1,2,3,4,5,6],"frameRate":24,"loop":true}
+				{"name":"walk","frames":[0,1,2,3,4,5,6],"frameRate":24,"loop":true},
+				{"name":"death","frames":[0,3,0,3,0,3],"frameRate":12,"loop":true}
 			],
+			
+			"shoot_point":{"x":10,"y":-50},
 			
 			"physical":{
 			
@@ -128,22 +131,117 @@
 			
 			"actions":[
 			
-				{"name":"IDLE","duration":0,"priority":0},
-				{"name":"WALK_RIGHT","duration":8,"type":"move","priority":1},
-				{"name":"WALK_LEFT","duration":8,"type":"move","priority":1},
-				{"name":"JUMP","duration":100,"sound":"ym_jump","priority":2},
+				{"name":"IDLE","duration":20,"priority":0},
+				{"name":"FLY_IDLE","duration":20,"priority":0},
+				{"name":"FLY_RIGHT","duration":20,"type":"move","priority":1},
+				{"name":"FLY_LEFT","duration":20,"type":"move","priority":1},
+				{"name":"FLY_UP","duration":20,"type":"move","priority":1},
+				{"name":"FLY_DOWN","duration":20,"type":"move","priority":1},
+				{"name":"WALK_RIGHT","duration":20,"type":"move","priority":1},
+				{"name":"WALK_LEFT","duration":20,"type":"move","priority":1},
+				{"name":"JUMP","duration":10,"sound":"ym_jump","priority":2},
 				{"name":"DUPLICATE","duration":10,"sound":"ym_jump","priority":3},
-				{"name":"FIRE","duration":10,"sound":"ym_jump","priority":3}
+				{"name":"FIRE","duration":10,"sound":"ym_shoot","priority":3,"actionFrame":10}
 			
 			],
 			
-			"projectile_type":"red_fire",
+			"projectile_type":"poison_projectile",
 			
 			"patterns":[
 			
 				{"name":"standard","actions":[
 					"WALK_LEFT",
 					"WALK_LEFT",
+					"WALK_RIGHT",
+					"WALK_RIGHT"
+				]}
+
+			],
+			
+			"properties" : {
+				
+				
+			
+			},
+			
+			"sounds":[
+				{"name":"ym_jump",
+				"file_wave":"assets/ym_jump.wave",
+				"file_ogg":"assets/ym_jump.ogg",
+				"file_mp3":"assets/ym_jump.mp3"},
+				{"name":"ym_shoot",
+				"file_wave":"assets/Laser_Shoot27.wave",
+				"file_ogg":"assets/Laser_Shoot27.ogg",
+				"file_mp3":"assets/Laser_Shoot27.mp3"}
+			
+			]
+		
+		},
+		
+		
+		{
+		
+			"name" : "spider",
+			
+			"type" : "sprite",
+			
+			"behaviour" : "dynamic",
+		
+			"images" :[
+				{	"name":"spider",
+					"path":"assets/spider.png",
+					"type":"spritesheet",
+					"numberOfFrames":33,
+					"width":32,
+					"height":32
+				}
+			],
+			
+			"frames" : [
+				
+			
+			],
+			
+			"animations" :[
+				{"name":"idle","frames":[0,1,2,3,4,5,6,7],"frameRate":24,"loop":true},
+				{"name":"walk","frames":[8,9,10,11,12,13,14],"frameRate":24,"loop":true},
+				{"name":"fire","frames":[15,16,17,18],"frameRate":24,"loop":true},
+				{"name":"jump","frames":[19,20,21,22,23,24],"frameRate":24,"loop":false},
+				{"name":"death","frames":[25,26,27,28,29,30,31],"frameRate":12,"loop":true}
+			],
+			
+			"shoot_point":{"x":12,"y":-4},
+			
+			"physical":{
+			
+				"mass":1,
+				"bounce":{"x":0,"y":0.1},
+				"allowGravity":true,
+				"collideWorldBounds":true,
+				"immovable":false,
+				"width":20,
+				"height":20				
+			},
+			
+			"actions":[
+			
+				{"name":"IDLE","duration":20,"priority":0},
+				{"name":"WALK_RIGHT","duration":20,"type":"move","priority":1},
+				{"name":"WALK_LEFT","duration":20,"type":"move","priority":1},
+				{"name":"JUMP","duration":10,"sound":"spider_jump","priority":2},
+				{"name":"DUPLICATE","duration":10,"sound":"spider_jump","priority":3},
+				{"name":"FIRE","duration":20,"sound":"spider_shoot","priority":3,"actionFrame":10}
+			
+			],
+			
+			"projectile_type":"poison_projectile",
+			
+			"patterns":[
+			
+				{"name":"standard","actions":[
+					"WALK_LEFT",
+					"WALK_LEFT",
+					"JUMP",
 					"FIRE",
 					"WALK_RIGHT",
 					"WALK_RIGHT",
@@ -160,18 +258,23 @@
 			},
 			
 			"sounds":[
-				{"name":"ym_jump",
+				{"name":"spider_jump",
 				"file_wave":"assets/ym_jump.wave",
 				"file_ogg":"assets/ym_jump.ogg",
-				"file_mp3":"assets/ym_jump.mp3"}
+				"file_mp3":"assets/ym_jump.mp3"},
+				{"name":"spider_shoot",
+				"file_wave":"assets/Laser_Shoot27.wave",
+				"file_ogg":"assets/Laser_Shoot27.ogg",
+				"file_mp3":"assets/Laser_Shoot27.mp3"}
 			
 			]
 		
 		},
-
+		
+		
 		{
 		
-			"name" : "red_fire",
+			"name" : "poison_projectile",
 			
 			"type" : "sprite",
 			
@@ -180,12 +283,14 @@
 			"projectile_lifespan"  :100,
 		
 			"images" :[
-				{	"name":"red_fire",
-					"path":"assets/red_fire.png",
+				{	
+					"name":"poison_projectile",
+					"path":"assets/poison_projectile.png",
 					"type":"spritesheet",
-					"numberOfFrames":13,
+					"numberOfFrames":21,
 					"width":32,
 					"height":32
+					
 				}
 			],
 			
@@ -194,19 +299,25 @@
 			
 			],
 			
+			
+			
+			
 			"animations" :[
-				{"name":"idle","frames":[0],"frameRate":12,"loop":true},
-				{"name":"death","frames":[0,1,2,3,4,5,6,7,8,9,10,11,12],"frameRate":12,"loop":true}
+				{"name":"idle","frames":[0,1,2,3,4,5,6,7],"frameRate":24,"loop":true},
+				{"name":"death","frames":[8,9,10,11,12,13,14,15,16,17,18,19,20],"frameRate":24,"loop":true}
 			],
+			
+			
 
 			"physical":{
 			
 				"mass":1,
 				"bounce":{"x":0,"y":0.95},
 				"allowGravity":true,
-				"collideWorldBounds":true,
-				"immovable":false
-				
+				"collideWorldBounds":false,
+				"immovable":false,
+				"width":2,
+				"height":2				
 			},
 			
 			"properties" : {
@@ -221,6 +332,16 @@
 			]
 		
 		},
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		{
 
