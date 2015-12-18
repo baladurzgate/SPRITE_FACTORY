@@ -19,13 +19,50 @@ var menuState = {
 		
 		levels[0].start();
 		
+		this.player = levels[0].select_player();
+		
 		//game.physics.arcade.enable(levels[0].getLevelObjects());
 	},
 	
 	update : function(){
-			
+
+
+	
 		levels[0].update_collisions();
 		levels[0].update_behaviours();
+
+		
+		if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
+			
+			this.player.actions.play('WALK_LEFT');			
+			
+		}else if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
+			
+			this.player.actions.play('WALK_RIGHT')
+			
+		}else{
+
+			this.player.actions.play('IDLE')
+			
+		}
+		
+		if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
+			
+			this.player.actions.play('JUMP')
+			
+		}
+		
+		if(game.input.keyboard.isDown(Phaser.Keyboard.F)){
+			
+			this.player.actions.play('FIRE')
+			
+		}
+		
+		if(game.input.keyboard.isDown(Phaser.Keyboard.D)){
+			
+			this.player.actions.play('DUPLICATE')
+			
+		}
 			
 	},
 	
@@ -37,3 +74,4 @@ var menuState = {
 	}
 
 }
+

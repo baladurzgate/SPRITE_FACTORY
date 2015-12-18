@@ -2,6 +2,8 @@ var game_data = {}
 var levels = new Array();
 var game_objects = new Array();
 var loading_files = new Array();
+var game_sounds = {};
+var current_level;
 
 
 var bootState = {
@@ -23,4 +25,27 @@ var bootState = {
 	}
 
 };
+
+
+
+function find_game_object($name){
+	
+	console.log(game_objects.length)
+	
+	for (var o = 0 ; o < game_objects.length ; o++){
+	
+			
+		if(game_objects[o].getName() == $name){
+
+			return game_objects[o];
+			
+		}
+		
+		
+	}
+	
+	return false;
+	
+	
+}
 

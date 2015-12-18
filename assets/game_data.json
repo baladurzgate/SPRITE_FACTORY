@@ -1,0 +1,269 @@
+{
+	
+	"levels" : [
+	
+		{
+			"name" : "menu" ,
+		
+			"map" : "assets/menu_map.json",
+			
+			"collision_from" : 7,
+			
+			"collision_to" : 15
+			
+		},
+	
+		{
+			"name" : "options",
+		
+			"map" : "assets/options_map.json"
+		}	
+	
+	],
+	
+	"objects" : [
+	
+		{
+		
+			"name" : "dot",
+			
+			"type" : "sprite",
+		
+			"images" :[
+				{	"name":"bob",
+					"path":"assets/bob.png",
+					"type":"spritesheet",
+					"numberOfFrames":28,
+					"width":32,
+					"height":32
+				}
+			],
+			
+			"frames" : [
+				
+			
+			],
+			
+			"animations" :[
+				{"name":"idle","frames":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"frameRate":12,"loop":true},
+				{"name":"walk","frames":[1,2,3,4,5,6,7],"frameRate":12,"loop":true}
+			],
+			
+			"physical":{
+			
+				"mass":1,
+				"bounce":{"x":0,"y":0.95},
+				"allowGravity":true,
+				"collideWorldBounds":true,
+				"immovable":false
+				
+			},
+			
+			"actions":[
+			
+				{"name":"IDLE"},
+				{"name":"WALK_RIGHT"},
+				{"name":"WALK_LEFT"}
+			
+			],
+			
+			"pattern":[
+			
+				{"name":"standard","actions":[
+					"WALK_RIGHT",
+					"IDLE",
+					"WALK_LEFT",
+					"IDLE"
+				]}
+
+			],
+			
+			"properties" : {
+				
+				
+			
+			},
+			
+			"sounds":[]
+		
+		},
+		
+		{
+		
+			"name" : "yellowman",
+			
+			"type" : "sprite",
+			
+			"behaviour" : "dynamic",
+		
+			"images" :[
+				{	"name":"yellowman",
+					"path":"assets/yellowman.png",
+					"type":"spritesheet",
+					"numberOfFrames":8,
+					"width":64,
+					"height":64
+				}
+			],
+			
+			"frames" : [
+				
+			
+			],
+			
+			"animations" :[
+				{"name":"idle","frames":[0],"frameRate":4,"loop":true},
+				{"name":"walk","frames":[0,1,2,3,4,5,6],"frameRate":24,"loop":true}
+			],
+			
+			"physical":{
+			
+				"mass":1,
+				"bounce":{"x":0,"y":0.1},
+				"allowGravity":true,
+				"collideWorldBounds":true,
+				"immovable":false
+				
+			},
+			
+			"actions":[
+			
+				{"name":"IDLE","duration":0,"priority":0},
+				{"name":"WALK_RIGHT","duration":8,"type":"move","priority":1},
+				{"name":"WALK_LEFT","duration":8,"type":"move","priority":1},
+				{"name":"JUMP","duration":100,"sound":"ym_jump","priority":2},
+				{"name":"DUPLICATE","duration":10,"sound":"ym_jump","priority":3},
+				{"name":"FIRE","duration":10,"sound":"ym_jump","priority":3}
+			
+			],
+			
+			"projectile_type":"red_fire",
+			
+			"patterns":[
+			
+				{"name":"standard","actions":[
+					"WALK_LEFT",
+					"WALK_LEFT",
+					"FIRE",
+					"WALK_RIGHT",
+					"WALK_RIGHT",
+					"JUMP",
+					"FIRE"
+				]}
+
+			],
+			
+			"properties" : {
+				
+				
+			
+			},
+			
+			"sounds":[
+				{"name":"ym_jump",
+				"file_wave":"assets/ym_jump.wave",
+				"file_ogg":"assets/ym_jump.ogg",
+				"file_mp3":"assets/ym_jump.mp3"}
+			
+			]
+		
+		},
+
+		{
+		
+			"name" : "red_fire",
+			
+			"type" : "sprite",
+			
+			"behaviour" : "projectile",
+			
+			"projectile_lifespan"  :100,
+		
+			"images" :[
+				{	"name":"red_fire",
+					"path":"assets/red_fire.png",
+					"type":"spritesheet",
+					"numberOfFrames":13,
+					"width":32,
+					"height":32
+				}
+			],
+			
+			"frames" : [
+				
+			
+			],
+			
+			"animations" :[
+				{"name":"idle","frames":[0],"frameRate":12,"loop":true},
+				{"name":"death","frames":[0,1,2,3,4,5,6,7,8,9,10,11,12],"frameRate":12,"loop":true}
+			],
+
+			"physical":{
+			
+				"mass":1,
+				"bounce":{"x":0,"y":0.95},
+				"allowGravity":true,
+				"collideWorldBounds":true,
+				"immovable":false
+				
+			},
+			
+			"properties" : {
+				
+				
+			
+			},
+			
+			"sounds":[
+				{"name":"","file_wave":"","file_ogg":""}
+			
+			]
+		
+		},
+		
+		{
+
+			"name" : "start_button" ,
+			
+			"type" : "button",			
+			
+			"images" :[
+				{	
+					"name":"button_tileset",
+					"path":"assets/button_tileset.png",
+					"type":"spritesheet",
+					"numberOfFrames":4,
+					"width":64,
+					"height":64
+				}
+			],
+			
+			"overFrame":1,
+			
+			"downFrame":0,
+			
+			"upFrame":2,
+			
+			"action" : "play"
+		
+		}
+
+	
+	],
+	
+	"gui" : [
+	
+		{
+
+			"name" : "start_button",
+			
+			"image" : ""
+			
+		
+		}
+	
+	]
+	
+
+}
