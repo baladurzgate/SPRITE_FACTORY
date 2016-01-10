@@ -230,7 +230,7 @@
 				{"name":"WALK_LEFT","duration":20,"type":"move","priority":1},
 				{"name":"JUMP","duration":10,"sound":"spider_jump","priority":2},
 				{"name":"DUPLICATE","duration":10,"sound":"spider_jump","priority":3},
-				{"name":"FIRE","duration":20,"sound":"spider_shoot","priority":3,"actionFrame":10}
+				{"name":"FIRE","duration":5,"sound":"spider_shoot","priority":3,"actionFrame":0}
 			
 			],
 			
@@ -243,9 +243,13 @@
 					"WALK_LEFT",
 					"JUMP",
 					"FIRE",
+					"FIRE",
+					"FIRE",
 					"WALK_RIGHT",
 					"WALK_RIGHT",
 					"JUMP",
+					"FIRE",
+					"FIRE",
 					"FIRE"
 				]}
 

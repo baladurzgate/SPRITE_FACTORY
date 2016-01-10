@@ -30,7 +30,7 @@ var initState = {
 			
 			tilemap.setCollisionBetween(game_data.levels[l].collision_from, game_data.levels[l].collision_to);
 
-			var L = new Level(tilemap,JSON.parse(game.cache.getText(game_data.levels[l].name+'json')));
+			var L = new Level(game_data.levels[l].name,tilemap,JSON.parse(game.cache.getText(game_data.levels[l].name+'json')));
 				
 			levels.push(L);
 				

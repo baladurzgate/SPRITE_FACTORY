@@ -6,7 +6,7 @@ game.state.add('load',loadState);
 game.state.add('menu',menuState);
 game.state.add('play',playState);
 game.state.add('win',winState);
-
+game.state.add('assets',assetsState);
 game.state.start('boot');
 
 function isInArray(value, array) {
