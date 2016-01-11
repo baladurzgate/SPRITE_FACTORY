@@ -48,7 +48,7 @@ var assetsState = {
 			
 			for (var i = 0 ; i<game_objects.length; i++){
 				
-				var game_object =jQuery('<li><button name = "'+game_objects[i].getName()+'"> '+game_objects[i].getName()+'</button> </li>')
+				var game_object =jQuery('<li><button class = "game_object"name = "'+game_objects[i].getName()+'"> '+game_objects[i].getName()+'</button> </li>')
 				jQuery(this.outliner).append(game_object)
 				
 				jQuery(game_object).click(function(e){
@@ -76,7 +76,7 @@ var assetsState = {
 		display_single_param:function(name,value,parent){
 			
 				
-			var param_span = jQuery('<span class = "param"><span class = "param_label">'+name+'</span>'+this.parse_value_input(value));
+			var param_span = jQuery('<div class = "param"><span class = "param_label">'+name+'</span>'+this.parse_value_input(value)+'</div>');
 			
 			console.log(param_span)
 					
@@ -86,7 +86,9 @@ var assetsState = {
 		},	
 		parse_value_input:function(value){
 			
-			return '<input class = "param_value" value = "'+value+'">';
+			var size = value.length;
+			
+			return '<input class = "param_value" size = "'+size+'" value = "'+value+'">';
 											
 			
 		},				

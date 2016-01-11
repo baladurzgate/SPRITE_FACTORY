@@ -1,38 +1,72 @@
-#editor{
 
-	position:absolute;
+
+
+.panel{
+
+	box-shadow:0px 0px 5px 0px #aaaaaa;
+	overflow:scroll;
+	padding : 5px;
+	display:inline-block;
+	float:left;
+	background-color : #eeeeee;
+	margin-left:5px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+}
+
+
+
+#editor{
+	font-family:arial;
+	font-size:12px;
+	margin:0px auto;
 	width:1820px;
-	padding : 20px;
-	min-height:700px;
-	border: solid 1px;
+	height:700px;
+
 }
 
 #outliner{
 	
-	background-color : #dddddd;
-	border: solid 1px;
+
 	width:150px;
 	height:700px;
-	overflow:scroll;
-	padding : 20px;
-	float:left;
-	display:inline-block;
-	margin-left:10px;
+
 
 
 }
 
+.game_object{
+
+	box-shadow:0px 0px 5px 0px #aaaaaa;
+	padding : 5px;
+	display:block;
+	background-color : #eeeeee;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	width:100%;
+
+}
+
+li{
+	
+	list-style-type:none;
+	padding:0px;
+	margin:0px;
+
+
+}
+ul{
+	
+	padding:0px;
+	margin:0px;
+
+
+}
 #display{
 	
-	margin-left:10px;
-	background-color : #dddddd;
-	border: solid 1px;
-	width:500px;
+	width:600px;
 	height:700px;
-	overflow:scroll;
 	min-height:700px;
-	padding : 20px;
-	display:inline-block;
 
 
 }
@@ -41,15 +75,12 @@
 
 }
 #preview{
-	float:left;
-	display:inline-block;
-	border: solid 1px;
-	margin-left:10px;
+
 	height:700px;
 }
+
 #properties li{
-	/*padding:5px;*/
-	margin:5px;
+
 }
 
 img{
@@ -59,34 +90,72 @@ img{
 }
 
 .property{
-	border: solid 1px;	
-	margin:5px;
-	padding : 10px;
+
+	box-shadow:0px 0px 2px 0px #aaaaaa;
+	background-color : #eeeeee;
+	border-radius:3px;
+	-moz-border-radius:3px;
 
 }
 
 .prop_name{
-	color:#886600;
+
+	background-color : #dddddd;
+	color:#000000;
+	padding:5px;
+	display:block;
+	box-shadow:0px 3px 3px 0px #aaaaaa;
+	
 
 }
 
 .array_element{
 	
-	border: solid 1px;	
-	margin:5px;		
+	box-shadow:0px 0px 3px 0px #aaaaaa;
 	padding : 5px;
+	
+	border-radius:3px;
+	-moz-border-radius:3px;
 }
 
 .array_element_name{
-
+	padding:5px;
+	display:block;
 	color:#0000FF;
 
 
 }
 
+.animation{
+background-color : #ffee55;
+
+
+}
+.action{
+background-color : #aaee55;
+
+
+}
+.pattern{
+background-color : #ffaa55;
+
+
+}
+.sound{
+background-color : #ff0055;
+
+
+}
+
+
+
 .param{
 
-	margin-right : 5px;
+	box-shadow:0px 0px 3px 0px #aaaaaa;
+	padding : 5px;
+	background-color : #eeeeee;
+	border-radius:3px;
+	-moz-border-radius:3px;
 
 }
 
@@ -97,18 +166,11 @@ img{
 }
 
 .param_value{
-	padding:3px;
-	margin-right : 3px;
+	padding:5px;
 	background-color:#FFFFFF;
 
 }
 
-.param_value{
-	padding:3px;
-	margin-right : 3px;
-	background-color:#FFFFFF;
-
-}
 
 .param_value  input{
 	padding:3px;
