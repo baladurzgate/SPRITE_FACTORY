@@ -74,14 +74,78 @@ var assetsState = {
 
 					var object_data = game_objects[i].getData();
 					
-					/*var properties = jQuery('<ul id="properties"></ul>')
-					jQuery(properties).appendTo(this.display);		*/
+					var properties = jQuery('<ul id="properties"></ul>')
+					jQuery(this.display).append(properties)	
 					
 					for (var prop  in object_data){
 						
-						jQuery(this.display).append('<li> '+prop+' : '+object_data[prop]+' </li>')
+						var property = jQuery('<li class = "property"></li>');
+						jQuery(properties).append(property)
+						
+						var prop_name = jQuery('<span class = "prop_name"> '+prop+' : </span>');
+						jQuery(property).append(prop_name)
+						
+						var prop_value = "";
+						
+						switch (prop){
+							
+							case 'images':
+								
+								prop_value = jQuery('<ul class = "prop_value"> </ul>');
+								
+								for (var i in object_data[prop]){
+									
+									console.log(object_data[prop][i])
+									
+									var image = jQuery('<img src = "'+object_data[prop][i].path+'">');
+									jQuery(prop_value).append(image)
+									
+								}
+							
+							break;
+							
+							case 'animations':
+								
+								prop_value = jQuery('<ul class = "prop_value"> </ul>');
+								
+								for (var i in object_data[prop]){
+									
+									console.log(object_data[prop][i])
+									
+									var image = jQuery('<img src = "'+object_data[prop][i].path+'">');
+									jQuery(prop_value).append(image)
+									
+								}
+							
+							break;
+							
+							case 'shoot_point':
+								
+								prop_value = jQuery('<ul class = "prop_value"> </ul>');
+								
+								for (var i in object_data[prop]){
+									
+									console.log(object_data[prop][i])
+									
+									var image = jQuery('<img src = "'+object_data[prop][i].path+'">');
+									jQuery(prop_value).append(image)
+									
+								}
+							
+							break;
+							
+							default :
+							
+								prop_value = jQuery('<span class = "prop_value">'+object_data[prop]+' </span>');
+							
+							
+						}
+						
+						jQuery(property).append(prop_value)
+						
 						
 					}	
+
 
 					return
 					
