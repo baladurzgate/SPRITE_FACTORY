@@ -19,8 +19,6 @@ var assetsState = {
 		
 	//	display_level_list(200,20,style)
 		
-		
-		
 	},
 	
 	GUI : {
@@ -48,11 +46,12 @@ var assetsState = {
 			
 			for (var i = 0 ; i<game_objects.length; i++){
 				
-				var game_object =jQuery('<li><button class = "game_object"name = "'+game_objects[i].getName()+'"> '+game_objects[i].getName()+'</button> </li>')
+				var game_object =jQuery('<li><button class = "game_object" name = "'+game_objects[i].getName()+'"> '+game_objects[i].getName()+'</button> </li>')
 				jQuery(this.outliner).append(game_object)
 				
 				jQuery(game_object).click(function(e){
 					console.log(e.target.name)
+					
 					GUI.diplay_object(e.target.name);
 				})
 				
@@ -100,11 +99,23 @@ var assetsState = {
 				
 				var element_data =array[i];
 				
-				var  element_ul = jQuery('<li class = "array_element"><span class ="array_element_name">'+ element_data.name+'</span> </li>');
+				var  element_ul = jQuery('<li class = "array_element"></li>');
+				
+				var element_name = jQuery('<div class ="array_element_name">'+ element_data.name+'</div>')
+				
+				var element_params = jQuery('<ul class ="params"></ul>')
+				
+				jQuery(element_name).click(function(e){
+							jQuery(e.target).next().toggle();
+							console.log(e.target)
+						})
+						
 				
 				jQuery(parent).append(element_ul)
+				jQuery(element_ul).append(element_name)
+				jQuery(element_ul).append(element_params)
 
-				this.display_parameters(element_data,element_ul);
+				this.display_parameters(element_data,element_params);
 				
 				
 			}			
@@ -131,10 +142,17 @@ var assetsState = {
 						var property = jQuery('<li class = "property"></li>');
 						jQuery(properties).append(property)
 						
-						var prop_name = jQuery('<span class = "prop_name"> '+prop+' : </span>');
+						var prop_name = jQuery('<div class = "prop_name"> '+prop+' </div>');
 						jQuery(property).append(prop_name)
 						
+
+						
 						var prop_value = '<span class = "prop_value">';
+						
+						jQuery(prop_name).click(function(e){
+							jQuery(e.target).next().toggle();
+							console.log(e.target)
+						})
 						
 						switch (prop){
 							
