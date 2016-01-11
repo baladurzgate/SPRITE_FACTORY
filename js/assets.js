@@ -6,7 +6,7 @@ var assetsState = {
 		
 		game.stage.backgroundColor = '#FFFFFF';
 
-		jQuery('#gamDiv').hide();
+		//jQuery('#gamDiv').hide();
 		
 		console.log(game_objects)
 		console.log(levels)		
@@ -64,6 +64,54 @@ var assetsState = {
 			
 		},
 		
+		display_parameters:function(element,parent){
+			
+			for (var param in element){
+				
+				if(param != 'name'){
+					
+					this.display_single_param(param,element[param],parent)
+									
+				}
+			}			
+			
+		},
+		display_single_param:function(name,value,parent){
+			
+				
+			var param_span = jQuery('<span class = "param"><span class = "param_label">'+name+'</span>'+this.parse_value_input(value));
+			
+			console.log(param_span)
+					
+			jQuery(parent).append(param_span)
+											
+			
+		},	
+		parse_value_input:function(value){
+			
+			return '<input class = "param_value" value = "'+value+'">';
+											
+			
+		},				
+		display_array:function(array,parent){
+			
+			for (var i in array){
+				
+				console.log(array[i])
+				
+				var element_data =array[i];
+				
+				var  element_ul = jQuery('<li class = "array_element"><span class ="array_element_name">'+ element_data.name+'</span> </li>');
+				
+				jQuery(parent).append(element_ul)
+
+				this.display_parameters(element_data,element_ul);
+				
+				
+			}			
+			
+		},
+		
 		diplay_object:function($objectName){
 			
 			jQuery(this.display).empty();
@@ -73,6 +121,8 @@ var assetsState = {
 				if(game_objects[i].getName() == $objectName){
 
 					var object_data = game_objects[i].getData();
+					
+					game_objects[i].copy();
 					
 					var properties = jQuery('<ul id="properties"></ul>')
 					jQuery(this.display).append(properties)	
@@ -85,7 +135,7 @@ var assetsState = {
 						var prop_name = jQuery('<span class = "prop_name"> '+prop+' : </span>');
 						jQuery(property).append(prop_name)
 						
-						var prop_value = "";
+						var prop_value = '<span class = "prop_value">';
 						
 						switch (prop){
 							
@@ -108,36 +158,44 @@ var assetsState = {
 								
 								prop_value = jQuery('<ul class = "prop_value"> </ul>');
 								
-								for (var i in object_data[prop]){
-									
-									console.log(object_data[prop][i])
-									
-									var image = jQuery('<img src = "'+object_data[prop][i].path+'">');
-									jQuery(prop_value).append(image)
-									
-								}
+								this.display_array(object_data[prop],prop_value)
+							
 							
 							break;
 							
 							case 'shoot_point':
 								
+								this.display_parameters(object_data[prop],prop_value);
+							
+							break;
+							
+							case 'actions':
+								
 								prop_value = jQuery('<ul class = "prop_value"> </ul>');
 								
-								for (var i in object_data[prop]){
-									
-									console.log(object_data[prop][i])
-									
-									var image = jQuery('<img src = "'+object_data[prop][i].path+'">');
-									jQuery(prop_value).append(image)
-									
-								}
+								this.display_array(object_data[prop],prop_value)
+							
+							break;
+							
+							case 'patterns':
+								
+								prop_value = jQuery('<ul class = "prop_value"> </ul>');
+								
+								this.display_array(object_data[prop],prop_value)
+							
+							break;
+							
+							case 'sounds':
+								
+								prop_value = jQuery('<ul class = "prop_value"> </ul>');
+								
+								this.display_array(object_data[prop],prop_value)
 							
 							break;
 							
 							default :
 							
-								prop_value = jQuery('<span class = "prop_value">'+object_data[prop]+' </span>');
-							
+								prop_value = jQuery(this.parse_value_input(object_data[prop]));
 							
 						}
 						
@@ -174,27 +232,5 @@ var assetsState = {
 	
 
 }
-
-function display_game_object_list(x,y,style){
-	
-
-	
-}
-
-function display_level_list(x,y,style){
-	
-	
-	var level_list_title = game.add.text(x,y,'LEVELS : ',style)
-
-	
-	for (var i = 0 ; i<levels.length; i++){
-		
-		var game_object = game.add.text(level_list_title.x+30,(i*25)+30+level_list_title.y,levels[i].getName(),style)	
-		
-	}	
-	
-}
-
-
 
 
