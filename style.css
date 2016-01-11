@@ -1,0 +1,118 @@
+#editor{
+
+	position:absolute;
+	width:1820px;
+	padding : 20px;
+	min-height:700px;
+	border: solid 1px;
+}
+
+#outliner{
+	
+	background-color : #dddddd;
+	border: solid 1px;
+	width:150px;
+	height:700px;
+	overflow:scroll;
+	padding : 20px;
+	float:left;
+	display:inline-block;
+	margin-left:10px;
+
+
+}
+
+#display{
+	
+	margin-left:10px;
+	background-color : #dddddd;
+	border: solid 1px;
+	width:500px;
+	height:700px;
+	overflow:scroll;
+	min-height:700px;
+	padding : 20px;
+	display:inline-block;
+
+
+}
+
+#properties{
+
+}
+#preview{
+	float:left;
+	display:inline-block;
+	border: solid 1px;
+	margin-left:10px;
+	height:700px;
+}
+#properties li{
+	/*padding:5px;*/
+	margin:5px;
+}
+
+img{
+
+	width:100%;
+
+}
+
+.property{
+	border: solid 1px;	
+	margin:5px;
+	padding : 10px;
+
+}
+
+.prop_name{
+	color:#886600;
+
+}
+
+.array_element{
+	
+	border: solid 1px;	
+	margin:5px;		
+	padding : 5px;
+}
+
+.array_element_name{
+
+	color:#0000FF;
+
+
+}
+
+.param{
+
+	margin-right : 5px;
+
+}
+
+.param_label{
+	padding:3px;
+	margin-right : 3px;
+
+}
+
+.param_value{
+	padding:3px;
+	margin-right : 3px;
+	background-color:#FFFFFF;
+
+}
+
+.param_value{
+	padding:3px;
+	margin-right : 3px;
+	background-color:#FFFFFF;
+
+}
+
+.param_value  input{
+	padding:3px;
+	margin-right : 3px;
+	background-color:#FFFFFF;
+
+}
