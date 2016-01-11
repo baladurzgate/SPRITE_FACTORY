@@ -13,10 +13,80 @@ var assetsState = {
 		
 		var style = {font : "15px Arial", fill:"#000000"};
 		
-		display_game_object_list(20,20,style)
-		display_level_list(200,20,style)
+		this.GUI.init()
+		
+	//	display_level_list(200,20,style)
 		
 		
+		
+	},
+	
+	GUI : {
+		
+		editor : '',
+		outliner : '',
+		display : '',
+		
+		init:function(){
+			
+			this.editor = jQuery('<div id ="editor"></div>')
+			console.log(this.editor)
+			jQuery(this.editor).appendTo('body');
+			this.outliner = jQuery('<div id ="outliner"></div>')
+			jQuery(this.outliner).appendTo(this.editor);		
+			this.display = jQuery('<div id ="display"></div>')
+			jQuery(this.display).appendTo(this.editor);				
+			this.display_game_object_list();
+			this.diplay_object_properties('dot');
+		},
+		
+		display_game_object_list:function(){
+			
+			console.log(this.outliner);
+			
+			var game_objects_list = jQuery(this.outliner).append('<ul></ul>')
+			
+			var j = 0 ; 
+			
+			for (var i = 0 ; i<game_objects.length; i++){
+				
+				var game_object =jQuery(this.outliner).append('<li><button href="" name = "'+game_objects[i].getName()+'"> '+game_objects[i].getName()+'</button> </li>')
+				
+				jQuery(game_object).click(function(e){
+					console.log(e.target.name)
+					
+				})
+				
+				
+			}				
+			
+		},
+		
+		diplay_object_properties:function($objectName){
+			
+			for (var i = 0 ; i<game_objects.length; i++){
+				
+				if(game_objects[i].getName() == $objectName){
+					
+					var object_data = game_objects[i].getData();
+					
+					var properties = jQuery('<ul id="properties"></ul>')
+					jQuery(properties).appendTo(this.display);		
+					
+					for (var prop  in object_data){
+						
+						jQuery('#properties').append('<li> '+prop+' : '+object_data[prop]+' </li>')
+						
+					}				
+					
+				}
+				
+				return
+				
+			}				
+						
+			
+		}
 		
 	},
 	
@@ -37,40 +107,7 @@ var assetsState = {
 
 function display_game_object_list(x,y,style){
 	
-	
-	//var game_object_list_title = game.add.text(x,y,'GAME_OBJECTS : ',style)
-	
-	var game_objects_list = jQuery('body').append('<ul> GAME_OBJECTS : </ul>')
-	
-	var j = 0 ; 
-	
-	for (var i = 0 ; i<game_objects.length; i++){
-		
-		var game_object = game_objects_list.append('<li> '+game_objects[i].getName()+' </li>')
-		
-		//game_objects[i].copy({x:game_object_list_title.x+30,y:(i*25)+30+game_object_list_title.y});
-		
-		//var game_object_name = game.add.text(game_object_list_title.x+30,(i*25)+30+game_object_list_title.y,game_objects[i].getName(),style)
-		//var game_object_name = game.add.text(game_object_list_title.x+30,(i*25)+30+game_object_list_title.y,game_objects[i].getName(),style)
-		
-		var properties = game_object.append('<ul>  </ul>')
-		
-		var object_data = game_objects[i].getData();
-		
-		for (var prop  in object_data){
-			
-			properties.append('<li> '+prop+' : '+object_data[prop]+' </li>')
-			//var prop_name = game.add.text(game_object_name.x+30,(j*25)+30+game_object_name.y,prop+" : ",style)
-			//var prop_value = game.add.text(prop_name.x+prop_name.width,(j*25)+30+game_object_name.y,object_data[prop],style)
-			
-			//console.log(prop)
-			//console.log(object_data[prop])
-			
-			j++;
-			
-		}
-		
-	}	
+
 	
 }
 
