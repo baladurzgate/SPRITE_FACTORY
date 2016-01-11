@@ -7,6 +7,8 @@ var assetsState = {
 		game.stage.backgroundColor = '#FFFFFF';
 
 		//jQuery('#gamDiv').hide();
+
+		console.log(game);
 		
 		console.log(game_objects)
 		console.log(levels)		
@@ -29,15 +31,10 @@ var assetsState = {
 		
 		init:function(){
 			
-			this.editor = jQuery('<div id ="editor"></div>')
-			console.log(this.editor)
-			jQuery(this.editor).appendTo('body');
-			this.outliner = jQuery('<div id ="outliner"></div>')
-			jQuery(this.outliner).appendTo(this.editor);		
-			this.display = jQuery('<div id ="display"></div>')
-			jQuery(this.display).appendTo(this.editor);				
+			this.editor = jQuery("#editor")
+			this.outliner = jQuery('#outliner')	
+			this.display = jQuery('#display')
 			this.display_game_object_list();
-			//this.diplay_object_properties('dot');
 		},
 		
 		display_game_object_list:function(){
@@ -122,7 +119,7 @@ var assetsState = {
 
 					var object_data = game_objects[i].getData();
 					
-					game_objects[i].copy();
+					game_objects[i].copy({x:100,y:100});
 					
 					var properties = jQuery('<ul id="properties"></ul>')
 					jQuery(this.display).append(properties)	
