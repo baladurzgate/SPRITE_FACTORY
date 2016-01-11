@@ -37,24 +37,26 @@ var assetsState = {
 			this.display = jQuery('<div id ="display"></div>')
 			jQuery(this.display).appendTo(this.editor);				
 			this.display_game_object_list();
-			this.diplay_object_properties('dot');
+			//this.diplay_object_properties('dot');
 		},
 		
 		display_game_object_list:function(){
 			
 			console.log(this.outliner);
 			
-			var game_objects_list = jQuery(this.outliner).append('<ul></ul>')
+			var game_objects_list = jQuery('<ul></ul>')
+			jQuery(this.outliner).append(game_objects_list)
 			
-			var j = 0 ; 
+			var GUI = this;
 			
 			for (var i = 0 ; i<game_objects.length; i++){
 				
-				var game_object =jQuery(this.outliner).append('<li><button href="" name = "'+game_objects[i].getName()+'"> '+game_objects[i].getName()+'</button> </li>')
+				var game_object =jQuery('<li><button name = "'+game_objects[i].getName()+'"> '+game_objects[i].getName()+'</button> </li>')
+				jQuery(this.outliner).append(game_object)
 				
 				jQuery(game_object).click(function(e){
 					console.log(e.target.name)
-					
+					GUI.diplay_object(e.target.name);
 				})
 				
 				
@@ -62,26 +64,30 @@ var assetsState = {
 			
 		},
 		
-		diplay_object_properties:function($objectName){
+		diplay_object:function($objectName){
+			
+			jQuery(this.display).empty();
 			
 			for (var i = 0 ; i<game_objects.length; i++){
 				
 				if(game_objects[i].getName() == $objectName){
-					
+
 					var object_data = game_objects[i].getData();
 					
-					var properties = jQuery('<ul id="properties"></ul>')
-					jQuery(properties).appendTo(this.display);		
+					/*var properties = jQuery('<ul id="properties"></ul>')
+					jQuery(properties).appendTo(this.display);		*/
 					
 					for (var prop  in object_data){
 						
-						jQuery('#properties').append('<li> '+prop+' : '+object_data[prop]+' </li>')
+						jQuery(this.display).append('<li> '+prop+' : '+object_data[prop]+' </li>')
 						
-					}				
+					}	
+
+					return
 					
 				}
 				
-				return
+				
 				
 			}				
 						
