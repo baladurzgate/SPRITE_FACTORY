@@ -45,8 +45,6 @@ var initState = {
 			}
 
 			var L = new Level(game_data.levels[l].name,tilemap,json);
-			
-			console.log(L)
 				
 			levels.push(L);
 				

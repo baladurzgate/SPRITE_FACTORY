@@ -13,9 +13,6 @@ var editorState = {
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 		
 		game.physics.arcade.gravity.y = 200;
-
-		
-		console.log(levels[2])
 		
 		levels[2].start();
 		
@@ -31,6 +28,7 @@ var editorState = {
 		outliner : '',
 		display : '',
 		displayed_game_object : '',		
+		edited_game_object :'',
 		
 		init:function(){
 			
@@ -77,18 +75,28 @@ var editorState = {
 		
 		display_single_param:function(name,value,parent){
 			
-			var param_span = jQuery('<div class = "param"><span class = "param_label">'+name+'</span>'+this.parse_value_input(value)+'</div>');
-
+			var param_span = jQuery('<div class = "param" name = '+name+'><span class = "param_label">'+name+'</span></div>');
+			jQuery(param_span).append(this.parse_value_input(name,value))
 			jQuery(parent).append(param_span)
 											
 			
 		},	
 		
-		parse_value_input:function(value){
+		parse_value_input:function(param,value){
 			
-			var size = value.length;
+			var GUI = this
 			
-			return '<input class = "param_value" size = "'+size+'" value = "'+value+'">';
+			var input = jQuery('<input name = "'+param+'"   class="param_value" value = "'+value+'">')
+			
+			jQuery(input).change(function(e) {
+				
+				console.log(e.target);
+				GUI.edited_game_object.changeData(this.name,this.value)
+				GUI.preview_game_object();
+				
+			})
+			
+			return input;
 											
 			
 		},				
@@ -123,6 +131,16 @@ var editorState = {
 			
 		},
 		
+		preview_game_object:function(){
+
+			this.displayed_game_object.destroy();
+			
+			this.displayed_game_object.kill();
+			
+			this.displayed_game_object = this.edited_game_object.copy({x:100,y:100});			
+			
+		},
+		
 		diplay_object:function($objectName){
 			
 			jQuery(this.properties).empty();
@@ -130,13 +148,12 @@ var editorState = {
 			for (var i = 0 ; i<game_objects.length; i++){
 				
 				if(game_objects[i].getName() == $objectName){
+					
+					this.edited_game_object = game_objects[i];
 
 					var object_data = game_objects[i].getData();
 					
-					this.displayed_game_object.destroy();
-					this.displayed_game_object.kill();
-					
-					this.displayed_game_object = game_objects[i].copy({x:100,y:100});
+					this.preview_game_object();
 					
 					
 					for (var prop  in object_data){
@@ -219,7 +236,7 @@ var editorState = {
 							
 							default :
 							
-								prop_value = jQuery(this.parse_value_input(object_data[prop]));
+								prop_value = jQuery(this.parse_value_input(prop,object_data[prop]));
 							
 						}
 						
@@ -237,8 +254,10 @@ var editorState = {
 				
 			}				
 						
-			
+			save_content_to_file('hello','text.txt');
 		}
+		
+		
 		
 	},
 	
@@ -257,4 +276,28 @@ var editorState = {
 
 }
 
+function save_content_to_file(content,filename){
+	
+	var dlg = false;
+	with(document){
+		ir=createElement('iframe');
+		ir.id = 'ifr';
+		ir.location = 'about.blank';
+		ir.style.display = 'none';
+		body.appendChild(ir);
+		with(getElementById('ifr').contentWindow.document){
+			open("text/plain","replace");
+			charset = "utf8";
+			write(content)
+			close();
+			document.charset ="utf8";
+			dlg = execCommand('SaveAs',false,filename+'.txt');
+		}
+	
+	body.removeChild(ir);
+	
+	}
+	return dlg;
 
+	
+}
