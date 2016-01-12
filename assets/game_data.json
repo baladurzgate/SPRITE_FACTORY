@@ -28,6 +28,8 @@
 			"name" : "dot",
 			
 			"type" : "sprite",
+			
+			"behaviour" : "dynamic",
 		
 			"images" :[
 				{	"name":"bob",

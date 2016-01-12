@@ -133,11 +133,10 @@ var editorState = {
 
 					var object_data = game_objects[i].getData();
 					
-					//game.stage.removeChild(0,2)
-					var instance = game_objects[i].copy({x:100,y:100});
+					game.world.removeAll()
 					
-					var index = instance
-					console.log(index)//game.stage.swapChildren(this.displayed_game_object,instance)
+					this.displayed_game_object = game_objects[i].copy({x:100,y:100});
+					
 					
 					for (var prop  in object_data){
 						
