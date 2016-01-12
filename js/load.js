@@ -5,8 +5,14 @@ var loadState = {
 		var files_to_load = new Array();
 
 		for (var l = 0 ; l < levels.length ; l ++){
+			
+			if(levels[l].useTilesets()){
+				
+				levels[l].loadTilesets();
+				
+				
+			}
 		
-			levels[l].loadTilesets();
 		
 		}
 		

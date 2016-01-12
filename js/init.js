@@ -6,7 +6,7 @@ var initState = {
 	
 		for (var i = 0 ; i < game_data.levels.length ; i ++){
 			
-			if(!isInArray(game_data.levels[i].map,loading_files)){
+			if(game_data.levels[i].map != undefined && !isInArray(game_data.levels[i].map,loading_files) ){
 				
 				game.load.tilemap(game_data.levels[i].name, game_data.levels[i].map, null, Phaser.Tilemap.TILED_JSON);
 				
@@ -25,12 +25,28 @@ var initState = {
 	create : function(){
 			
 		for (var l = 0 ; l < game_data.levels.length ; l ++){
-				
-			var tilemap = game.add.tilemap(game_data.levels[l].name);
 			
-			tilemap.setCollisionBetween(game_data.levels[l].collision_from, game_data.levels[l].collision_to);
+			var tilemap = undefined;
+			
+			var json = undefined;
+			
+			if(game_data.levels[l].map != undefined){		
+				
+				tilemap = game.add.tilemap(game_data.levels[l].name);
+				
+				if(game_data.levels[l].collision_from != undefined && game_data.levels[l].collision_to != undefined){
+				
+					tilemap.setCollisionBetween(game_data.levels[l].collision_from, game_data.levels[l].collision_to);
+				
+				}		
+				
+				json = JSON.parse(game.cache.getText(game_data.levels[l].name+'json'))
+				
+			}
 
-			var L = new Level(game_data.levels[l].name,tilemap,JSON.parse(game.cache.getText(game_data.levels[l].name+'json')));
+			var L = new Level(game_data.levels[l].name,tilemap,json);
+			
+			console.log(L)
 				
 			levels.push(L);
 				

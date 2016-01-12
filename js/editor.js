@@ -15,9 +15,9 @@ var editorState = {
 		game.physics.arcade.gravity.y = 200;
 
 		
+		console.log(levels[2])
 		
-		
-		//levels[0].start();
+		//levels[2].start();
 		
 	//	display_level_list(200,20,style)
 		
@@ -242,7 +242,7 @@ var editorState = {
 	},
 	
 	update : function(){
-		
+		levels[2].update_behaviours();
 			
 	},
 	
