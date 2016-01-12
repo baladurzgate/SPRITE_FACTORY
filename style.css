@@ -110,6 +110,7 @@ img{
 	padding:5px;
 	display:block;
 	box-shadow:0px 3px 3px 0px #aaaaaa;
+	cursor:pointer;
 	
 
 }
@@ -134,6 +135,7 @@ img{
 	padding:5px;
 	display:block;
 	color:#0000FF;
+	cursor:pointer;
 
 
 }

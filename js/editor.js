@@ -17,7 +17,7 @@ var editorState = {
 		
 		console.log(levels[2])
 		
-		//levels[2].start();
+		levels[2].start();
 		
 	//	display_level_list(200,20,style)
 		
@@ -133,7 +133,8 @@ var editorState = {
 
 					var object_data = game_objects[i].getData();
 					
-					game.world.removeAll()
+					this.displayed_game_object.destroy();
+					this.displayed_game_object.kill();
 					
 					this.displayed_game_object = game_objects[i].copy({x:100,y:100});
 					

@@ -17,6 +17,10 @@
 			"name" : "options",
 		
 			"map" : "assets/options_map.json"
+		},
+		
+		{
+			"name" : "sandbox"
 		}
 	
 	],
