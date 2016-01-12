@@ -4,34 +4,36 @@
 .panel{
 
 	box-shadow:0px 0px 5px 0px #aaaaaa;
-	overflow:scroll;
 	padding : 5px;
-	display:inline-block;
-	float:left;
 	background-color : #eeeeee;
 	margin-left:5px;
 	border-radius:5px;
 	-moz-border-radius:5px;
 }
 
+body{
 
+position:absolute;
+width:100%;
+
+}
 
 #editor{
+	
 	font-family:arial;
 	font-size:12px;
 	margin:0px auto;
-	width:1820px;
+	width:800px;
 	height:700px;
 
 }
 
 #outliner{
 	
-
+	float:left;
 	width:150px;
 	height:700px;
-
-
+	display:inline-block;
 
 }
 
@@ -64,19 +66,21 @@ ul{
 }
 #display{
 	
-	width:300px;
+	width:600px;
 	height:700px;
-	min-height:700px;
-
+	display:inline-block;
 
 }
 
 #properties{
-
+	width:600px;
+	height:500px;
+	overflow:scroll;
 }
 #preview{
-
-	height:700px;
+	width:600px;
+	height:200px;
+	overflow:hidden;
 }
 
 #properties li{

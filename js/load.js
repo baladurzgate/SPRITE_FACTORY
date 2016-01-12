@@ -21,7 +21,16 @@ var loadState = {
 	
 	create: function(){
 	
-		game.state.start('assets');
+		if(editor){
+			
+			game.state.start('editor');
+			
+		}else{
+			
+			
+			game.state.start('menu');
+			
+		}
 		//game.state.start('menu');
 		
 	}
