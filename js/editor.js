@@ -137,6 +137,8 @@ var editorState = {
 			
 			this.displayed_game_object.kill();
 			
+			//game.world.removeAll();
+			
 			this.displayed_game_object = this.edited_game_object.copy({x:100,y:100});			
 			
 		},
@@ -151,12 +153,26 @@ var editorState = {
 					
 					this.edited_game_object = game_objects[i];
 
-					var object_data = game_objects[i].getData();
+					var object_data = game_objects[i].getModelData();
 					
 					this.preview_game_object();
 					
+					console.log(game_objects[i].properties)
+
 					
-					for (var prop  in object_data){
+					for(var p in game_objects[i].properties){
+						
+						var prop = game_objects[i].properties[p];
+						
+						prop.link_to_GUI(this);
+						
+						jQuery(this.properties).append(prop.create_jquery_object())
+						
+						
+					}
+					
+					
+					/*for (var prop  in object_data){
 						
 						var property = jQuery('<li class = "property"></li>');
 						jQuery(this.properties).append(property)
@@ -243,7 +259,7 @@ var editorState = {
 						jQuery(property).append(prop_value)
 						
 						
-					}	
+					}	*/
 
 
 					return
