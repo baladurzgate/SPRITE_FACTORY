@@ -40,6 +40,8 @@ var editorState = {
 		},
 		
 		display_game_object_list:function(){
+			
+			jQuery(this.outliner).empty();
 
 			var game_objects_list = jQuery('<ul></ul>')
 			jQuery(this.outliner).append(game_objects_list)
@@ -55,8 +57,26 @@ var editorState = {
 					GUI.diplay_object(e.target.name);
 				})
 				
+				var delete_button = jQuery('<button class ="delete_button" index = "'+i+'">x</button>');
+				jQuery(game_object).append(delete_button)
+				var context = this;
+				jQuery(delete_button).click(function(){
+
+					game_objects.splice(jQuery(this).attr('index'),1);
+					context.display_game_object_list();
+
+				})	
 				
-			}				
+				
+			}		
+
+			var add_game_object_button = jQuery('<li><button class ="add_button">+</button></li>');
+			jQuery(this.outliner).append(add_game_object_button)
+			jQuery(add_game_object_button).click(function(e){
+				
+				
+			})	
+					
 			
 		},
 		
