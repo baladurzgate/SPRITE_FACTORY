@@ -127,7 +127,7 @@ function Action ($name,$subject,$data){
 							
 							if(action_sound != false){
 								
-								game_sounds[action_sound].play();
+								GAME_SOUNDS[action_sound].play();
 								
 							}
 						
@@ -176,7 +176,7 @@ function Action ($name,$subject,$data){
 						
 						if(action_sound != false){
 							
-							game_sounds[action_sound].play();
+							GAME_SOUNDS[action_sound].play();
 							
 						}
 						
@@ -211,7 +211,7 @@ function Action ($name,$subject,$data){
 							
 							if(action_sound != false){
 								
-								game_sounds[action_sound].play();
+								GAME_SOUNDS[action_sound].play();
 								
 							}		
 

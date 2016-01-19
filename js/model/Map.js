@@ -1,14 +1,14 @@
 function Level (){
 
-	if(game_data.levels[i].tilesets){
+	if(GAME_DATA.GAME_LEVELS[i].tilesets){
 		
-		for (var j = 0 ; j < game_data.levels[i].tilesets.length ; j++){
+		for (var j = 0 ; j < GAME_DATA.GAME_LEVELS[i].tilesets.length ; j++){
 			
-			if(!isInArray(game_data.levels[i].tilesets[j].path,files_to_load)){
+			if(!isInArray(GAME_DATA.GAME_LEVELS[i].tilesets[j].path,files_to_load)){
 				
-				game.load.image(game_data.levels[i].tilesets[j].name,game_data.levels[i].tilesets[j].path);
+				game.load.image(GAME_DATA.GAME_LEVELS[i].tilesets[j].name,GAME_DATA.GAME_LEVELS[i].tilesets[j].path);
 				
-				files_to_load.push(game_data.levels[i].tilesets[j].path);
+				files_to_load.push(GAME_DATA.GAME_LEVELS[i].tilesets[j].path);
 				
 			}
 			

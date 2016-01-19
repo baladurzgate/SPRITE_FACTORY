@@ -4,15 +4,15 @@ var initState = {
 
 	preload : function(){
 	
-		for (var i = 0 ; i < game_data.levels.length ; i ++){
+		for (var i = 0 ; i < GAME_DATA.GAME_LEVELS.length ; i ++){
 			
-			if(game_data.levels[i].map != undefined && !isInArray(game_data.levels[i].map,loading_files) ){
+			if(GAME_DATA.GAME_LEVELS[i].map != undefined && !isInArray(GAME_DATA.GAME_LEVELS[i].map,LOADING_FILES) ){
 				
-				game.load.tilemap(game_data.levels[i].name, game_data.levels[i].map, null, Phaser.Tilemap.TILED_JSON);
+				game.load.tilemap(GAME_DATA.GAME_LEVELS[i].name, GAME_DATA.GAME_LEVELS[i].map, null, Phaser.Tilemap.TILED_JSON);
 				
-				game.load.text(game_data.levels[i].name+'json',game_data.levels[i].map);
+				game.load.text(GAME_DATA.GAME_LEVELS[i].name+'json',GAME_DATA.GAME_LEVELS[i].map);
 				
-				loading_files.push(game_data.levels[i].map);
+				LOADING_FILES.push(GAME_DATA.GAME_LEVELS[i].map);
 				
 			}
 			
@@ -24,37 +24,37 @@ var initState = {
 	
 	create : function(){
 			
-		for (var l = 0 ; l < game_data.levels.length ; l ++){
+		for (var l = 0 ; l < GAME_DATA.GAME_LEVELS.length ; l ++){
 			
 			var tilemap = undefined;
 			
 			var json = undefined;
 			
-			if(game_data.levels[l].map != undefined){		
+			if(GAME_DATA.GAME_LEVELS[l].map != undefined){		
 				
-				tilemap = game.add.tilemap(game_data.levels[l].name);
+				tilemap = game.add.tilemap(GAME_DATA.GAME_LEVELS[l].name);
 				
-				if(game_data.levels[l].collision_from != undefined && game_data.levels[l].collision_to != undefined){
+				if(GAME_DATA.GAME_LEVELS[l].collision_from != undefined && GAME_DATA.GAME_LEVELS[l].collision_to != undefined){
 				
-					tilemap.setCollisionBetween(game_data.levels[l].collision_from, game_data.levels[l].collision_to);
+					tilemap.setCollisionBetween(GAME_DATA.GAME_LEVELS[l].collision_from, GAME_DATA.GAME_LEVELS[l].collision_to);
 				
 				}		
 				
-				json = JSON.parse(game.cache.getText(game_data.levels[l].name+'json'))
+				json = JSON.parse(game.cache.getText(GAME_DATA.GAME_LEVELS[l].name+'json'))
 				
 			}
 
-			var L = new Level(game_data.levels[l].name,tilemap,json);
+			var L = new Level(GAME_DATA.GAME_LEVELS[l].name,tilemap,json);
 				
-			levels.push(L);
+			GAME_LEVELS.push(L);
 				
 		}
 		
-		for (var o = 0 ; o < game_data.objects.length ; o ++){
+		for (var o = 0 ; o < GAME_DATA.objects.length ; o ++){
 			
-			var O = new Obj(game_data.objects[o]);
+			var O = new Obj(GAME_DATA.objects[o]);
 			
-			game_objects.push(O);
+			GAME_OBJECTS.push(O);
 			
 		}
 	

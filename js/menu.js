@@ -17,21 +17,21 @@ var menuState = {
 		
 		game.physics.arcade.gravity.y = 200;
 		
-		levels[0].start();
+		GAME_LEVELS[0].start();
 		
-		this.player = levels[0].select_player();
+		this.player = GAME_LEVELS[0].select_player();
 		
 		console.log(this.player)
 		
-		//game.physics.arcade.enable(levels[0].getLevelObjects());
+		//game.physics.arcade.enable(GAME_LEVELS[0].getLevelObjects());
 	},
 	
 	update : function(){
 
 
 	
-		levels[0].update_collisions();
-		levels[0].update_behaviours();
+		GAME_LEVELS[0].update_collisions();
+		GAME_LEVELS[0].update_behaviours();
 
 		this.player.actions.play('IDLE');
 		

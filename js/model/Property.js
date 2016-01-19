@@ -594,9 +594,9 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 						
 						case 'game_object':
 						
-							for(var o = 0 ; o <game_objects.length ;o++){
+							for(var o = 0 ; o <GAME_OBJECTS.length ;o++){
 								
-								var option = jQuery('<option value = "'+game_objects[o].getName()+'">'+game_objects[o].getName()+'</option>');
+								var option = jQuery('<option value = "'+GAME_OBJECTS[o].getName()+'">'+GAME_OBJECTS[o].getName()+'</option>');
 								
 								jQuery(input).append(option);
 								
@@ -606,11 +606,11 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 						
 						case 'projectile':
 						
-							for(var o = 0 ; o <game_objects.length ;o++){
+							for(var o = 0 ; o <GAME_OBJECTS.length ;o++){
 
-								if(game_objects[o].getModelData().behaviour == 'projectile'){
+								if(GAME_OBJECTS[o].getModelData().behaviour == 'projectile'){
 									
-									var option = jQuery('<option value = "'+game_objects[o].getName()+'">'+game_objects[o].getName()+'</option>');
+									var option = jQuery('<option value = "'+GAME_OBJECTS[o].getName()+'">'+GAME_OBJECTS[o].getName()+'</option>');
 									
 								}
 								
@@ -638,9 +638,9 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 						
 						case 'sound':
 						
-								for(var s in game_sounds){
+								for(var s in GAME_SOUNDS){
 									
-									var option = jQuery('<option value = "'+game_sounds[s].name+'">'+game_sounds[s].name+'</option>');
+									var option = jQuery('<option value = "'+GAME_SOUNDS[s].name+'">'+GAME_SOUNDS[s].name+'</option>');
 									jQuery(input).append(option);
 									
 								}

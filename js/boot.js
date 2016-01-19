@@ -1,16 +1,16 @@
-var game_data = {}
-var levels = new Array();
-var game_objects = new Array();
-var loading_files = new Array();
-var game_sounds = {};
-var current_level;
+var GAME_DATA = {}
+var GAME_LEVELS = new Array();
+var GAME_OBJECTS = new Array();
+var LOADING_FILES = new Array();
+var GAME_SOUNDS = {};
+var CURRENT_LEVEL;
 
 
 var bootState = {
 
 	preload: function (){
 	
-		game.load.text('game_data','assets/game_data.json');
+		game.load.text('GAME_DATA','assets/GAME_DATA.json');
 	
 	},
 	
@@ -18,7 +18,7 @@ var bootState = {
 		
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 		
-		game_data = JSON.parse(game.cache.getText("game_data"));
+		GAME_DATA = JSON.parse(game.cache.getText("GAME_DATA"));
 		
 		game.state.start('init');
 	
@@ -30,12 +30,12 @@ var bootState = {
 
 function find_game_object($name){
 	
-	for (var o = 0 ; o < game_objects.length ; o++){
+	for (var o = 0 ; o < GAME_OBJECTS.length ; o++){
 	
 			
-		if(game_objects[o].getName() == $name){
+		if(GAME_OBJECTS[o].getName() == $name){
 
-			return game_objects[o];
+			return GAME_OBJECTS[o];
 			
 		}
 		

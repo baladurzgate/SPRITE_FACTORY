@@ -40,7 +40,7 @@ function Level ($name,$tilemap,$json){
 		
 			for (var i = 0 ; i < tilesets.length ; i ++){
 				
-				if(!isInArray('assets/'+tilesets[i].name+'.png',loading_files)){
+				if(!isInArray('assets/'+tilesets[i].name+'.png',LOADING_FILES)){
 						
 					game.load.image(tilesets[i].name,'assets/'+tilesets[i].name+'.png');
 						
@@ -65,7 +65,7 @@ function Level ($name,$tilemap,$json){
 	
 	this.select_player = function (){
 		
-		 var player = levels[0].getObjectsByProp('name','player');
+		 var player = GAME_LEVELS[0].getObjectsByProp('name','player');
 		player.controled_by = 'player'
 		
 		return player;
@@ -75,7 +75,7 @@ function Level ($name,$tilemap,$json){
 	this.start = function(){
 		
 		
-		current_level = this;
+		CURRENT_LEVEL = this;
 		
 		if(this.useTilesets()){
 			
@@ -104,11 +104,11 @@ function Level ($name,$tilemap,$json){
 					
 					for (var o in json.layers[lo].objects){
 						
-						for (var go = 0 ; go < game_objects.length;go++){
+						for (var go = 0 ; go < GAME_OBJECTS.length;go++){
 							
-							if(json.layers[lo].objects[o].type == game_objects[go].getName()){
+							if(json.layers[lo].objects[o].type == GAME_OBJECTS[go].getName()){
 									
-								var obj = game_objects[go].copy(json.layers[lo].objects[o]);
+								var obj = GAME_OBJECTS[go].copy(json.layers[lo].objects[o]);
 								
 								break;
 								

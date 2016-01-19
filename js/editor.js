@@ -14,7 +14,7 @@ var editorState = {
 		
 		game.physics.arcade.gravity.y = 200;
 		
-		levels[2].start();
+		GAME_LEVELS[2].start();
 		
 	//	display_level_list(200,20,style)
 		
@@ -42,14 +42,14 @@ var editorState = {
 			
 			jQuery(this.outliner).empty();
 
-			var game_objects_list = jQuery('<ul></ul>')
-			jQuery(this.outliner).append(game_objects_list)
+			var GAME_OBJECTS_list = jQuery('<ul></ul>')
+			jQuery(this.outliner).append(GAME_OBJECTS_list)
 			
 			var GUI = this;
 			
-			for (var i = 0 ; i<game_objects.length; i++){
+			for (var i = 0 ; i<GAME_OBJECTS.length; i++){
 				
-				var game_object =jQuery('<li><button class = "game_object" name = "'+game_objects[i].getName()+'"> '+game_objects[i].getName()+'</button> </li>')
+				var game_object =jQuery('<li><button class = "game_object" name = "'+GAME_OBJECTS[i].getName()+'"> '+GAME_OBJECTS[i].getName()+'</button> </li>')
 				jQuery(this.outliner).append(game_object)
 				
 				jQuery(game_object).click(function(e){
@@ -61,7 +61,7 @@ var editorState = {
 				var context = this;
 				jQuery(delete_button).click(function(){
 
-					game_objects.splice(jQuery(this).attr('index'),1);
+					GAME_OBJECTS.splice(jQuery(this).attr('index'),1);
 					context.display_game_object_list();
 
 				})	
@@ -116,22 +116,22 @@ var editorState = {
 			
 			jQuery(this.properties).empty();
 			
-			for (var i = 0 ; i<game_objects.length; i++){
+			for (var i = 0 ; i<GAME_OBJECTS.length; i++){
 				
-				if(game_objects[i].getName() == _objectName){
+				if(GAME_OBJECTS[i].getName() == _objectName){
 					
-					this.edited_game_object = game_objects[i];
+					this.edited_game_object = GAME_OBJECTS[i];
 
-					var object_data = game_objects[i].getModelData();
+					var object_data = GAME_OBJECTS[i].getModelData();
 					
 					this.preview_game_object();
 					
-					console.log(game_objects[i].properties)
+					console.log(GAME_OBJECTS[i].properties)
 
 					
-					for(var p in game_objects[i].properties){
+					for(var p in GAME_OBJECTS[i].properties){
 						
-						var prop = game_objects[i].properties[p];
+						var prop = GAME_OBJECTS[i].properties[p];
 						
 						prop.link_to_GUI(this);
 						
@@ -160,15 +160,17 @@ var editorState = {
 	},
 	
 	update : function(){
-		levels[2].update_behaviours();
+		GAME_LEVELS[2].update_behaviours();
 			
 	},
 	
-	save_game_data:function(){
+	save_GAME_DATA:function(){
 	
-		var data = 
+		var data = {
+			GD = JSON.stringify(GAME_DATA)
+		}
 		
-		jQuery.post('save_game_data.php', data, function(response) {
+		jQuery.post('save_GAME_DATA.php', data, function(response) {
 			//alert('Got this from the server: ' + response);
 			this.GUI.update_output_info("areas up to date");
 		});

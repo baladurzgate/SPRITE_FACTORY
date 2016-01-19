@@ -10,7 +10,7 @@ function Obj ($model_data){
 		
 		for (var i = 0 ; i < model_data.images.length ; i ++){
 			
-			if(!isInArray(model_data.images[i].name,loading_files)){
+			if(!isInArray(model_data.images[i].name,LOADING_FILES)){
 					
 				switch (model_data.images[i].type){
 						
@@ -46,7 +46,7 @@ function Obj ($model_data){
 
 			for (var s = 0 ; s < model_data.sounds.length ; s ++){
 				
-				if(!isInArray(model_data.sounds[s].name,loading_files)){
+				if(!isInArray(model_data.sounds[s].name,LOADING_FILES)){
 					
 					//game.load.audio(model_data.sounds[s].name,model_data.sounds[s].file_wave,model_data.sounds[s].file_mp3,model_data.sounds[s].file_ogg)
 					game.load.audio(model_data.sounds[s].name,model_data.sounds[s].file_mp3)
@@ -125,7 +125,7 @@ function Obj ($model_data){
 			
 			for (var s = 0 ; s < model_data.sounds.length ; s++){
 				
-				game_sounds[model_data.sounds[s].name]=game.add.audio(model_data.sounds[s].name);
+				GAME_SOUNDS[model_data.sounds[s].name]=game.add.audio(model_data.sounds[s].name);
 				
 			}
 
@@ -436,9 +436,9 @@ function Obj ($model_data){
 				
 				if(collide){
 					
-					if(current_level != undefined){
+					if(CURRENT_LEVEL != undefined){
 					
-						current_level.add_object_to_group(obj,'sprites')	
+						CURRENT_LEVEL.add_object_to_group(obj,'sprites')	
 					
 					}
 					
@@ -472,9 +472,9 @@ function Obj ($model_data){
 				
 		}
 		
-		if(current_level != undefined){
+		if(CURRENT_LEVEL != undefined){
 		
-			current_level.add_object(obj)
+			CURRENT_LEVEL.add_object(obj)
 		
 		}
 

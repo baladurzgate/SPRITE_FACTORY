@@ -4,11 +4,11 @@ var loadState = {
 		
 		var files_to_load = new Array();
 
-		for (var l = 0 ; l < levels.length ; l ++){
+		for (var l = 0 ; l < GAME_LEVELS.length ; l ++){
 			
-			if(levels[l].useTilesets()){
+			if(GAME_LEVELS[l].useTilesets()){
 				
-				levels[l].loadTilesets();
+				GAME_LEVELS[l].loadTilesets();
 				
 				
 			}
@@ -16,9 +16,9 @@ var loadState = {
 		
 		}
 		
-		for (var o = 0 ; o <game_objects.length ; o ++){
+		for (var o = 0 ; o <GAME_OBJECTS.length ; o ++){
 						
-			game_objects[o].loadMedia();
+			GAME_OBJECTS[o].loadMedia();
 			
 		}
 	

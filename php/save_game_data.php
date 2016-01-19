@@ -1,11 +1,11 @@
 <?php
 
 
-	if(isset($_POST['game_data']){
+	if(isset($_POST['GAME_DATA']){
 
-		$game_data = $_POST['game_data'];
+		$GAME_DATA = $_POST['GAME_DATA'];
 		
-		echo $game_data;
+		echo $GAME_DATA;
 
 
 
