@@ -79,34 +79,13 @@ var editorState = {
 					
 			
 		},
+
 		
-		display_parameters:function(element,parent){
-			
-			for (var param in element){
-				
-				if(param != 'name'){
-					
-					this.display_single_param(param,element[param],parent)
-									
-				}
-			}			
-			
-		},
-		
-		display_single_param:function(name,value,parent){
-			
-			var param_span = jQuery('<div class = "param" name = '+name+'><span class = "param_label">'+name+'</span></div>');
-			jQuery(param_span).append(this.parse_value_input(name,value))
-			jQuery(parent).append(param_span)
-											
-			
-		},	
-		
-		parse_value_input:function(param,value){
+		parse_value_input:function(_param,_value){
 			
 			var GUI = this
 			
-			var input = jQuery('<input name = "'+param+'"   class="param_value" value = "'+value+'">')
+			var input = jQuery('<input name = "'+_param+'"   class="param_value" value = "'+_value+'">')
 			
 			jQuery(input).change(function(e) {
 				
@@ -121,35 +100,6 @@ var editorState = {
 			
 		},				
 		
-		display_array:function(array,parent){
-			
-			for (var i in array){
-				
-				var element_data =array[i];
-				
-				var  element_ul = jQuery('<li class = "array_element"></li>');
-				
-				var element_name = jQuery('<div class ="array_element_name">'+ element_data.name+'</div>')
-				
-				var element_params = jQuery('<ul class ="params"></ul>')
-				
-				jQuery(element_name).click(function(e){
-					
-					jQuery(e.target).next().toggle();
-					
-				})
-						
-				
-				jQuery(parent).append(element_ul)
-				jQuery(element_ul).append(element_name)
-				jQuery(element_ul).append(element_params)
-
-				this.display_parameters(element_data,element_params);
-				
-				
-			}			
-			
-		},
 		
 		preview_game_object:function(){
 
@@ -163,13 +113,13 @@ var editorState = {
 			
 		},
 		
-		diplay_object:function($objectName){
+		diplay_object:function(_objectName){
 			
 			jQuery(this.properties).empty();
 			
 			for (var i = 0 ; i<game_objects.length; i++){
 				
-				if(game_objects[i].getName() == $objectName){
+				if(game_objects[i].getName() == _objectName){
 					
 					this.edited_game_object = game_objects[i];
 
@@ -190,97 +140,6 @@ var editorState = {
 						
 						
 					}
-					
-					
-					/*for (var prop  in object_data){
-						
-						var property = jQuery('<li class = "property"></li>');
-						jQuery(this.properties).append(property)
-						
-						var prop_name = jQuery('<div class = "prop_name"> '+prop+' </div>');
-						jQuery(property).append(prop_name)
-						
-						var prop_value = '<span class = "prop_value">';
-						
-						jQuery(prop_name).click(function(e){
-							jQuery(e.target).next().toggle();
-						})
-						
-						switch (prop){
-							
-							case 'images':
-								
-								prop_value = jQuery('<ul class = "prop_value"> </ul>');
-								
-								for (var i in object_data[prop]){
-									
-									var image = jQuery('<img src = "'+object_data[prop][i].path+'">');
-									jQuery(prop_value).append(image)
-									
-								}
-							
-							break;
-							
-							case 'animations':
-								
-								prop_value = jQuery('<ul class = "prop_value"> </ul>');
-								
-								this.display_array(object_data[prop],prop_value)
-							
-							
-							break;
-							
-							case 'shoot_point':
-							
-								prop_value = jQuery('<ul class = "prop_value"> </ul>');
-								
-								this.display_parameters(object_data[prop],prop_value);
-							
-							break;
-							
-							case 'actions':
-								
-								prop_value = jQuery('<ul class = "prop_value"> </ul>');
-								
-								this.display_array(object_data[prop],prop_value)
-							
-							break;
-							
-							case 'physical':
-								
-								prop_value = jQuery('<ul class = "prop_value"> </ul>');
-								
-								this.display_parameters(object_data[prop],prop_value);
-							
-							break;
-							
-							case 'patterns':
-								
-								prop_value = jQuery('<ul class = "prop_value"> </ul>');
-								
-								this.display_array(object_data[prop],prop_value)
-							
-							break;
-							
-							case 'sounds':
-								
-								prop_value = jQuery('<ul class = "prop_value"> </ul>');
-								
-								this.display_array(object_data[prop],prop_value)
-							
-							break;
-							
-							default :
-							
-								prop_value = jQuery(this.parse_value_input(prop,object_data[prop]));
-							
-						}
-						
-						jQuery(property).append(prop_value)
-						
-						
-					}	*/
-
 
 					return
 					
@@ -312,28 +171,26 @@ var editorState = {
 
 }
 
-function save_content_to_file(content,filename){
+function save_content(){
+
 	
-	var dlg = false;
-	with(document){
-		ir=createElement('iframe');
-		ir.id = 'ifr';
-		ir.location = 'about.blank';
-		ir.style.display = 'none';
-		body.appendChild(ir);
-		with(getElementById('ifr').contentWindow.document){
-			open("text/plain","replace");
-			charset = "utf8";
-			write(content)
-			close();
-			document.charset ="utf8";
-			dlg = execCommand('SaveAs',false,filename+'.txt');
-		}
-	
-	body.removeChild(ir);
-	
-	}
-	return dlg;
+		data = convert_to_html();
+		
+		var data = {
+			'action': 'update_areas',
+			'post_id':post_id,
+			'post_areas': sanitize_areas(convert_to_html()),
+			'post_scale':scale,
+			'post_offset_x':offset_x,
+			'post_offset_y':offset_y
+			
+		};
+		
+		jQuery.post(ajaxurl, data, function(response) {
+			//alert('Got this from the server: ' + response);
+			update_output_info("areas up to date");
+		});
+
 
 	
 }
