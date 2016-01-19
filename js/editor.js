@@ -78,9 +78,10 @@ var editorState = {
 			
 			var save_game_data_button = jQuery('<li><button class ="game_object">SAVE</button></li>');
 			jQuery(this.outliner).append(save_game_data_button)
-			jQuery(add_game_object_button).click(function(e){
+			jQuery(save_game_data_button).click(function(e){
 				
 				editorState.save_GAME_DATA();
+				console.log(GAME_DATA)
 				
 			})
 					
@@ -180,7 +181,8 @@ var editorState = {
 		
 		jQuery.post('php/write_game_data.php', data, function(response) {
 			//alert('Got this from the server: ' + response);
-			this.GUI.update_output_info("areas up to date");
+			//this.GUI.update_output_info("areas up to date");
+			console.log(response)
 		});
 
 
