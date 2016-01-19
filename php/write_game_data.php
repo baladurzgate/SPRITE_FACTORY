@@ -8,7 +8,7 @@
 		
 		//file_put_contents('data.txt', $GAME_DATA);
 		
-		$fp = fopen('data.txt', 'w')or die('cannot open file :'.$file);
+		$fp = fopen($file, 'w')or die('cannot open file :'.$file);
 		if(fwrite($fp, $GAME_DATA)){
 			echo 'game_data saved';
 		
