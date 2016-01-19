@@ -19,7 +19,6 @@ var editorState = {
 	//	display_level_list(200,20,style)
 		
 	},
-	
 
 	
 	GUI : {
@@ -150,8 +149,12 @@ var editorState = {
 			}				
 						
 			save_content_to_file('hello','text.txt');
-		}
+		},
 		
+		update_output_info : function(_text){
+		
+		
+		}
 		
 		
 	},
@@ -161,36 +164,22 @@ var editorState = {
 			
 	},
 	
-	start:function()
-	{
+	save_game_data:function(){
+	
+		var data = 
+		
+		jQuery.post('save_game_data.php', data, function(response) {
+			//alert('Got this from the server: ' + response);
+			this.GUI.update_output_info("areas up to date");
+		});
 
 
 	
 	},
 	
 
+	
+
 }
 
-function save_content(){
 
-	
-		data = convert_to_html();
-		
-		var data = {
-			'action': 'update_areas',
-			'post_id':post_id,
-			'post_areas': sanitize_areas(convert_to_html()),
-			'post_scale':scale,
-			'post_offset_x':offset_x,
-			'post_offset_y':offset_y
-			
-		};
-		
-		jQuery.post(ajaxurl, data, function(response) {
-			//alert('Got this from the server: ' + response);
-			update_output_info("areas up to date");
-		});
-
-
-	
-}
