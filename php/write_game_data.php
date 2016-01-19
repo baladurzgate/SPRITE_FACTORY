@@ -1,16 +1,16 @@
 <?php
 
+	if(isset($_POST['GD'])){
 
-	if(isset($_POST['GAME_DATA'])){
+		$GAME_DATA = $_POST['GD'];
 
-		$GAME_DATA = $_POST['GAME_DATA'];
+		$file = 'data.txt';
 		
-		echo $GAME_DATA;
-
-		$fp = fopen('data.txt', 'w');
+		//file_put_contents('data.txt', $GAME_DATA);
+		
+		$fp = fopen('data.txt', 'w')or die('cannot open file :'.$file);
 		if(fwrite($fp, $GAME_DATA)){
-		
-			echo 'saved';
+			echo 'game_data saved';
 		
 		};
 		fclose($fp);
