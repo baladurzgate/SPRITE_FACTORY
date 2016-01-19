@@ -176,7 +176,7 @@ var editorState = {
 	save_GAME_DATA:function(){
 	
 		var data = {
-			GD : JSON.stringify(GAME_DATA)
+			GD : JSON.stringify(GAME_DATA,null, "\t")
 		}
 		
 		jQuery.post('php/write_game_data.php', data, function(response) {

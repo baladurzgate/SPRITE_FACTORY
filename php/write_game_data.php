@@ -4,7 +4,7 @@
 
 		$GAME_DATA = $_POST['GD'];
 
-		$file = 'data.txt';
+		$file = '../assets/game_data.json';
 		
 		//file_put_contents('data.txt', $GAME_DATA);
 		
