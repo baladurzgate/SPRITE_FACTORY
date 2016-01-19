@@ -7,7 +7,9 @@
 		
 		echo $GAME_DATA;
 
-
+		$fp = fopen('data.txt', 'w');
+		fwrite($fp, $GAME_DATA);
+		fclose($fp);
 
 
 	}
