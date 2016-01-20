@@ -412,34 +412,36 @@ function Property ($output_object_type,$object_type_data,$name,$prop_data,$depth
 						
 						jQuery(input).append(option);
 						
-					}					
+					}	
+
+					var empty_option = jQuery('<option value = "empty" ></option>');					
 					
+					jQuery(input).append(empty_option);
 				}
 				
 				var context = this;
 				
 				jQuery(input).change(function(e) {
 				
-					value =  e.target.value;
+					value =  e.target.value != 'empty' ? e.target.value : prop_data.default_value;
 						
 					if(context.parent == undefined){
 					
-						console.log(e.target.value)
 						
-						output_object_type.getModelData()[input_name] = e.target.value;
-						console.log(output_object_type.getModelData()[input_name]);
+						output_object_type.getModelData()[input_name] = value;
+
 						
 					}else{
 							
 							if(context.parent_index == undefined){
 								
-								output_object_type.getModelData()[context.parent][input_name] = e.target.value;
+								output_object_type.getModelData()[context.parent][input_name] = value;
 								
 								
 								
 							}else{
 								
-								output_object_type.getModelData()[context.parent][context.parent_index][input_name] = e.target.value;
+								output_object_type.getModelData()[context.parent][context.parent_index][input_name] = value;
 								
 							}
 							
@@ -620,6 +622,7 @@ function Property ($output_object_type,$object_type_data,$name,$prop_data,$depth
 				input =  jQuery('<select name = "'+input_name +'"></select>')
 				
 				var context = this;
+				var selected_attr ="";
 					
 				if(prop_data.match_type != undefined){
 						
@@ -628,8 +631,16 @@ function Property ($output_object_type,$object_type_data,$name,$prop_data,$depth
 						case 'object_type':
 						
 							for(var o = 0 ; o <GAME_OBJECT_TYPES.length ;o++){
+							
+								selected_attr = "";
+							
+								if(GAME_OBJECT_TYPES[o].getName() == value){
+									
+									selected_attr = 'selected="selected"';
 								
-								var option = jQuery('<option value = "'+GAME_OBJECT_TYPES[o].getName()+'">'+GAME_OBJECT_TYPES[o].getName()+'</option>');
+								}
+								
+								var option = jQuery('<option value = "'+GAME_OBJECT_TYPES[o].getName()+'" '+selected_attr+'>'+GAME_OBJECT_TYPES[o].getName()+'</option>');
 								
 								jQuery(input).append(option);
 								
@@ -641,9 +652,17 @@ function Property ($output_object_type,$object_type_data,$name,$prop_data,$depth
 						
 							for(var o = 0 ; o <GAME_OBJECT_TYPES.length ;o++){
 
-								if(GAME_OBJECT_TYPES[o].getModelData().behaviour == 'projectile'){
+								if(GAME_OBJECT_TYPES[o].getModelData().type == 'sprite' && GAME_OBJECT_TYPES[o].getModelData().behaviour == 'projectile'){
+								
+									selected_attr = "";
+								
+									if(GAME_OBJECT_TYPES[o].getName() == value){
+										
+										selected_attr = 'selected="selected"';
 									
-									var option = jQuery('<option value = "'+GAME_OBJECT_TYPES[o].getName()+'">'+GAME_OBJECT_TYPES[o].getName()+'</option>');
+									}
+									
+									var option = jQuery('<option value = "'+GAME_OBJECT_TYPES[o].getName()+'" '+selected_attr+'>'+GAME_OBJECT_TYPES[o].getName()+'</option>');
 									
 								}
 								
@@ -658,8 +677,17 @@ function Property ($output_object_type,$object_type_data,$name,$prop_data,$depth
 							if(output_object_type.getModelData().animations != undefined){
 							
 								for(var a = 0 ; a <output_object_type.getModelData().animations.length ;a++){
+									
+									selected_attr = "";
+									
+							
+									if(output_object_type.getModelData().animations[a].name == value){
+										
+										selected_attr = 'selected="selected"';
+									
+									}
 
-									var option = jQuery('<option value = "'+output_object_type.getModelData().animations[a].name+'">'+output_object_type.getModelData().animations[a].name+'</option>');
+									var option = jQuery('<option value = "'+output_object_type.getModelData().animations[a].name+'"  '+selected_attr+'>'+output_object_type.getModelData().animations[a].name+'</option>');
 			
 									jQuery(input).append(option);
 									
@@ -672,8 +700,18 @@ function Property ($output_object_type,$object_type_data,$name,$prop_data,$depth
 						case 'sound':
 						
 								for(var s in GAME_SOUNDS){
+								
+									selected_attr = "";
 									
-									var option = jQuery('<option value = "'+GAME_SOUNDS[s].name+'">'+GAME_SOUNDS[s].name+'</option>');
+							
+									if(GAME_SOUNDS[s].name == value){
+										
+										selected_attr = 'selected="selected"';
+									
+									}
+									
+									var option = jQuery('<option value = "'+GAME_SOUNDS[s].name+'" '+selected_attr+'>'+GAME_SOUNDS[s].name+'</option>');
+									
 									jQuery(input).append(option);
 									
 								}
@@ -682,25 +720,31 @@ function Property ($output_object_type,$object_type_data,$name,$prop_data,$depth
 						
 					}
 					
+					var empty_option = jQuery('<option value = "empty"></option>');
+					
+					jQuery(input).append(empty_option);
+					
 				}
 				
 
 				
 				jQuery(input).change(function(e) {
+				
+					value =  e.target.value != 'empty' ? e.target.value : prop_data.default_value;
 						
 					if(context.parent == undefined){
 						
-						output_object_type.getModelData()[input_name] = e.target.value;
+						output_object_type.getModelData()[input_name] =value;
 						
 					}else{
 							
 							if(context.parent_index == undefined){
 								
-								output_object_type.getModelData()[context.parent][input_name] = e.target.value;
+								output_object_type.getModelData()[context.parent][input_name] = value ;
 								
 							}else{
 								
-								output_object_type.getModelData()[context.parent][context.parent_index][input_name] = e.target.value;
+								output_object_type.getModelData()[context.parent][context.parent_index][input_name] = value ;
 								
 							}
 							

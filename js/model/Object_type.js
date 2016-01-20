@@ -172,7 +172,7 @@ function Object_type ($model_data){
 						
 						obj_instance.tint = model_data.tint != undefined ? model_data.tint : 16777215;
 						
-						obj_instance.projectile_type = model_data.projectile_type;
+						obj_instance.projectile_type = model_data.attack.projectile_type;
 						
 						obj_instance.shoot_point = model_data.shoot_point;
 						

@@ -142,7 +142,7 @@
 		},
 		{
 			"name": "yellowman",
-			"type": "button",
+			"type": "sprite",
 			"behaviour": "projectile",
 			"images": [
 				{

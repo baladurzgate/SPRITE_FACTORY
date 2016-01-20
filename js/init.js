@@ -71,7 +71,7 @@ var initState = {
 
 
 
-function find_game_object($name){
+function find_object_type($name){
 	
 	for (var o = 0 ; o < GAME_OBJECT_TYPES.length ; o++){
 	

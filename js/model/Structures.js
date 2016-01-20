@@ -10,7 +10,7 @@ structure.object_type = {
 		},
 		type : {
 			input_type:'select',
-			options:['','sprite','button'],
+			options:['sprite','button'],
 			isArray:false,
 			default_value:'sprite',
 			update_all:true,
@@ -19,7 +19,7 @@ structure.object_type = {
 		},		
 		behaviour: {
 			input_type:'select',
-			options:['','dynamic','projectile'],
+			options:['dynamic','projectile'],
 			isArray:false,
 			default_value:'dynamic',
 			conditions:[{prop:'type',value:'sprite'}],
@@ -340,7 +340,7 @@ structure.attack = {
 		isArray:false,
 		default_value:{x:0,y:0}
 	},	
-	projectile: {
+	projectile_type: {
 		input_type:'link',
 		match_type:'projectile',
 		default_value:undefined

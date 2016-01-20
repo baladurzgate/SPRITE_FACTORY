@@ -35,7 +35,7 @@ function Action ($name,$subject,$data){
 	var jump_strength = this.subject.movement != undefined && this.subject.movement.jump_strength != undefined? this.subject.movement.jump_strength : 100;
 	
 	var shot_point =this.subject.attack != undefined && this.subject.attack.shot_point != undefined ? this.subject.attack.shot_point : {x:0,y:0}
-	var projectile_name = this.subject.attack != undefined && this.subject.attack.projectile != undefined ? this.subject.attack.projectile : 'poison_projectile';
+	var projectile_name = this.subject.attack != undefined && this.subject.attack.projectile_type != undefined ? this.subject.attack.projectile_type : 'poison_projectile';
 	var shot_speed_vector = this.subject.attack != undefined && this.subject.attack.shot_speed_vector != undefined ? this.subject.attack.shot_speed_vector : {x:5,y:5};
 	
 	
@@ -197,7 +197,7 @@ function Action ($name,$subject,$data){
 						
 							var absolute_shoot_point ={x:this.subject.x+shot_point.x*this.subject.scale.x,y:this.subject.y+shot_point.y*this.subject.scale.y}
 		
-							var projectile_type = find_game_object(projectile_name);
+							var projectile_type = find_object_type(projectile_name);
 							var projectile = projectile_type.instanciate(absolute_shoot_point)
 
 		
