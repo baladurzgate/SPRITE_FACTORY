@@ -1,11 +1,11 @@
 var structure = {};
 
-structure.game_object = {
+structure.game_Object_typeect = {
 		
 		name : {
 			input_type:'string',
 			isArray:false,
-			default_value:'unamed_game_object',
+			default_value:'unamed_game_Object_typeect',
 			display_type:'line'
 		},
 		type : {

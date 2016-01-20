@@ -34,26 +34,26 @@ var editorState = {
 			this.editor = jQuery("#editor")
 			this.outliner = jQuery('#outliner')	
 			this.properties = jQuery('#properties')
-			this.display_game_object_list();	
+			this.display_properties_types_list();	
 			this.displayed_game_object = game.add.sprite();
 		},
 		
-		display_game_object_list:function(){
+		display_properties_types_list:function(){
 			
 			jQuery(this.outliner).empty();
 
-			var GAME_OBJECTS_list = jQuery('<ul></ul>')
-			jQuery(this.outliner).append(GAME_OBJECTS_list)
+			var GAME_OBJECT_TYPES_list = jQuery('<ul></ul>')
+			jQuery(this.outliner).append(GAME_OBJECT_TYPES_list)
 			
 			var GUI = this;
 			
-			for (var i = 0 ; i<GAME_OBJECTS.length; i++){
+			for (var i = 0 ; i<GAME_OBJECT_TYPES.length; i++){
 				
-				var game_object =jQuery('<li><button class = "game_object" name = "'+GAME_OBJECTS[i].getName()+'"> '+GAME_OBJECTS[i].getName()+'</button> </li>')
+				var game_object =jQuery('<li><button class = "game_object" name = "'+GAME_OBJECT_TYPES[i].getName()+'"> '+GAME_OBJECT_TYPES[i].getName()+'</button> </li>')
 				jQuery(this.outliner).append(game_object)
 				
 				jQuery(game_object).click(function(e){
-					GUI.edit_object(e.target.name);
+					GUI.edit_object_type(e.target.name);
 				})
 				
 				var delete_button = jQuery('<button class ="delete_button" index = "'+i+'">x</button>');
@@ -61,8 +61,8 @@ var editorState = {
 				var context = this;
 				jQuery(delete_button).click(function(){
 
-					GAME_OBJECTS.splice(jQuery(this).attr('index'),1);
-					context.display_game_object_list();
+					GAME_OBJECT_TYPES.splice(jQuery(this).attr('index'),1);
+					context.display_properties_types_list();
 
 				})	
 				
@@ -96,22 +96,22 @@ var editorState = {
 			
 			//game.world.removeAll();
 			
-			this.displayed_game_object = this.edited_game_object.copy({x:100,y:100});			
+			this.displayed_game_object = this.edited_game_object.instanciate({x:100,y:100});			
 			
 		},
 	
 	
-		edit_object:function(_objectName){
+		edit_object_type:function(_objectName){
 		
-			for (var i = 0 ; i<GAME_OBJECTS.length; i++){
+			for (var i = 0 ; i<GAME_OBJECT_TYPES.length; i++){
 				
-				if(GAME_OBJECTS[i].getName() == _objectName){
+				if(GAME_OBJECT_TYPES[i].getName() == _objectName){
 					
-					this.edited_game_object = GAME_OBJECTS[i];
+					this.edited_game_object = GAME_OBJECT_TYPES[i];
 					
 					this.preview_game_object();
 					
-					this.display_object();
+					this.display_properties();
 					
 					return
 					
@@ -121,7 +121,7 @@ var editorState = {
 		
 		},
 		
-		display_object:function(){
+		display_properties:function(){
 			
 			jQuery(this.properties).empty();
 	

@@ -16,9 +16,9 @@ var loadState = {
 		
 		}
 		
-		for (var o = 0 ; o <GAME_OBJECTS.length ; o ++){
+		for (var o = 0 ; o <GAME_OBJECT_TYPES.length ; o ++){
 						
-			GAME_OBJECTS[o].loadMedia();
+			GAME_OBJECT_TYPES[o].loadMedia();
 			
 		}
 	

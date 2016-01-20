@@ -14,7 +14,7 @@
 			"name": "sandbox"
 		}
 	],
-	"Objects": [
+	"Object_types": [
 		{
 			"name": "dot",
 			"type": "sprite",
@@ -348,7 +348,7 @@
 			],
 			"frames": [],
 			"movement": {
-				"idle_brake": 0.9,
+				"idle_brake": 0,
 				"walk_speed": 100,
 				"run_speed": 200,
 				"jump_strength": 100,
@@ -390,7 +390,6 @@
 						8,
 						9,
 						10,
-						11,
 						12,
 						13,
 						14

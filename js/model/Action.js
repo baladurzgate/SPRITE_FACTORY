@@ -166,7 +166,7 @@ function Action ($name,$subject,$data){
 						
 						this.subject.animations.play(action_animation);
 						
-						var clone = this.subject.object_model.copy({x:this.subject.x,y:this.subject.y})
+						var clone = this.subject.object_model.instanciate({x:this.subject.x,y:this.subject.y})
 						
 						clone.body.velocity.x += (Math.random()*200)-100
 						clone.body.velocity.y -= 300
@@ -198,7 +198,7 @@ function Action ($name,$subject,$data){
 							var absolute_shoot_point ={x:this.subject.x+shot_point.x*this.subject.scale.x,y:this.subject.y+shot_point.y*this.subject.scale.y}
 		
 							var projectile_type = find_game_object(projectile_name);
-							var projectile = projectile_type.copy(absolute_shoot_point)
+							var projectile = projectile_type.instanciate(absolute_shoot_point)
 
 		
 							projectile.body.velocity.x += shot_speed_vector.x* this.subject.scale.x
@@ -314,11 +314,11 @@ function Action ($name,$subject,$data){
 		
 	}
 	
-	this.copy = function (){
+	this.instanciate = function (){
 		
-		var copy = new Action(this.name,this.subject,this.data);
+		var instanciate = new Action(this.name,this.subject,this.data);
 		
-		return copy;
+		return instanciate;
 		
 	}
 

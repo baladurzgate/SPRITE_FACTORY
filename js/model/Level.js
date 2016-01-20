@@ -104,11 +104,11 @@ function Level ($name,$tilemap,$json){
 					
 					for (var o in json.layers[lo].objects){
 						
-						for (var go = 0 ; go < GAME_OBJECTS.length;go++){
+						for (var go = 0 ; go < GAME_OBJECT_TYPES.length;go++){
 							
-							if(json.layers[lo].objects[o].type == GAME_OBJECTS[go].getName()){
+							if(json.layers[lo].objects[o].type == GAME_OBJECT_TYPES[go].getName()){
 									
-								var obj = GAME_OBJECTS[go].copy(json.layers[lo].objects[o]);
+								var obj = GAME_OBJECT_TYPES[go].instanciate(json.layers[lo].objects[o]);
 								
 								break;
 								

@@ -1,6 +1,6 @@
 var GAME_DATA = {}
 var GAME_LEVELS = new Array();
-var GAME_OBJECTS = new Array();
+var GAME_OBJECT_TYPES = new Array();
 var LOADING_FILES = new Array();
 var GAME_SOUNDS = {};
 var CURRENT_LEVEL;
@@ -26,24 +26,4 @@ var bootState = {
 
 };
 
-
-
-function find_game_object($name){
-	
-	for (var o = 0 ; o < GAME_OBJECTS.length ; o++){
-	
-			
-		if(GAME_OBJECTS[o].getName() == $name){
-
-			return GAME_OBJECTS[o];
-			
-		}
-		
-		
-	}
-	
-	return false;
-	
-	
-}
 

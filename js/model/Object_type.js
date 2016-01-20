@@ -1,4 +1,4 @@
-function Obj ($model_data){
+function Object_type ($model_data){
 		
 	var model_data = $model_data;
 		
@@ -100,24 +100,24 @@ function Obj ($model_data){
 	
 	this.init_structure = function(){
 	
-		for (var prop in structure.game_object){
+		for (var prop in structure.game_Object_typeect){
 			
 			if(model_data[prop] == undefined){
 				
-				model_data[prop] = structure.game_object[prop].default_value;
+				model_data[prop] = structure.game_Object_typeect[prop].default_value;
 			
 			}
 		
-			this.properties[prop] = new Property(this,model_data,prop,structure.game_object[prop])
+			this.properties[prop] = new Property(this,model_data,prop,structure.game_Object_typeect[prop])
 		
 		}
 		
 	}
 	
 	
-	this.copy = function($instance_data){
+	this.instanciate = function($instance_data){
 			
-		var obj = "";
+		var obj_instance = "";
 		
 		var instance_data = $instance_data != undefined ? $instance_data : {x:0,y:0}
 		
@@ -135,48 +135,48 @@ function Obj ($model_data){
 				
 			case 'sprite' : 
 			
-				obj = game.add.sprite(instance_data.x,instance_data.y,model_data.images[0].name)
+				obj_instance = game.add.sprite(instance_data.x,instance_data.y,model_data.images[0].name)
 				
-				obj.object_model = this;
+				obj_instance.Object_type = this;
 				
-				obj.dying = false;
+				obj_instance.dying = false;
 				
-				obj.controled_by = 'computer';
+				obj_instance.controled_by = 'computer';
 
-				obj.id = instance_data.id
+				obj_instance.id = instance_data.id
 				
-				obj.name = instance_data.name
+				obj_instance.name = instance_data.name
 					
-				obj.anchor.set(0.5, 1);
+				obj_instance.anchor.set(0.5, 1);
 				
-				obj.age = 0;
+				obj_instance.age = 0;
 				
-				obj.behaviour = model_data.behaviour;
+				obj_instance.behaviour = model_data.behaviour;
 				
-				obj.enable_collision = true
+				obj_instance.enable_collision = true
 					
 				
-				switch(obj.behaviour){
+				switch(obj_instance.behaviour){
 					
 					case 'dynamic' : 
 					
-						obj.actions_availables ={};
+						obj_instance.actions_availables ={};
 						
-						obj.actions = new ActionManager(obj);
+						obj_instance.actions = new ActionManager(Object_type);
 						
-						obj.patterns = new Array();
+						obj_instance.patterns = new Array();
 						
-						obj.health = model_data.health != undefined ? model_data.health : 100;
+						obj_instance.health = model_data.health != undefined ? model_data.health : 100;
 						
-						obj.lifespan = model_data.lifespan != undefined ? model_data.lifespan : 0;
+						obj_instance.lifespan = model_data.lifespan != undefined ? model_data.lifespan : 0;
 						
-						obj.tint = model_data.tint != undefined ? model_data.tint : 16777215;
+						obj_instance.tint = model_data.tint != undefined ? model_data.tint : 16777215;
 						
-						obj.projectile_type = model_data.projectile_type;
+						obj_instance.projectile_type = model_data.projectile_type;
 						
-						obj.shoot_point = model_data.shoot_point;
+						obj_instance.shoot_point = model_data.shoot_point;
 						
-						obj.onCollide = function(obstacle){
+						obj_instance.onCollide = function(obstacle){
 							
 							if(obstacle){
 							
@@ -184,7 +184,7 @@ function Obj ($model_data){
 									
 									if(!obstacle.dying){
 										
-										obj.destroy();
+										obj_instance.destroy();
 										
 										obstacle.destroy()
 										
@@ -196,9 +196,9 @@ function Obj ($model_data){
 							
 						}
 						
-						obj.callBack = function(obstacle){
+						obj_instance.callBack = function(obstacle){
 							
-							if(obj.enable_collision){
+							if(obj_instance.enable_collision){
 
 								return true;
 								
@@ -212,7 +212,7 @@ function Obj ($model_data){
 						
 					case 'projectile':
 					
-						obj.onCollide = function(obstacle){
+						obj_instance.onCollide = function(obstacle){
 							
 							if(obstacle){
 							
@@ -222,7 +222,7 @@ function Obj ($model_data){
 									
 								}
 									
-								obj.destroy();
+								obj_instance.destroy();
 								
 								obstacle.destroy()
 
@@ -230,11 +230,11 @@ function Obj ($model_data){
 
 						}
 						
-						obj.callBack = function(obstacle){
+						obj_instance.callBack = function(obstacle){
 							
 							if(obstacle){
 							
-								if(obstacle.behaviour == 'projectile' || obj.enable_collision == false){
+								if(obstacle.behaviour == 'projectile' || obj_instance.enable_collision == false){
 									
 									return false;
 									
@@ -252,9 +252,9 @@ function Obj ($model_data){
 
 				}
 				
-				obj.destroy = function(){
+				obj_instance.destroy = function(){
 					
-					obj.dying = true;
+					obj_instance.dying = true;
 					
 				}
 				
@@ -265,44 +265,44 @@ function Obj ($model_data){
 						
 						var aframes = Phaser.Animation.generateFrameNames(model_data.animations[a].name, model_data.animations[a].start, model_data.animations[a].end, '', 3);
 						
-						obj.animations.add(model_data.animations[a].name,model_data.animations[a].frames,model_data.animations[a].frameRate,model_data.animations[a].loop)
+						obj_instance.animations.add(model_data.animations[a].name,model_data.animations[a].frames,model_data.animations[a].frameRate,model_data.animations[a].loop)
 					}
 					
 				}
 						
 				if(model_data.physical){
 					
-					game.physics.arcade.enable(obj);
+					game.physics.arcade.enable(obj_instance);
 					
-					obj.body.mass = model_data.physical.mass;
-					obj.body.bounce = model_data.physical.bounce;
-					obj.body.collideWorldBounds = model_data.physical.collideWorldBounds;
-					obj.body.allowGravity = model_data.physical.allowGravity;
-					obj.body.immovable = model_data.physical.immovable;	
+					obj_instance.body.mass = model_data.physical.mass;
+					obj_instance.body.bounce = model_data.physical.bounce;
+					obj_instance.body.collideWorldBounds = model_data.physical.collideWorldBounds;
+					obj_instance.body.allowGravity = model_data.physical.allowGravity;
+					obj_instance.body.immovable = model_data.physical.immovable;	
 					
-					obj.body.width = model_data.physical.width != undefined ? model_data.physical.width	: 5;
-					obj.body.height = model_data.physical.height != undefined ? model_data.physical.height	: 5;
+					obj_instance.body.width = model_data.physical.width != undefined ? model_data.physical.width	: 5;
+					obj_instance.body.height = model_data.physical.height != undefined ? model_data.physical.height	: 5;
 					
 				}
 				
 				if(model_data.movement){
 
-					obj.movement = {};
+					obj_instance.movement = {};
 					
 					for (var m in model_data.movement){
 						
-						obj.movement[m] = model_data.movement[m]
+						obj_instance.movement[m] = model_data.movement[m]
 						
 					}
 					
 				}
 				if(model_data.attack){
 
-					obj.attack = {};
+					obj_instance.attack = {};
 					
 					for (var a in model_data.attack){
 						
-						obj.attack[a] = model_data.attack[a]
+						obj_instance.attack[a] = model_data.attack[a]
 						
 					}
 					
@@ -310,11 +310,11 @@ function Obj ($model_data){
 				
 				if(model_data.actions){
 					
-					if(obj.actions != undefined){
+					if(obj_instance.actions != undefined){
 						
 						for (var a = 0 ; a < model_data.actions.length ; a++){
 							
-							obj.actions[model_data.actions[a].name] = new Action(model_data.actions[a].name,obj,model_data.actions[a]);
+							obj_instance.actions[model_data.actions[a].name] = new Action(model_data.actions[a].name,obj_instance,model_data.actions[a]);
 							
 						}
 					}
@@ -325,7 +325,7 @@ function Obj ($model_data){
 				
 				if(model_data.patterns){
 					
-					if(obj.actions != undefined && obj.patterns != undefined){
+					if(obj_instance.actions != undefined && obj_instance.patterns != undefined){
 						
 						for (var p = 0 ; p < model_data.patterns.length ; p++){
 							
@@ -333,16 +333,16 @@ function Obj ($model_data){
 							
 							for (var a = 0 ; a < model_data.patterns[p].actions.length ; a++){
 								
-								if(obj.actions[model_data.patterns[p].actions[a]] != undefined){
+								if(obj_instance.actions[model_data.patterns[p].actions[a]] != undefined){
 									
-									pattern.add_action(obj.actions[model_data.patterns[p].actions[a]].copy());
+									pattern.add_action(obj_instance.actions[model_data.patterns[p].actions[a]].instanciate());
 									
 								}
 								
 								
 							}
 							
-							obj.patterns.push(pattern);
+							obj_instance.patterns.push(pattern);
 							
 						}	
 						
@@ -352,47 +352,47 @@ function Obj ($model_data){
 				}
 				
 				
-				obj.update_behaviour = function(){
+				obj_instance.update_behaviour = function(){
 					
 					switch(model_data.behaviour){
 						
 						case 'dynamic' : 
 						
-							if(!obj.dying){
+							if(!obj_instance.dying){
 						
 								if(model_data.actions){
 									
-									if(obj.controled_by == 'computer' && obj.age == 0){
+									if(obj_instance.controled_by == 'computer' && obj_instance.age == 0){
 										
-										if(obj.patterns.length > 0){
+										if(obj_instance.patterns.length > 0){
 
-											obj.actions.start_pattern(obj.patterns[0])
+											obj_instance.actions.start_pattern(obj_instance.patterns[0])
 
 										}
 										
 									}
 
-									obj.actions.update();	
+									obj_instance.actions.update();	
 								
 								}else{
 									
-									obj.animations.play('idle');
+									obj_instance.animations.play('idle');
 									
 								}	
 								
-								obj.age++;
+								obj_instance.age++;
 								
 							}else{
 								
-								obj.animations.play('death');
+								obj_instance.animations.play('death');
 								
-								obj.enable_collision = false;
+								obj_instance.enable_collision = false;
 								
-								obj.body.moves = false;
+								obj_instance.body.moves = false;
 								
-								if(obj.animations.currentAnim.loopCount>0){
+								if(obj_instance.animations.currentAnim.loopCount>0){
 									
-									obj.kill();
+									obj_instance.kill();
 									
 								}
 								
@@ -404,24 +404,24 @@ function Obj ($model_data){
 						
 						case 'projectile':
 						
-							if(!obj.dying){
+							if(!obj_instance.dying){
 						
-								obj.animations.play('idle');
+								obj_instance.animations.play('idle');
 							
 							}else{
 								
-								obj.animations.play('death');
+								obj_instance.animations.play('death');
 								
-								obj.body.moves = false;
+								obj_instance.body.moves = false;
 								
-								obj.enable_collision = false;
+								obj_instance.enable_collision = false;
 								
-								obj.body.velocity.x=0;
-								obj.body.velocity.y=0;
+								obj_instance.body.velocity.x=0;
+								obj_instance.body.velocity.y=0;
 								
-								if(obj.animations.currentAnim.loopCount>0){
+								if(obj_instance.animations.currentAnim.loopCount>0){
 									
-									obj.kill();
+									obj_instance.kill();
 									
 								}
 
@@ -437,7 +437,7 @@ function Obj ($model_data){
 					
 					if(CURRENT_LEVEL != undefined){
 					
-						CURRENT_LEVEL.add_object_to_group(obj,'sprites')	
+						CURRENT_LEVEL.add_object_to_group(obj_instance,'sprites')	
 					
 					}
 					
@@ -452,17 +452,17 @@ function Obj ($model_data){
 				var downFrame = model_data.button_animation != undefined && model_data.button_animation.downFrame != undefined  ? model_data.button_animation.downFrame : 0;
 				var upFrame= model_data.button_animation != undefined && model_data.button_animation.upFrame != undefined  ? model_data.button_animation.upFrame : 0;
 		
-				var obj = game.add.button(instance_data.x,instance_data.y, model_data.images[0].name, function(){alert('clic')}, this, overFrame, outFrame,downFrame, upFrame);
+				var obj_instance = game.add.button(instance_data.x,instance_data.y, model_data.images[0].name, function(){alert('clic')}, this, overFrame, outFrame,downFrame, upFrame);
 				
-				obj.properties = instance_data.properties != undefined ? instance_data.properties : false;
+				obj_instance.properties = instance_data.properties != undefined ? instance_data.properties : false;
 					
-				if(obj.properties.anchorX && obj.properties.anchorY){
+				if(obj_instance.properties.anchorX && obj_instance.properties.anchorY){
 					
-					obj.anchor.set(obj.properties.anchorX, obj.properties.anchorY);
+					obj_instance.anchor.set(obj_instance.properties.anchorX, obj_instance.properties.anchorY);
 					
 				}else{
 					
-					obj.anchor.set(0, 1);
+					obj_instance.anchor.set(0, 1);
 					
 				}
 				
@@ -474,11 +474,11 @@ function Obj ($model_data){
 		
 		if(CURRENT_LEVEL != undefined){
 		
-			CURRENT_LEVEL.add_object(obj)
+			CURRENT_LEVEL.add_object(obj_instance)
 		
 		}
 
-		return obj;
+		return obj_instance;
 		
 		
 			

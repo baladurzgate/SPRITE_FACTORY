@@ -1,8 +1,8 @@
-function Property ($object,$object_data,$name,$prop_data,$depth){
+function Property ($object_type,$object_type_data,$name,$prop_data,$depth){
 	
-	var output_object = $object;
+	var output_object_type = $object_type;
 	
-	var object_data = $object_data;
+	var object_type_data = $object_type_data;
 
 	var input_name = $name;
 	
@@ -20,7 +20,7 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 	
 	var linked_GUI;
 	
-	var value = object_data[input_name] != undefined ? object_data[input_name] : prop_data.default_value != undefined ? prop_data.default_value : undefined;
+	var value = object_type_data[input_name] != undefined ? object_type_data[input_name] : prop_data.default_value != undefined ? prop_data.default_value : undefined;
 	
 	var prop_value_tag = jQuery('<ul class = "prop_value"></ul>');
 	
@@ -67,17 +67,17 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 
 						if(context.parent == undefined){
 							
-							output_object.getModelData()[input_name] = e.target.value;
+							output_object_type.getModelData()[input_name] = e.target.value;
 							
 						}else{
 							
 							if(context.parent_index == undefined){
 								
-								output_object.getModelData()[context.parent][input_name] = e.target.value;
+								output_object_type.getModelData()[context.parent][input_name] = e.target.value;
 								
 							}else{
 								
-								output_object.getModelData()[context.parent][context.parent_index][input_name] = e.target.value;
+								output_object_type.getModelData()[context.parent][context.parent_index][input_name] = e.target.value;
 								
 							}
 							
@@ -117,17 +117,17 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 							
 						if(context.parent == undefined){
 							
-							output_object.getModelData()[input_name] = e.target.checked;
+							output_object_type.getModelData()[input_name] = e.target.checked;
 							
 						}else{
 							
 							if(context.parent_index == undefined){
 								
-								output_object.getModelData()[context.parent][input_name] = e.target.checked;
+								output_object_type.getModelData()[context.parent][input_name] = e.target.checked;
 								
 							}else{
 								
-								output_object.getModelData()[context.parent][context.parent_index][input_name] = e.target.checked;
+								output_object_type.getModelData()[context.parent][context.parent_index][input_name] = e.target.checked;
 								
 							}
 							
@@ -155,17 +155,17 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 
 						if(context.parent == undefined){
 							
-							output_object.getModelData()[input_name] = parseInt(e.target.value);
+							output_object_type.getModelData()[input_name] = parseInt(e.target.value);
 							
 						}else{
 							
 							if(context.parent_index == undefined){
 								
-								output_object.getModelData()[context.parent][input_name] = parseInt(e.target.value);
+								output_object_type.getModelData()[context.parent][input_name] = parseInt(e.target.value);
 								
 							}else{
 								
-								output_object.getModelData()[context.parent][context.parent_index][input_name] = parseInt(e.target.value);
+								output_object_type.getModelData()[context.parent][context.parent_index][input_name] = parseInt(e.target.value);
 								
 							}
 							
@@ -196,17 +196,17 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 						
 						if(context.parent == undefined){
 							
-							output_object.getModelData()[input_name] = parseFloat(e.target.value);
+							output_object_type.getModelData()[input_name] = parseFloat(e.target.value);
 							
 						}else{
 							
 							if(context.parent_index == undefined){
 								
-								output_object.getModelData()[context.parent][input_name] = parseFloat(e.target.value);
+								output_object_type.getModelData()[context.parent][input_name] = parseFloat(e.target.value);
 								
 							}else{
 								
-								output_object.getModelData()[context.parent][context.parent_index][input_name] = parseFloat(e.target.value);
+								output_object_type.getModelData()[context.parent][context.parent_index][input_name] = parseFloat(e.target.value);
 								
 							}
 							
@@ -246,17 +246,17 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 
 						if(context.parent == undefined){
 							
-							output_object.getModelData()[input_name].x = e.target.value;
+							output_object_type.getModelData()[input_name].x = e.target.value;
 							
 						}else{
 							
 							if(context.parent_index == undefined){
 								
-								output_object.getModelData()[context.parent][input_name].x = e.target.value;
+								output_object_type.getModelData()[context.parent][input_name].x = e.target.value;
 								
 							}else{
 								
-								output_object.getModelData()[context.parent][context.parent_index][input_name].x = e.target.value;
+								output_object_type.getModelData()[context.parent][context.parent_index][input_name].x = e.target.value;
 								
 							}
 							
@@ -276,17 +276,17 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 							
 						if(context.parent == undefined){
 							
-							output_object.getModelData()[input_name].y = e.target.value;
+							output_object_type.getModelData()[input_name].y = e.target.value;
 							
 						}else{
 							
 							if(context.parent_index == undefined){
 								
-								output_object.getModelData()[context.parent][input_name].y = e.target.value;
+								output_object_type.getModelData()[context.parent][input_name].y = e.target.value;
 								
 							}else{
 								
-								output_object.getModelData()[context.parent][context.parent_index][input_name].y = e.target.value;
+								output_object_type.getModelData()[context.parent][context.parent_index][input_name].y = e.target.value;
 								
 							}
 							
@@ -350,11 +350,11 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 					
 						if(context.parent_index == undefined){
 							
-							output_object.getModelData()[input_name] = array;
+							output_object_type.getModelData()[input_name] = array;
 							
 						}else{
 							
-							output_object.getModelData()[input_name][context.parent_index] = array;
+							output_object_type.getModelData()[input_name][context.parent_index] = array;
 							
 						}
 						
@@ -362,11 +362,11 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 						
 						if(context.parent_index == undefined){
 							
-							output_object.getModelData()[context.parent][input_name] = array;
+							output_object_type.getModelData()[context.parent][input_name] = array;
 							
 						}else{
 							
-							output_object.getModelData()[context.parent][context.parent_index][input_name] = array;
+							output_object_type.getModelData()[context.parent][context.parent_index][input_name] = array;
 							
 						}
 						
@@ -387,11 +387,11 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 
 			case 'select' : 
 			
-				input =  jQuery('<select id = "'+output_object.getName()+'-'+input_name+'"name = "'+input_name+'"  value = "'+value+'">')
+				input =  jQuery('<select id = "'+output_object_type.getName()+'-'+input_name+'"name = "'+input_name+'"  value = "'+value+'">')
 				
 				if(depth==0){
 					console.log(value);
-					console.log(output_object.getModelData()[input_name]);
+					console.log(output_object_type.getModelData()[input_name]);
 				}
 				
 				if(prop_data.options != undefined){
@@ -426,20 +426,20 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 					
 						console.log(e.target.value)
 						
-						output_object.getModelData()[input_name] = e.target.value;
-						console.log(output_object.getModelData()[input_name]);
+						output_object_type.getModelData()[input_name] = e.target.value;
+						console.log(output_object_type.getModelData()[input_name]);
 						
 					}else{
 							
 							if(context.parent_index == undefined){
 								
-								output_object.getModelData()[context.parent][input_name] = e.target.value;
+								output_object_type.getModelData()[context.parent][input_name] = e.target.value;
 								
 								
 								
 							}else{
 								
-								output_object.getModelData()[context.parent][context.parent_index][input_name] = e.target.value;
+								output_object_type.getModelData()[context.parent][context.parent_index][input_name] = e.target.value;
 								
 							}
 							
@@ -450,7 +450,7 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 						
 						if(prop_data.update_all){
 						
-							linked_GUI.display_object();
+							linked_GUI.display_properties();
 						
 						}
 						
@@ -472,11 +472,11 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 					
 					jQuery(input).change(function(e) {
 
-						output_object.changeData(e.target.name,e.target.value)
+						output_object_type.changeData(e.target.name,e.target.value)
 
 						if(linked_GUI != undefined){
 							
-							linked_GUI.preview_game_object();	
+							linked_GUI.preview_game_object_type();	
 							
 						}
 				
@@ -515,7 +515,7 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 							
 							if(value[0][p] != undefined ){
 								
-								sub_properties[p] = new Property(output_object,value[i],p,structure.image[p],depth+1)
+								sub_properties[p] = new Property(output_object_type,value[i],p,structure.image[p],depth+1)
 								sub_properties[p].link_to_GUI(linked_GUI)
 								sub_properties[p].parent = input_name;
 								sub_properties[p].parent_index = i;
@@ -625,11 +625,11 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 						
 					switch (prop_data.match_type){
 						
-						case 'game_object':
+						case 'object_type':
 						
-							for(var o = 0 ; o <GAME_OBJECTS.length ;o++){
+							for(var o = 0 ; o <GAME_OBJECT_TYPES.length ;o++){
 								
-								var option = jQuery('<option value = "'+GAME_OBJECTS[o].getName()+'">'+GAME_OBJECTS[o].getName()+'</option>');
+								var option = jQuery('<option value = "'+GAME_OBJECT_TYPES[o].getName()+'">'+GAME_OBJECT_TYPES[o].getName()+'</option>');
 								
 								jQuery(input).append(option);
 								
@@ -639,11 +639,11 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 						
 						case 'projectile':
 						
-							for(var o = 0 ; o <GAME_OBJECTS.length ;o++){
+							for(var o = 0 ; o <GAME_OBJECT_TYPES.length ;o++){
 
-								if(GAME_OBJECTS[o].getModelData().behaviour == 'projectile'){
+								if(GAME_OBJECT_TYPES[o].getModelData().behaviour == 'projectile'){
 									
-									var option = jQuery('<option value = "'+GAME_OBJECTS[o].getName()+'">'+GAME_OBJECTS[o].getName()+'</option>');
+									var option = jQuery('<option value = "'+GAME_OBJECT_TYPES[o].getName()+'">'+GAME_OBJECT_TYPES[o].getName()+'</option>');
 									
 								}
 								
@@ -655,11 +655,11 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 						
 						case 'animation':
 						
-							if(output_object.getModelData().animations != undefined){
+							if(output_object_type.getModelData().animations != undefined){
 							
-								for(var a = 0 ; a <output_object.getModelData().animations.length ;a++){
+								for(var a = 0 ; a <output_object_type.getModelData().animations.length ;a++){
 
-									var option = jQuery('<option value = "'+output_object.getModelData().animations[a].name+'">'+output_object.getModelData().animations[a].name+'</option>');
+									var option = jQuery('<option value = "'+output_object_type.getModelData().animations[a].name+'">'+output_object_type.getModelData().animations[a].name+'</option>');
 			
 									jQuery(input).append(option);
 									
@@ -690,17 +690,17 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 						
 					if(context.parent == undefined){
 						
-						output_object.getModelData()[input_name] = e.target.value;
+						output_object_type.getModelData()[input_name] = e.target.value;
 						
 					}else{
 							
 							if(context.parent_index == undefined){
 								
-								output_object.getModelData()[context.parent][input_name] = e.target.value;
+								output_object_type.getModelData()[context.parent][input_name] = e.target.value;
 								
 							}else{
 								
-								output_object.getModelData()[context.parent][context.parent_index][input_name] = e.target.value;
+								output_object_type.getModelData()[context.parent][context.parent_index][input_name] = e.target.value;
 								
 							}
 							
@@ -746,7 +746,7 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 						
 				if(prop_data.conditions[c].prop && prop_data.conditions[c].value){
 				
-					if(output_object.getModelData()[prop_data.conditions[c].prop]==prop_data.conditions[c].value){
+					if(output_object_type.getModelData()[prop_data.conditions[c].prop]==prop_data.conditions[c].value){
 						
 						check++;
 						
@@ -865,14 +865,14 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 		
 		for(var p in structure[$type]){
 		
-			sub_properties[p] = new Property(output_object,value,p,structure[$type][p],depth+1)
+			sub_properties[p] = new Property(output_object_type,value,p,structure[$type][p],depth+1)
 			sub_properties[p].link_to_GUI(linked_GUI);
 			sub_properties[p].parent = input_name;
 			jQuery(table).append(sub_properties[p].create_jquery_object())
 			
 			if(value == prop_data.default_value){
 			
-				output_object.getModelData()[input_name][p]= sub_properties[p].getDefaultValue();
+				output_object_type.getModelData()[input_name][p]= sub_properties[p].getDefaultValue();
 				
 			
 			}
@@ -916,7 +916,7 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 					
 					if(value[i][p] != undefined ){
 						
-						sub_properties[p] = new Property(output_object,value[i],p,structure[$type][p],depth+1)
+						sub_properties[p] = new Property(output_object_type,value[i],p,structure[$type][p],depth+1)
 						sub_properties[p].link_to_GUI(linked_GUI)
 						sub_properties[p].parent = input_name;
 						sub_properties[p].parent_index = i;
@@ -935,7 +935,7 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 				jQuery(li).append(delete_button)
 				jQuery(delete_button).click(function(e){
 
-					output_object.getModelData()[input_name].splice(jQuery(this).attr('index'),1);
+					output_object_type.getModelData()[input_name].splice(jQuery(this).attr('index'),1);
 					context.update_input();
 					
 					if(linked_GUI != undefined){
@@ -964,7 +964,7 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 				
 				console.log(new_element)
 				
-				output_object.getModelData()[input_name].push(new_element);
+				output_object_type.getModelData()[input_name].push(new_element);
 				
 				if(linked_GUI != undefined){
 				
