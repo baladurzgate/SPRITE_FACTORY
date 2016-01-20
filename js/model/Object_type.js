@@ -146,8 +146,10 @@ function Object_type ($model_data){
 				obj_instance.id = instance_data.id
 				
 				obj_instance.name = instance_data.name
+				
+				var anchor = model_data.anchor != undefined ? model_data.anchor : {x:0.5,y:0.5};
 					
-				obj_instance.anchor.set(0.5, 1);
+				obj_instance.anchor.set(anchor.x, anchor.y);
 				
 				obj_instance.age = 0;
 				

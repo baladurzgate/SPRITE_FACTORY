@@ -31,6 +31,11 @@ structure.object_type = {
 			isArray:true,
 			default_value:[]
 		},	
+		anchor:{
+			input_type:'point',
+			default_value:{x:0.5,y:.05},
+			step:0.01,			
+		},
 		frames: {
 			input_type:'frames',
 			isArray:true,

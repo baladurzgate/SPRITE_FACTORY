@@ -8,7 +8,7 @@ function Action ($name,$subject,$data){
 	
 	this.object = this.data.object != undefined ? this.data.object : false
 
-	this.duration = this.data.duration != undefined ? this.data.duration + Math.random()*10 : 10 ;
+	this.duration = this.data.duration != undefined ? this.data.duration : 10 ;
 	
 	this.timer = 0 ; 
 	

@@ -154,8 +154,20 @@ var editorState = {
 	},
 	
 	update : function(){
+	
 		GAME_LEVELS[2].update_behaviours();
 			
+	},
+	
+	render:function() {
+	
+		
+		for (var i = 0 ; i < GAME_LEVELS[2].getLevelObjects().length  ;i++){
+		
+			game.debug.body(GAME_LEVELS[2].getLevelObjects()[i]);
+		
+		}
+
 	},
 	
 	save_GAME_DATA:function(){

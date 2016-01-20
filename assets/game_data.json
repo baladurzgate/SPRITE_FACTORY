@@ -138,7 +138,11 @@
 				"start_health": "",
 				"max_health": ""
 			},
-			"patterns": []
+			"patterns": [],
+			"anchor": {
+				"x": 0.5,
+				"y": "1"
+			}
 		},
 		{
 			"name": "yellowman",
@@ -330,6 +334,10 @@
 			"stats": {
 				"start_health": "",
 				"max_health": ""
+			},
+			"anchor": {
+				"x": 0.5,
+				"y": "1"
 			}
 		},
 		{
@@ -359,7 +367,7 @@
 				"projectile": "poison_projectile",
 				"shot_point": {
 					"x": 12,
-					"y": -4
+					"y": "-22"
 				},
 				"shot_speed_vector": {
 					"x": 100,
@@ -446,7 +454,7 @@
 				"collideWorldBounds": true,
 				"immovable": false,
 				"width": 20,
-				"height": 20
+				"height": 30
 			},
 			"actions": [
 				{
@@ -535,6 +543,10 @@
 			"stats": {
 				"start_health": "",
 				"max_health": ""
+			},
+			"anchor": {
+				"x": 0.5,
+				"y": "1"
 			}
 		},
 		{
@@ -593,14 +605,14 @@
 			"physical": {
 				"mass": 1,
 				"bounce": {
-					"x": 0,
-					"y": 0.95
+					"x": "1",
+					"y": "1"
 				},
-				"allowGravity": true,
-				"collideWorldBounds": false,
+				"allowGravity": false,
+				"collideWorldBounds": true,
 				"immovable": false,
-				"width": 2,
-				"height": 2
+				"width": 10,
+				"height": 10
 			},
 			"properties": {},
 			"sounds": [
@@ -642,7 +654,11 @@
 				"max_health": ""
 			},
 			"actions": [],
-			"patterns": []
+			"patterns": [],
+			"anchor": {
+				"x": 0.5,
+				"y": "0.5"
+			}
 		},
 		{
 			"name": "start_button",
@@ -694,7 +710,11 @@
 			},
 			"actions": [],
 			"patterns": [],
-			"sounds": []
+			"sounds": [],
+			"anchor": {
+				"x": 0.5,
+				"y": "1"
+			}
 		}
 	],
 	"gui": [
