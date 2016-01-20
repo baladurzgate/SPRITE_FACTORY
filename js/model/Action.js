@@ -2,6 +2,8 @@ function Action ($name,$subject,$data){
 
 	this.name = $name
 	
+	this.action_type = "";
+	
 	this.subject = $subject != undefined ? $subject : false
 	
 	this.data = $data != undefined ? $data : false;

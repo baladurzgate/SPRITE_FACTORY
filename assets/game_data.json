@@ -215,7 +215,9 @@
 				},
 				"allowGravity": true,
 				"collideWorldBounds": true,
-				"immovable": false
+				"immovable": false,
+				"width": 20,
+				"height": 50
 			},
 			"actions": [
 				{
@@ -337,7 +339,7 @@
 			},
 			"anchor": {
 				"x": 0.5,
-				"y": "1"
+				"y": "0.67"
 			}
 		},
 		{
@@ -364,7 +366,7 @@
 			},
 			"attack": {
 				"attack_type": "range",
-				"projectile": "poison_projectile",
+				"projectile_type": "poison_projectile",
 				"shot_point": {
 					"x": 12,
 					"y": "-22"
@@ -493,7 +495,7 @@
 				},
 				{
 					"name": "FIRE",
-					"duration": 5,
+					"duration": 20,
 					"sound": "spider_shoot",
 					"priority": 3,
 					"actionFrame": 0,

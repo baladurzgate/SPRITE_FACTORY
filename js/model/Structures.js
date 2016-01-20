@@ -18,6 +18,7 @@ structure.object_type = {
 
 		},		
 		behaviour: {
+		
 			input_type:'select',
 			options:['dynamic','projectile'],
 			isArray:false,
@@ -25,6 +26,7 @@ structure.object_type = {
 			conditions:[{prop:'type',value:'sprite'}],
 			update_all:true,
 			display_type:'line'
+			
 		},			
 		images: {
 			input_type:'image',
@@ -265,6 +267,10 @@ structure.action = {
 			isArray:false,
 			default_value:'normal'
 		},
+		type: {
+			input_type:'string',
+			isArray:false,	
+		},
 		duration : {
 			input_type:'int',
 			isArray:false,
@@ -347,8 +353,7 @@ structure.attack = {
 	},	
 	projectile_type: {
 		input_type:'link',
-		match_type:'projectile',
-		default_value:undefined
+		match_type:'projectile'
 	},	
 	shot_speed_vector:{
 		input_type:'point',
