@@ -100,15 +100,15 @@ function Object_type ($model_data){
 	
 	this.init_structure = function(){
 	
-		for (var prop in structure.game_Object_typeect){
+		for (var prop in structure.object_type){
 			
 			if(model_data[prop] == undefined){
 				
-				model_data[prop] = structure.game_Object_typeect[prop].default_value;
+				model_data[prop] = structure.object_type[prop].default_value;
 			
 			}
 		
-			this.properties[prop] = new Property(this,model_data,prop,structure.game_Object_typeect[prop])
+			this.properties[prop] = new Property(this,model_data,prop,structure.object_type[prop])
 		
 		}
 		

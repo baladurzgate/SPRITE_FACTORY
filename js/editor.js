@@ -27,18 +27,18 @@ var editorState = {
 		outliner : '',
 		display : '',
 		displayed_game_object : '',		
-		edited_game_object :'',
+		edited_object_type:'',
 		
 		init:function(){
 			
 			this.editor = jQuery("#editor")
 			this.outliner = jQuery('#outliner')	
-			this.properties = jQuery('#properties')
-			this.display_properties_types_list();	
+			this.properties_panel = jQuery('#properties')
+			this.display_object_types_list();	
 			this.displayed_game_object = game.add.sprite();
 		},
 		
-		display_properties_types_list:function(){
+		display_object_types_list:function(){
 			
 			jQuery(this.outliner).empty();
 
@@ -62,7 +62,7 @@ var editorState = {
 				jQuery(delete_button).click(function(){
 
 					GAME_OBJECT_TYPES.splice(jQuery(this).attr('index'),1);
-					context.display_properties_types_list();
+					context.display_object_types_list();
 
 				})	
 				
@@ -88,7 +88,7 @@ var editorState = {
 			
 		},
 		
-		preview_game_object:function(){
+		preview_object_type:function(){
 
 			this.displayed_game_object.destroy();
 			
@@ -96,7 +96,7 @@ var editorState = {
 			
 			//game.world.removeAll();
 			
-			this.displayed_game_object = this.edited_game_object.instanciate({x:100,y:100});			
+			this.displayed_game_object = this.edited_object_type.instanciate({x:100,y:100});			
 			
 		},
 	
@@ -107,9 +107,9 @@ var editorState = {
 				
 				if(GAME_OBJECT_TYPES[i].getName() == _objectName){
 					
-					this.edited_game_object = GAME_OBJECT_TYPES[i];
+					this.edited_object_type= GAME_OBJECT_TYPES[i];
 					
-					this.preview_game_object();
+					this.preview_object_type();
 					
 					this.display_properties();
 					
@@ -123,21 +123,19 @@ var editorState = {
 		
 		display_properties:function(){
 			
-			jQuery(this.properties).empty();
+			jQuery(this.properties_panel).empty();
 	
-			if(this.edited_game_object != undefined){
+			if(this.edited_object_type!= undefined){
 				
-				var object_data = this.edited_game_object.getModelData();
+				var object_type_data = this.edited_object_type.getModelData();
 				
-				this.preview_game_object();
+				this.preview_object_type();
 
-				for(var p in this.edited_game_object.properties){
+				for(var p in this.edited_object_type.properties){
 					
-					var prop = this.edited_game_object.properties[p];
+					this.edited_object_type.properties[p].link_to_GUI(this);
 					
-					prop.link_to_GUI(this);
-					
-					jQuery(this.properties).append(prop.create_jquery_object())
+					jQuery(this.properties_panel).append(this.edited_object_type.properties[p].create_jquery_object())
 					
 					
 				}
@@ -167,8 +165,6 @@ var editorState = {
 		}
 		
 		jQuery.post('php/write_game_data.php', data, function(response) {
-			//alert('Got this from the server: ' + response);
-			//this.GUI.update_output_info("areas up to date");
 			console.log(response)
 		});
 

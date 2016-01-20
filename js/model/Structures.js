@@ -1,6 +1,6 @@
 var structure = {};
 
-structure.game_Object_typeect = {
+structure.object_type = {
 		
 		name : {
 			input_type:'string',

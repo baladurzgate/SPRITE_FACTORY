@@ -1,6 +1,6 @@
-function Property ($object_type,$object_type_data,$name,$prop_data,$depth){
+function Property ($output_object_type,$object_type_data,$name,$prop_data,$depth){
 	
-	var output_object_type = $object_type;
+	var output_object_type = $output_object_type;
 	
 	var object_type_data = $object_type_data;
 
@@ -86,7 +86,7 @@ function Property ($object_type,$object_type_data,$name,$prop_data,$depth){
 
 						if(linked_GUI != undefined){
 							
-							linked_GUI.preview_game_object();	
+							linked_GUI.preview_object_type();	
 							
 						}
 	
@@ -135,7 +135,7 @@ function Property ($object_type,$object_type_data,$name,$prop_data,$depth){
 						}
 						if(linked_GUI != undefined){
 							
-							linked_GUI.preview_game_object();	
+							linked_GUI.preview_object_type();	
 							
 						}
 	
@@ -174,7 +174,7 @@ function Property ($object_type,$object_type_data,$name,$prop_data,$depth){
 
 						if(linked_GUI != undefined){
 							
-							linked_GUI.preview_game_object();	
+							linked_GUI.preview_object_type();	
 							
 						}
 	
@@ -215,7 +215,7 @@ function Property ($object_type,$object_type_data,$name,$prop_data,$depth){
 
 						if(linked_GUI != undefined){
 							
-							linked_GUI.preview_game_object();	
+							linked_GUI.preview_object_type();	
 							
 						}
 	
@@ -265,7 +265,7 @@ function Property ($object_type,$object_type_data,$name,$prop_data,$depth){
 
 						if(linked_GUI != undefined){
 							
-							linked_GUI.preview_game_object();	
+							linked_GUI.preview_object_type();	
 							
 						}
 				
@@ -294,7 +294,7 @@ function Property ($object_type,$object_type_data,$name,$prop_data,$depth){
 						}
 						if(linked_GUI != undefined){
 							
-							linked_GUI.preview_game_object();	
+							linked_GUI.preview_object_type();	
 							
 						}
 				
@@ -375,7 +375,7 @@ function Property ($object_type,$object_type_data,$name,$prop_data,$depth){
 
 					if(linked_GUI != undefined){
 						
-						linked_GUI.preview_game_object();	
+						linked_GUI.preview_object_type();	
 						
 					}
 
@@ -454,7 +454,7 @@ function Property ($object_type,$object_type_data,$name,$prop_data,$depth){
 						
 						}
 						
-						linked_GUI.preview_game_object();
+						linked_GUI.preview_object_type();
 						
 					}
 			
@@ -476,7 +476,7 @@ function Property ($object_type,$object_type_data,$name,$prop_data,$depth){
 
 						if(linked_GUI != undefined){
 							
-							linked_GUI.preview_game_object_type();	
+							linked_GUI.preview_object_type_type();	
 							
 						}
 				
@@ -708,7 +708,7 @@ function Property ($object_type,$object_type_data,$name,$prop_data,$depth){
 
 					if(linked_GUI != undefined){
 						
-						linked_GUI.preview_game_object();	
+						linked_GUI.preview_object_type();	
 						
 					}
 				
@@ -940,7 +940,7 @@ function Property ($object_type,$object_type_data,$name,$prop_data,$depth){
 					
 					if(linked_GUI != undefined){
 					
-						linked_GUI.preview_game_object();	
+						linked_GUI.preview_object_type();	
 					
 					}							
 					
@@ -968,7 +968,7 @@ function Property ($object_type,$object_type_data,$name,$prop_data,$depth){
 				
 				if(linked_GUI != undefined){
 				
-					linked_GUI.preview_game_object();	
+					linked_GUI.preview_object_type();	
 				
 				}
 				context.update_input();
