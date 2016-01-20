@@ -162,8 +162,8 @@ structure.animation = {
 			
 		},
 		frames : {
-			input_type:'frame',
-			isArray:true
+			input_type:'sequence',
+			sequence_type:'int'
 		},
 		frameRate : {
 			input_type:'int',

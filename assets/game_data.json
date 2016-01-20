@@ -106,12 +106,44 @@
 				}
 			],
 			"properties": {},
-			"sounds": []
+			"sounds": [],
+			"button_animation": {
+				"overFrame": 4,
+				"outFrame": 1,
+				"downFrame": 3,
+				"upFrame": 3
+			},
+			"movement": {
+				"idle_brake": "",
+				"walk_speed": "",
+				"run_speed": "",
+				"jump_strength": "",
+				"fly_speed": ""
+			},
+			"attack": {
+				"attack_type": "range",
+				"shot_point": {
+					"x": 0,
+					"y": 0
+				},
+				"projectile": "",
+				"shot_speed_vector": {
+					"x": 0,
+					"y": 0
+				},
+				"damage": 10,
+				"fire_rate": 10
+			},
+			"stats": {
+				"start_health": "",
+				"max_health": ""
+			},
+			"patterns": []
 		},
 		{
 			"name": "yellowman",
-			"type": "sprite",
-			"behaviour": "dynamic",
+			"type": "button",
+			"behaviour": "projectile",
 			"images": [
 				{
 					"name": "yellowman",
@@ -274,7 +306,31 @@
 					"file_ogg": "assets/Laser_Shoot27.ogg",
 					"file_mp3": "assets/Laser_Shoot27.mp3"
 				}
-			]
+			],
+			"button_animation": {
+				"overFrame": 4,
+				"outFrame": 1,
+				"downFrame": 3,
+				"upFrame": 3
+			},
+			"attack": {
+				"attack_type": "range",
+				"shot_point": {
+					"x": 0,
+					"y": 0
+				},
+				"projectile": "",
+				"shot_speed_vector": {
+					"x": 0,
+					"y": 0
+				},
+				"damage": 10,
+				"fire_rate": 10
+			},
+			"stats": {
+				"start_health": "",
+				"max_health": ""
+			}
 		},
 		{
 			"name": "spider",
@@ -470,7 +526,17 @@
 					"file_ogg": "assets/Laser_Shoot27.ogg",
 					"file_mp3": "assets/Laser_Shoot27.mp3"
 				}
-			]
+			],
+			"button_animation": {
+				"overFrame": 4,
+				"outFrame": 1,
+				"downFrame": 3,
+				"upFrame": 3
+			},
+			"stats": {
+				"start_health": "",
+				"max_health": ""
+			}
 		},
 		{
 			"name": "poison_projectile",
@@ -544,7 +610,40 @@
 					"file_wave": "",
 					"file_ogg": ""
 				}
-			]
+			],
+			"button_animation": {
+				"overFrame": 4,
+				"outFrame": 1,
+				"downFrame": 3,
+				"upFrame": 3
+			},
+			"movement": {
+				"idle_brake": "",
+				"walk_speed": "",
+				"run_speed": "",
+				"jump_strength": "",
+				"fly_speed": ""
+			},
+			"attack": {
+				"attack_type": "range",
+				"shot_point": {
+					"x": 0,
+					"y": 0
+				},
+				"projectile": "",
+				"shot_speed_vector": {
+					"x": 0,
+					"y": 0
+				},
+				"damage": 10,
+				"fire_rate": 10
+			},
+			"stats": {
+				"start_health": "",
+				"max_health": ""
+			},
+			"actions": [],
+			"patterns": []
 		},
 		{
 			"name": "start_button",
@@ -559,12 +658,44 @@
 					"height": 64
 				}
 			],
-			"button_animation":{
+			"button_animation": {
 				"overFrame": 1,
 				"downFrame": 0,
 				"upFrame": 2
 			},
-			"action":"play"
+			"action": "play",
+			"behaviour": "dynamic",
+			"frames": [],
+			"animations": [],
+			"physical": {},
+			"movement": {
+				"idle_brake": "",
+				"walk_speed": "",
+				"run_speed": "",
+				"jump_strength": "",
+				"fly_speed": ""
+			},
+			"attack": {
+				"attack_type": "range",
+				"shot_point": {
+					"x": 0,
+					"y": 0
+				},
+				"projectile": "",
+				"shot_speed_vector": {
+					"x": 0,
+					"y": 0
+				},
+				"damage": 10,
+				"fire_rate": 10
+			},
+			"stats": {
+				"start_health": "",
+				"max_health": ""
+			},
+			"actions": [],
+			"patterns": [],
+			"sounds": []
 		}
 	],
 	"gui": [

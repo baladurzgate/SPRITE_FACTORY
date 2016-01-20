@@ -302,6 +302,88 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 					})
 			
 			break;
+			
+			case 'sequence' : 
+			
+					
+				input =  jQuery('<input name = "'+input_name+'"type = "text" value = "'+value+'">')
+				
+				var context = this;
+				
+				
+				jQuery(input).change(function(e) {
+						
+					var array = e.target.value.split(',')
+					
+					for (var a = 0 ; a < array.length ; a++){
+					
+						if(array[a]==""||array[a]==undefined){
+							array.splice(a,1);
+						}
+					
+					}
+					
+					var sequence_type = prop_data.sequence_type != undefined ? prop_data.sequence_type : 'string';
+					
+					for (var a = 0 ; a < array.length ; a++){
+					
+						switch (sequence_type){
+						
+							case 'int':
+								
+								array[a] = parseInt(array[a]);
+								
+							
+							break;
+							case 'string' : 
+							
+							
+							
+							break;
+						}
+				
+					}
+					
+
+					if(context.parent == undefined){
+						
+					
+						if(context.parent_index == undefined){
+							
+							output_object.getModelData()[input_name] = array;
+							
+						}else{
+							
+							output_object.getModelData()[input_name][context.parent_index] = array;
+							
+						}
+						
+					}else{
+						
+						if(context.parent_index == undefined){
+							
+							output_object.getModelData()[context.parent][input_name] = array;
+							
+						}else{
+							
+							output_object.getModelData()[context.parent][context.parent_index][input_name] = array;
+							
+						}
+						
+						
+					}
+
+					if(linked_GUI != undefined){
+						
+						linked_GUI.preview_game_object();	
+						
+					}
+
+				})
+				
+
+			
+			break;
 
 			case 'select' : 
 			
@@ -509,48 +591,7 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 			break;
 			
 
-			case 'sequence' : 
-			
-					
-				input =  jQuery('<input name = "'+input_name+'"type = "text" value = "'+value+'">')
 				
-				var context = this;
-				
-				
-				jQuery(input).change(function(e) {
-						
-					var array = e.target.value.split(',')
-
-					if(context.parent == undefined){
-						
-						output_object.getModelData()[input_name] = array;
-						
-					}else{
-						
-						if(context.parent_index == undefined){
-							
-							output_object.getModelData()[context.parent][input_name] = array;
-							
-						}else{
-							
-							output_object.getModelData()[context.parent][context.parent_index][input_name] = array;
-							
-						}
-						
-						
-					}
-
-					if(linked_GUI != undefined){
-						
-						linked_GUI.preview_game_object();	
-						
-					}
-
-				})
-				
-
-			
-			break;				
 			
 			case 'movement' : 
 			
