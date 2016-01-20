@@ -24,7 +24,7 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 	
 	var prop_value_tag = jQuery('<ul class = "prop_value"></ul>');
 	
-	var display_type = prop.data.display_type != undefined ? prop_data.display_type : 'drawer';
+	var display_type = prop_data.display_type != undefined ? prop_data.display_type : 'drawer';
 	
 	if(prop_data.display_type != undefined){
 	
