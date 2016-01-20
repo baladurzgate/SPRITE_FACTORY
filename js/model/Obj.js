@@ -101,14 +101,14 @@ function Obj ($model_data){
 	this.init_structure = function(){
 	
 		for (var prop in structure.game_object){
-		
-			this.properties[prop] = new Property(this,model_data,prop,structure.game_object[prop])
 			
 			if(model_data[prop] == undefined){
 				
 				model_data[prop] = structure.game_object[prop].default_value;
 			
 			}
+		
+			this.properties[prop] = new Property(this,model_data,prop,structure.game_object[prop])
 		
 		}
 		

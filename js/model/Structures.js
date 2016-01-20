@@ -5,14 +5,16 @@ structure.game_object = {
 		name : {
 			input_type:'string',
 			isArray:false,
-			default_value:'unamed_game_object'
+			default_value:'unamed_game_object',
+			display_type:'line'
 		},
 		type : {
 			input_type:'select',
 			options:['','sprite','button'],
 			isArray:false,
 			default_value:'sprite',
-			update_all:true
+			update_all:true,
+			display_type:'line'
 
 		},		
 		behaviour: {
@@ -21,7 +23,8 @@ structure.game_object = {
 			isArray:false,
 			default_value:'dynamic',
 			conditions:[{prop:'type',value:'sprite'}],
-			update_all:true
+			update_all:true,
+			display_type:'line'
 		},			
 		images: {
 			input_type:'image',

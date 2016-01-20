@@ -114,12 +114,34 @@ img{
 	
 
 }
-.prop_value{
 
-	padding:10px;
+.line{
+
+	display:inline-block;
+
+}
+
+.hidden{
+
 	display:none;
 
 }
+
+
+.prop_value{
+
+	padding:10px;
+
+
+}
+
+.prop_value_compact{
+
+	padding:0px;
+
+
+}
+
 
 .array_element{
 	

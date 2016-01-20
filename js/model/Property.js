@@ -230,6 +230,9 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 			
 					var coords =  jQuery('<tr><td></td></tr>')
 					
+					value.x = value.x != undefined ? value.x : 0;
+					value.y = value.y != undefined ? value.y : 0;
+
 					var inputx = jQuery('<input id = "'+input_name+'_x" name = "'+input_name+'"type = "number" step = "'+prop_data.step+'" min = "'+prop_data.min+'" max = "'+prop_data.max+'" value = "'+value.x+'">')
 					var inputy = jQuery('<input id = "'+input_name+'_y" name = "'+input_name+'"type = "number" step = "'+prop_data.step+'" min = "'+prop_data.min+'" max = "'+prop_data.max+'" value = "'+value.y+'">')
 					
@@ -302,15 +305,28 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 
 			case 'select' : 
 			
-				var select = jQuery('<select name = "'+input_name +'  value = "'+value+'">')
-			
-				input =  jQuery('<select name = "'+input_name +'"></select>')
+				input =  jQuery('<select id = "'+output_object.getName()+'-'+input_name+'"name = "'+input_name+'"  value = "'+value+'">')
+				
+				if(depth==0){
+					console.log(value);
+					console.log(output_object.getModelData()[input_name]);
+				}
 				
 				if(prop_data.options != undefined){
 					
 					for(var o = 0 ; o < prop_data.options.length;o++){
+					
+						if(prop_data.options[o] == value){
 						
-						var option = jQuery('<option value = "'+prop_data.options[o]+'">'+prop_data.options[o]+'</option>');
+							
+							var option = jQuery('<option value = "'+prop_data.options[o]+'" selected="selected">'+prop_data.options[o]+'</option>');
+						
+						}else{
+						
+							var option = jQuery('<option value = "'+prop_data.options[o]+'">'+prop_data.options[o]+'</option>');
+						
+						}
+						
 						
 						jQuery(input).append(option);
 						
@@ -321,16 +337,23 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 				var context = this;
 				
 				jQuery(input).change(function(e) {
+				
+					value =  e.target.value;
 						
 					if(context.parent == undefined){
+					
+						console.log(e.target.value)
 						
 						output_object.getModelData()[input_name] = e.target.value;
+						console.log(output_object.getModelData()[input_name]);
 						
 					}else{
 							
 							if(context.parent_index == undefined){
 								
 								output_object.getModelData()[context.parent][input_name] = e.target.value;
+								
+								
 								
 							}else{
 								
@@ -343,13 +366,13 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 
 					if(linked_GUI != undefined){
 						
-						linked_GUI.preview_game_object();
-
 						if(prop_data.update_all){
 						
 							linked_GUI.display_object();
 						
 						}
+						
+						linked_GUI.preview_game_object();
 						
 					}
 			
@@ -679,9 +702,6 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 			var check = 0;
 		
 			for (var c = 0 ; c < prop_data.conditions.length ; c++){
-			
-					console.log(prop_data.conditions[c].prop)
-					console.log(prop_data.conditions[c].value)
 						
 				if(prop_data.conditions[c].prop && prop_data.conditions[c].value){
 				
@@ -702,16 +722,9 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 			
 			if(check == prop_data.conditions.length){
 			
-				console.log('all_checked');
-			
 				return true;
 				
-				
-			
 			}else{
-			
-				console.log(input_name)
-				console.log('no')
 			
 				return false;
 			
@@ -746,14 +759,11 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 				
 			}else{
 				
-
-
-				
 				switch (display_type){
 					
 						case 'drawer':
 						
-							var property_tag = jQuery('<li class = "property drawer"></li>');
+							var property_tag = jQuery('<li class = "property"></li>');
 							
 							var prop_name_tag = jQuery('<div class = "prop_name"> '+input_name+' </div>');
 							
@@ -765,7 +775,7 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 								
 							})
 							
-							prop_value_tag = jQuery('<ul class = "prop_value"></ul>');
+							prop_value_tag = jQuery('<ul class = "prop_value hidden"></ul>');
 							
 							jQuery(property_tag).append(prop_value_tag)		
 						
@@ -773,7 +783,15 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 						
 						case 'line':
 						
-							var property_tag = jQuery('<li class = "property line"></li>');
+							var property_tag = jQuery('<li class = "property"></li>');
+							
+							var prop_name_tag = jQuery('<div class = "prop_name line"> '+input_name+' </div>');
+							
+							jQuery(property_tag).append(prop_name_tag)
+							
+							prop_value_tag = jQuery('<div class = "prop_value_compact line"></div>');
+							
+							jQuery(prop_name_tag).append(prop_value_tag)	
 						
 						
 						break;
