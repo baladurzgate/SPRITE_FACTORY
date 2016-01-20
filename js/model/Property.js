@@ -22,12 +22,33 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 	
 	var value = object_data[input_name] != undefined ? object_data[input_name] : prop_data.default_value != undefined ? prop_data.default_value : undefined;
 	
-	var prop_value = jQuery('<ul class = "prop_value"></ul>');
+	var prop_value_tag = jQuery('<ul class = "prop_value"></ul>');
+	
+	var display_type = prop.data.display_type != undefined ? prop_data.display_type : 'drawer';
+	
+	if(prop_data.display_type != undefined){
+	
+	
+	}
 	
 	this.link_to_GUI = function($GUI){
 		
 		linked_GUI = $GUI;
 		
+	}
+	
+	this.getDefaultValue = function(){
+	
+		if(prop_data.default_value){ 
+		
+			return prop_data.default_value;
+		
+		}else{
+		
+			return '';
+		}
+		
+	
 	}
 	
 	this.create_input = function(){
@@ -322,7 +343,13 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 
 					if(linked_GUI != undefined){
 						
-						linked_GUI.preview_game_object();	
+						linked_GUI.preview_game_object();
+
+						if(prop_data.update_all){
+						
+							linked_GUI.display_object();
+						
+						}
 						
 					}
 			
@@ -409,7 +436,7 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 
 				if(prop_data.isArray){
 					
-					input = input =  this.create_array(prop_data.input_type)	
+					input = this.create_array(prop_data.input_type)	
 					
 				}
 			
@@ -419,7 +446,7 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 
 				if(prop_data.isArray){
 					
-					input =  input =  this.create_array(prop_data.input_type)	
+					input = this.create_array(prop_data.input_type)	
 					
 				}
 			
@@ -427,30 +454,14 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 			
 			case 'physical' : 
 					
-					input =  jQuery('<ul></ul>');
+				input = this.create_table(prop_data.input_type)
+			
+			break;
+			
+			case 'button_animation' : 
 					
-					var table = jQuery('<table ></table>');
+				input = this.create_table(prop_data.input_type)
 					
-					jQuery(input).append(table)
-				
-					var sub_properties = {};
-					
-					for(var p in structure.physical){
-						
-						if(value[p] != undefined ){
-							
-							sub_properties[p] = new Property(output_object,value,p,structure.physical[p],depth+1)
-							sub_properties[p].link_to_GUI(linked_GUI);
-							sub_properties[p].parent = input_name;
-						}
-						
-					}
-					
-					for(var sp in value){
-						
-						jQuery(table).append(sub_properties[sp].create_jquery_object())
-
-					}
 			
 			break;
 			
@@ -458,7 +469,7 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 
 				if(prop_data.isArray){
 					
-					input =  this.create_array(prop_data.input_type)	
+					input = this.create_array(prop_data.input_type)	
 					
 				}
 			
@@ -468,7 +479,7 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 
 				if(prop_data.isArray){
 					
-					input =  this.create_array(prop_data.input_type)	
+					input = this.create_array(prop_data.input_type)	
 					
 				}
 				
@@ -520,31 +531,7 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 			
 			case 'movement' : 
 			
-					input =  jQuery('<ul></ul>');
-					
-					var table = jQuery('<table ></table>');
-					
-					jQuery(input).append(table)
-				
-					var sub_properties = {};
-					
-					for(var p in structure.movement){
-						
-						if(value[p] != undefined ){
-							
-							sub_properties[p] = new Property(output_object,value,p,structure.movement[p],depth+1)
-							sub_properties[p].link_to_GUI(linked_GUI);
-							sub_properties[p].parent = input_name;
-							sub_properties[p].parent_index = i;
-						}
-						
-					}
-					
-					for(var sp in value){
-						
-						jQuery(table).append(sub_properties[sp].create_jquery_object())
-
-					}
+				input = this.create_table(prop_data.input_type)
 					
 									
 			
@@ -552,31 +539,13 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 			
 			case 'attack' : 
 			
-					input =  jQuery('<ul></ul>');
+				input = this.create_table(prop_data.input_type)
 					
-					var table = jQuery('<table ></table>');
-					
-					jQuery(input).append(table)
-				
-					var sub_properties = {};
-					
-					for(var p in structure.attack){
-						
-						if(value[p] != undefined ){
-							
-							sub_properties[p] = new Property(output_object,value,p,structure.attack[p],depth+1)
-							sub_properties[p].link_to_GUI(linked_GUI);
-							sub_properties[p].parent = input_name;
-							sub_properties[p].parent_index = i;
-						}
-						
-					}
-					
-					for(var sp in value){
-						
-						jQuery(table).append(sub_properties[sp].create_jquery_object())
-
-					}
+			break;
+			
+			case 'stats' : 
+			
+				input = this.create_table(prop_data.input_type)
 					
 			break;
 
@@ -691,51 +660,168 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 	
 	this.update_input = function(){
 		
-		prop_value.empty();
+		prop_value_tag.empty();
 		
-		jQuery(prop_value).append(this.create_input());	
+		jQuery(prop_value_tag).append(this.create_input());	
 		
 	}
 	
-	this.create_jquery_object = function(){
-		
-		if(depth > 0){
-			
-			var property = jQuery('<tr class = ""></tr>');
-			
-			var prop_name = jQuery('<td class = ""> '+input_name+' </td>');
-			
-			jQuery(property).append(prop_name)
-			
-			prop_value = jQuery('<td  class = ""></td>');
-			
-			jQuery(property).append(prop_value)		
-
+	this.update_all = function(){
 	
+		
+	
+	}
+	
+	this.check_conditions = function(){
+	
+		if(prop_data.conditions != undefined && prop_data.conditions.length > 0){
+		
+			var check = 0;
+		
+			for (var c = 0 ; c < prop_data.conditions.length ; c++){
 			
+					console.log(prop_data.conditions[c].prop)
+					console.log(prop_data.conditions[c].value)
+						
+				if(prop_data.conditions[c].prop && prop_data.conditions[c].value){
+				
+					if(output_object.getModelData()[prop_data.conditions[c].prop]==prop_data.conditions[c].value){
+						
+						check++;
+						
+					
+					}
+				
+				}else{
+				
+					return true;
+				
+				}
+			
+			}
+			
+			if(check == prop_data.conditions.length){
+			
+				console.log('all_checked');
+			
+				return true;
+				
+				
+			
+			}else{
+			
+				console.log(input_name)
+				console.log('no')
+			
+				return false;
+			
+			}			
+		
+		
 		}else{
 			
-			var property = jQuery('<li class = "property"></li>');
-			
-			var prop_name = jQuery('<div class = "prop_name"> '+input_name+' </div>');
-			
-			jQuery(property).append(prop_name)
-			
-			jQuery(prop_name).click(function(e){
+			return true;
+		
+		}
+	
+	}
+	
+	this.create_jquery_object = function(){
+	
+		if(this.check_conditions()){
+		
+			if(depth > 0){
 				
-				jQuery(e.target).next().toggle();
+				var property_tag = jQuery('<tr class = ""></tr>');
 				
-			})
+				var prop_name_tag = jQuery('<td class = ""> '+input_name+' </td>');
+				
+				jQuery(property_tag).append(prop_name_tag)
+				
+				prop_value_tag = jQuery('<td  class = ""></td>');
+				
+				jQuery(property_tag).append(prop_value_tag)		
+
+		
+				
+			}else{
+				
+
+
+				
+				switch (display_type){
+					
+						case 'drawer':
+						
+							var property_tag = jQuery('<li class = "property drawer"></li>');
+							
+							var prop_name_tag = jQuery('<div class = "prop_name"> '+input_name+' </div>');
+							
+							jQuery(property_tag).append(prop_name_tag)
+							
+							jQuery(prop_name_tag).click(function(e){
+								
+								jQuery(e.target).next().toggle();
+								
+							})
+							
+							prop_value_tag = jQuery('<ul class = "prop_value"></ul>');
+							
+							jQuery(property_tag).append(prop_value_tag)		
+						
+						break;
+						
+						case 'line':
+						
+							var property_tag = jQuery('<li class = "property line"></li>');
+						
+						
+						break;
+					
+					
+				}
+
+				
+	
+				
+			}
 			
-			prop_value = jQuery('<ul class = "prop_value"></ul>');
+			jQuery(prop_value_tag).append(this.create_input());		
+		
+			return property_tag;
+		
+		}
+	
+	}
+	
+	this.create_table = function($type){
+	
+		input =  jQuery('<ul></ul>');
+		
+		var table = jQuery('<table ></table>');
+		
+		jQuery(input).append(table)
+	
+		var sub_properties = {};
+		
+		for(var p in structure[$type]){
+		
+			sub_properties[p] = new Property(output_object,value,p,structure[$type][p],depth+1)
+			sub_properties[p].link_to_GUI(linked_GUI);
+			sub_properties[p].parent = input_name;
+			jQuery(table).append(sub_properties[p].create_jquery_object())
 			
-			jQuery(property).append(prop_value)			
+			if(value == prop_data.default_value){
+			
+				output_object.getModelData()[input_name][p]= sub_properties[p].getDefaultValue();
+				
+			
+			}
 			
 		}
 		
-		jQuery(prop_value).append(this.create_input());		
-	
-		return property;
+		return input;
+
 	
 	}
 	
@@ -835,6 +921,11 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 						
 	}
 	
+	this.update_GUI = function(){
+	
+	
+	}
+	
 	this.turn_on = function(){
 		
 		off = false;
@@ -847,25 +938,3 @@ function Property ($object,$object_data,$name,$prop_data,$depth){
 
 
 }
-
-
-
-
-							
-							/*var sub_input = jQuery('<tr><td>'+sub_prop+'</td><td><input id = "'+input_name+i+sub_prop+'" name = "'+sub_prop+'" type = "text" value = "'+value[i][sub_prop]+'"></td></tr>');
-							jQuery(sub_properties).append(sub_input)
-							
-							jQuery(sub_input).change(function(e) {
-							/*		
-								console.log(e.target);
-								output_object.changeData(e.target.name,e.target.value)
-
-								if(linked_GUI != undefined){
-									
-									linked_GUI.preview_game_object();	
-									
-								}
-						
-									
-							})*/
-							

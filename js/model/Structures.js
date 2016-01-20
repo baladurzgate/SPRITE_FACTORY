@@ -9,15 +9,19 @@ structure.game_object = {
 		},
 		type : {
 			input_type:'select',
-			options:['sprite','button'],
+			options:['','sprite','button'],
 			isArray:false,
-			default_value:'sprite'
+			default_value:'sprite',
+			update_all:true
+
 		},		
 		behaviour: {
 			input_type:'select',
-			options:['dynamic','projectile'],
+			options:['','dynamic','projectile'],
 			isArray:false,
 			default_value:'dynamic',
+			conditions:[{prop:'type',value:'sprite'}],
+			update_all:true
 		},			
 		images: {
 			input_type:'image',
@@ -32,43 +36,56 @@ structure.game_object = {
 		animations: {
 			input_type:'animation',
 			isArray:true,
-			default_value:[]
+			default_value:[],
+			conditions:[{prop:'type',value:'sprite'}]
+		},	
+		button_animation: {
+			input_type:'button_animation',
+			isArray:false,
+			default_value:{},
+			conditions:[{prop:'type',value:'button'}]
 		},		
 		physical: {
 			input_type:'physical',
 			isArray:false,
-			default_value:{}
+			default_value:{},
+			conditions:[{prop:'type',value:'sprite'}]
 		},	
 		movement:{
 			input_type:'movement',
 			isArray:false,
-			default_value:{}
+			default_value:{},
+			conditions:[{prop:'type',value:'sprite'},{prop:'behaviour',value:'dynamic'}]
 		},
 		attack:{
 			input_type:'attack',
 			isArray:false,
-			default_value:{}
+			default_value:{},
+			conditions:[{prop:'type',value:'sprite'},{prop:'behaviour',value:'dynamic'}]
 		},
 		stats:{
 			input_type:'stats',
-			isArray:true,
-			default_value:{}
+			default_value:{},
+			conditions:[{prop:'type',value:'sprite'}]
 		},
 		actions: {
 			input_type:'action',
 			isArray:true,
-			default_value:[]
+			default_value:[],
+			conditions:[{prop:'type',value:'sprite'},{prop:'behaviour',value:'dynamic'}]
 		},	
 		projectile_type: {
 			input_type:'link',
 			match_type:'projectile',
 			isArray:false,
-			default_value:undefined
+			default_value:undefined,
+			conditions:[{prop:'type',value:'sprite'},{prop:'behaviour',value:'dynamic'}]
 		},		
 		patterns: {
 			input_type:'pattern',
 			isArray:true,
-			default_value:[]
+			default_value:[],
+			conditions:[{prop:'type',value:'sprite'},{prop:'behaviour',value:'dynamic'}]
 		},
 		sounds: {
 			input_type:'sound',
@@ -77,6 +94,8 @@ structure.game_object = {
 		}			
 		
 	}
+	
+
 	
 	
 structure.image ={
@@ -137,6 +156,7 @@ structure.animation = {
 		name : {
 			input_type:'string',
 			isArray:false
+			
 		},
 		frames : {
 			input_type:'frame',
@@ -153,6 +173,34 @@ structure.animation = {
 
 }
 
+structure.button_animation={
+
+		overFrame: {
+			input_type:'int',
+			isArray:false,
+			min:0,
+			default_value:0
+		},
+		outFrame: {
+			input_type:'int',
+			isArray:false,
+			min:0,
+			default_value:0
+		},
+		downFrame: {
+			input_type:'int',
+			isArray:false,
+			min:0,
+			default_value:0
+		},		
+		upFrame: {
+			input_type:'int',
+			isArray:false,
+			min:0,
+			default_value:0
+		},	
+
+}
 
 structure.physical = {
 	
@@ -245,6 +293,22 @@ structure.action = {
 }
 
 structure.pattern = {
+	
+	
+	name : {
+		input_type:'string',
+		isArray:false,
+		default_value:'unamed_pattern'
+	},
+	actions : {
+		input_type:'sequence',
+		isArray:false,
+		default_value:''
+	}
+	
+}
+
+structure.pattern_unit = {
 	
 	
 	name : {

@@ -559,10 +559,12 @@
 					"height": 64
 				}
 			],
-			"overFrame": 1,
-			"downFrame": 0,
-			"upFrame": 2,
-			"action": "play"
+			"button_animation":{
+				"overFrame": 1,
+				"downFrame": 0,
+				"upFrame": 2
+			},
+			"action":"play"
 		}
 	],
 	"gui": [

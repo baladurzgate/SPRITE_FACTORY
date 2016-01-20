@@ -53,7 +53,7 @@ var editorState = {
 				jQuery(this.outliner).append(game_object)
 				
 				jQuery(game_object).click(function(e){
-					GUI.diplay_object(e.target.name);
+					GUI.edit_object(e.target.name);
 				})
 				
 				var delete_button = jQuery('<button class ="delete_button" index = "'+i+'">x</button>');
@@ -87,27 +87,6 @@ var editorState = {
 					
 			
 		},
-
-		
-		parse_value_input:function(_param,_value){
-			
-			var GUI = this
-			
-			var input = jQuery('<input name = "'+_param+'"   class="param_value" value = "'+_value+'">')
-			
-			jQuery(input).change(function(e) {
-				
-				console.log(e.target);
-				GUI.edited_game_object.changeData(this.name,this.value)
-				GUI.preview_game_object();
-				
-			})
-			
-			return input;
-											
-			
-		},				
-		
 		
 		preview_game_object:function(){
 
@@ -120,44 +99,52 @@ var editorState = {
 			this.displayed_game_object = this.edited_game_object.copy({x:100,y:100});			
 			
 		},
+	
+	
+		edit_object:function(_objectName){
 		
-		diplay_object:function(_objectName){
-			
-			jQuery(this.properties).empty();
-			
 			for (var i = 0 ; i<GAME_OBJECTS.length; i++){
 				
 				if(GAME_OBJECTS[i].getName() == _objectName){
 					
 					this.edited_game_object = GAME_OBJECTS[i];
-
-					var object_data = GAME_OBJECTS[i].getModelData();
 					
 					this.preview_game_object();
 					
-					console.log(GAME_OBJECTS[i].properties)
-
+					this.display_object();
 					
-					for(var p in GAME_OBJECTS[i].properties){
-						
-						var prop = GAME_OBJECTS[i].properties[p];
-						
-						prop.link_to_GUI(this);
-						
-						jQuery(this.properties).append(prop.create_jquery_object())
-						
-						
-					}
-
 					return
 					
 				}
 				
+			}		
+		
+		},
+		
+		display_object:function(){
+			
+			jQuery(this.properties).empty();
+	
+			if(this.edited_game_object != undefined){
 				
+				var object_data = this.edited_game_object.getModelData();
 				
-			}				
-						
-			save_content_to_file('hello','text.txt');
+				this.preview_game_object();
+
+				for(var p in this.edited_game_object.properties){
+					
+					var prop = this.edited_game_object.properties[p];
+					
+					prop.link_to_GUI(this);
+					
+					jQuery(this.properties).append(prop.create_jquery_object())
+					
+					
+				}
+
+				
+			}
+
 		},
 		
 		update_output_info : function(_text){

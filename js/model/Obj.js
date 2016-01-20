@@ -56,8 +56,7 @@ function Obj ($model_data){
 			}		
 		
 		}
-		
-		//console.log(this.model_to_string())
+
 		
 		this.init_structure();
 					
@@ -100,17 +99,18 @@ function Obj ($model_data){
 	this.properties ={}
 	
 	this.init_structure = function(){
+	
+		for (var prop in structure.game_object){
 		
-		for (var prop in model_data){
+			this.properties[prop] = new Property(this,model_data,prop,structure.game_object[prop])
 			
-			if(structure.game_object[prop] != undefined){
+			if(model_data[prop] == undefined){
 				
-				this.properties[prop] = new Property(this,model_data,prop,structure.game_object[prop])
-				
+				model_data[prop] = structure.game_object[prop].default_value;
+			
 			}
-			
-		}
 		
+		}
 		
 	}
 	
@@ -137,7 +137,6 @@ function Obj ($model_data){
 			
 				obj = game.add.sprite(instance_data.x,instance_data.y,model_data.images[0].name)
 				
-				//obj.model_data = this;
 				obj.object_model = this;
 				
 				obj.dying = false;
@@ -448,11 +447,12 @@ function Obj ($model_data){
 			
 			case "button" : 
 			
-				var overFrame = model_data.overFrame != undefined  ? model_data.overFrame : 0;
-				var downFrame = model_data.downFrame != undefined  ? model_data.downFrame : 0;
-				var upFrame= model_data.upFrame != undefined  ? model_data.upFrame : 0;
+				var overFrame = model_data.button_animation != undefined && model_data.button_animation.overFrame != undefined  ? model_data.button_animation.overFrame : 0;
+				var outFrame = model_data.button_animation != undefined && model_data.button_animation.outFrame != undefined  ? model_data.button_animation.outFrame : 0;
+				var downFrame = model_data.button_animation != undefined && model_data.button_animation.downFrame != undefined  ? model_data.button_animation.downFrame : 0;
+				var upFrame= model_data.button_animation != undefined && model_data.button_animation.upFrame != undefined  ? model_data.button_animation.upFrame : 0;
 		
-				var obj = game.add.button(instance_data.x,instance_data.y, model_data.images[0].name, function(){alert('clic')}, this, overFrame, downFrame, upFrame);
+				var obj = game.add.button(instance_data.x,instance_data.y, model_data.images[0].name, function(){alert('clic')}, this, overFrame, outFrame,downFrame, upFrame);
 				
 				obj.properties = instance_data.properties != undefined ? instance_data.properties : false;
 					
