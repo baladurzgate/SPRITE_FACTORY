@@ -17,6 +17,12 @@ var editorState = {
 		GAME_LEVELS[2].start();
 		
 	//	display_level_list(200,20,style)
+	
+		for (var i = 0 ; i<GAME_OBJECT_TYPES.length; i++){
+		
+			GAME_OBJECT_TYPES[i].fill_pool();
+			
+		}
 		
 	},
 
@@ -70,14 +76,18 @@ var editorState = {
 			}		
 
 			var add_game_object_button = jQuery('<li><button class ="add_button">+</button></li>');
+			
 			jQuery(this.outliner).append(add_game_object_button)
+			
 			jQuery(add_game_object_button).click(function(e){
 				
 				
 			})	
 			
 			var save_game_data_button = jQuery('<li><button class ="game_object">SAVE</button></li>');
+			
 			jQuery(this.outliner).append(save_game_data_button)
+			
 			jQuery(save_game_data_button).click(function(e){
 				
 				editorState.save_GAME_DATA();
@@ -89,14 +99,20 @@ var editorState = {
 		},
 		
 		preview_object_type:function(){
-
-			this.displayed_game_object.destroy();
+		
+			console.log(this.displayed_game_object);
 			
-			this.displayed_game_object.kill();
+			//if(this.displayed_game_object != undefined && this.displayed_game_object != "" && this.displayed_game_object != "empty"){
+
+				this.displayed_game_object.destroy();
+				
+				this.displayed_game_object.kill();
+			
+			//}
 			
 			//game.world.removeAll();
 			
-			this.displayed_game_object = this.edited_object_type.instanciate({x:100,y:100});			
+			this.edited_object_type.instanciate({x:Math.random()*600,y:100});			
 			
 		},
 	
@@ -128,8 +144,6 @@ var editorState = {
 			if(this.edited_object_type!= undefined){
 				
 				var object_type_data = this.edited_object_type.getModelData();
-				
-				this.preview_object_type();
 
 				for(var p in this.edited_object_type.properties){
 					
@@ -156,10 +170,11 @@ var editorState = {
 	update : function(){
 	
 		GAME_LEVELS[2].update_behaviours();
+		GAME_LEVELS[2].update_collisions();
 			
 	},
 	
-	render:function() {
+	/*render:function() {
 	
 		
 		for (var i = 0 ; i < GAME_LEVELS[2].getLevelObjects().length  ;i++){
@@ -168,7 +183,7 @@ var editorState = {
 		
 		}
 
-	},
+	},*/
 	
 	save_GAME_DATA:function(){
 	

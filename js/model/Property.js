@@ -389,11 +389,6 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 			
 				input =  jQuery('<select id = "'+ouput.getName()+'-'+input_name+'"name = "'+input_name+'"  value = "'+value+'">')
 				
-				if(depth==0){
-					console.log(value);
-					console.log(ouput.getModelData()[input_name]);
-				}
-				
 				if(prop_data.options != undefined){
 					
 					for(var o = 0 ; o < prop_data.options.length;o++){
@@ -656,8 +651,6 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 								if(GAME_OBJECT_TYPES[o].getModelData().type == 'sprite' && GAME_OBJECT_TYPES[o].getModelData().behaviour == 'projectile'){
 								
 									selected_attr = "";
-									
-									console.log(value);
 								
 									if(GAME_OBJECT_TYPES[o].getName() == value){
 										
@@ -1008,8 +1001,6 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 					
 					new_element[p] = structure[$type][p].default_value != undefined ? structure[$type][p].default_value : "";
 				}
-				
-				console.log(new_element)
 				
 				ouput.getModelData()[input_name].push(new_element);
 				

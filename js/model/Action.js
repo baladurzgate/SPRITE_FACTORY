@@ -202,7 +202,6 @@ function Action ($name,$subject,$data){
 							var projectile_type = find_object_type(projectile_name);
 							var projectile = projectile_type.instanciate(absolute_shoot_point)
 
-		
 							projectile.body.velocity.x += shot_speed_vector.x* this.subject.scale.x
 							projectile.body.velocity.y += shot_speed_vector.y* this.subject.scale.y
 							//projectile.body.velocity.y -= 200

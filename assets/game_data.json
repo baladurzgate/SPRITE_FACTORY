@@ -147,7 +147,7 @@
 		{
 			"name": "yellowman",
 			"type": "sprite",
-			"behaviour": "projectile",
+			"behaviour": "dynamic",
 			"images": [
 				{
 					"name": "yellowman",
@@ -611,7 +611,7 @@
 					"y": "1"
 				},
 				"allowGravity": false,
-				"collideWorldBounds": true,
+				"collideWorldBounds": false,
 				"immovable": false,
 				"width": 10,
 				"height": 10
