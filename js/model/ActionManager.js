@@ -39,6 +39,8 @@ function ActionManager ($obj){
 			if(current_action.over){
 					
 				if(this.queue.length > 0){
+				
+					this[this.queue[a].name].init();	
 					
 					if (this.queue.length > 0 && this.queue[a] != undefined ){
 					
@@ -58,7 +60,7 @@ function ActionManager ($obj){
 							
 						}	
 						
-						current_action = this.queue[a];	
+						current_action = this[this.queue[a].name];	
 
 					}
 					
@@ -116,7 +118,7 @@ function ActionManager ($obj){
 			
 		}
 		
-		current_action = this.queue[0]
+		current_action = this[this.queue[0].name];	
 
 	}
 	

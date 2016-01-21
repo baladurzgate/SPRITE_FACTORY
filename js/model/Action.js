@@ -30,6 +30,8 @@ function Action ($name,$subject,$data){
 	
 	this.key_input = this.data.key_input != undefined ? this.data.key_input  : 'A';
 	
+	this.increment = 0;
+	
 	var idle_brake = this.subject.movement != undefined && this.subject.movement.idle_brake != undefined? this.subject.movement.idle_brake : 0.9;
 	var walk_speed = this.subject.movement != undefined && this.subject.movement.walk_speed != undefined? this.subject.movement.walk_speed : 100;
 	var run_speed = this.subject.movement != undefined && this.subject.movement.run_speed != undefined? this.subject.movement.run_speed : 150;
@@ -189,6 +191,54 @@ function Action ($name,$subject,$data){
 
 				case 'FIRE':
 				
+					if( this.timer == this.actionFrame){
+						
+						if(this.subject.projectile_type!=false){
+							
+
+						
+							var absolute_shoot_point ={x:this.subject.x+shot_point.x*this.subject.scale.x,y:this.subject.y+shot_point.y*this.subject.scale.y}
+		
+							var projectile_type = find_object_type(projectile_name);
+							var projectile = projectile_type.instanciate(absolute_shoot_point)
+
+							projectile.body.velocity.x += ( shot_speed_vector.x)* this.subject.scale.x
+							projectile.body.velocity.y += (-this.increment + shot_speed_vector.y)* this.subject.scale.y
+							//projectile.body.velocity.y -= 200
+							
+						
+							this.subject.body.velocity.x*=idle_brake;
+							this.subject.body.velocity.y*=idle_brake;
+							
+							if(action_sound != false){
+								
+								GAME_SOUNDS[action_sound].play();
+								
+							}		
+
+							this.subject.animations.play(action_animation);
+							
+							if(this.increment < 200){
+							
+								this.increment +=100;
+								
+								console.log(this.increment)
+								
+							}else{
+							
+								this.increment = 0;
+								
+							}
+							
+						}
+						
+					}				
+				
+				break;
+				
+
+				case 'FIRE_ARC':
+				
 					
 				
 					if( this.timer == this.actionFrame){
@@ -202,8 +252,8 @@ function Action ($name,$subject,$data){
 							var projectile_type = find_object_type(projectile_name);
 							var projectile = projectile_type.instanciate(absolute_shoot_point)
 
-							projectile.body.velocity.x += shot_speed_vector.x* this.subject.scale.x
-							projectile.body.velocity.y += shot_speed_vector.y* this.subject.scale.y
+							projectile.body.velocity.x += (shot_speed_vector.x + 10 )* this.subject.scale.x
+							projectile.body.velocity.y += (shot_speed_vector.y + 10 )* this.subject.scale.y
 							//projectile.body.velocity.y -= 200
 							
 						
