@@ -539,94 +539,103 @@ function Object_type ($model_data){
 		
 		
 		obj_instance.update_behaviour = function(){
+		
+			if(obj_instance.alive){
 			
-			switch(model_data.behaviour){
-				
-				case 'dynamic' : 
-				
-					if(!obj_instance.dying){
-				
-						if(model_data.actions){
-							
-							if(obj_instance.controled_by == 'computer' && obj_instance.age == 0){
+				switch(model_data.behaviour){
+					
+					case 'dynamic' : 
+					
+						if(!obj_instance.dying){
+					
+							if(model_data.actions){
 								
-								if(obj_instance.patterns.length > 0){
+								if(obj_instance.controled_by == 'computer' && obj_instance.age == 0){
+									
+									if(obj_instance.patterns.length > 0){
 
-									obj_instance.actions.start_pattern(obj_instance.patterns[0])
+										obj_instance.actions.start_pattern(obj_instance.patterns[0])
 
+									}
+									
 								}
+
+								obj_instance.actions.update();	
+							
+							}else{
+								
+								obj_instance.animations.play('idle');
+								
+							}	
+							
+							obj_instance.age++;
+							
+						}else{
+							
+							obj_instance.animations.play('death');
+							
+							obj_instance.enable_collision = false;
+							
+							//obj_instance.body.moves = false;
+							
+							if(obj_instance.animations.currentAnim.loopCount>0){
+								
+								obj_instance.kill();
 								
 							}
-
-							obj_instance.actions.update();	
+							
+						}
+						
+						
+					
+					break;
+					
+					case 'projectile':
+					
+						if(!obj_instance.dying){
+					
+							obj_instance.animations.play('idle');
 						
 						}else{
 							
-							obj_instance.animations.play('idle');
+							obj_instance.animations.play('death');
 							
-						}	
-						
-						obj_instance.age++;
-						
-					}else{
-						
-						obj_instance.animations.play('death');
-						
-						obj_instance.enable_collision = false;
-						
-						//obj_instance.body.moves = false;
-						
-						if(obj_instance.animations.currentAnim.loopCount>0){
+							//obj_instance.body.moves = false;
 							
-							obj_instance.kill();
+							obj_instance.enable_collision = false;
 							
-						}
-						
-					}
-					
-					
-				
-				break;
-				
-				case 'projectile':
-				
-					if(!obj_instance.dying){
-				
-						obj_instance.animations.play('idle');
-					
-					}else{
-						
-						obj_instance.animations.play('death');
-						
-						//obj_instance.body.moves = false;
-						
-						obj_instance.enable_collision = false;
-						
-						obj_instance.body.velocity.x=0;
-						
-						obj_instance.body.velocity.y=0;
-						
-						if(obj_instance.animations.currentAnim.loopCount>0){
+							obj_instance.body.velocity.x=0;
 							
-							obj_instance.kill();
+							obj_instance.body.velocity.y=0;
 							
-						}
+							if(obj_instance.animations.currentAnim.loopCount>0){
+								
+								obj_instance.kill();
+								
+							}
 
-					}
-				
-				break;
+						}
+					
+					break;
+					
+				}
 				
 			}
 			
 		}
 		
 		if(collide){
+		
+			//if(obj_instance.alive){
+			//if(1+1===2){
 			
 			if(CURRENT_LEVEL != undefined){
 			
 				CURRENT_LEVEL.add_object_to_group(obj_instance,'sprites')	
 			
 			}
+			
+		
 			
 		}
 	

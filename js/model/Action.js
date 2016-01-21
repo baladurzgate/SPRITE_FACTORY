@@ -120,6 +120,31 @@ function Action ($name,$subject,$data){
 				
 				break;	
 				
+				case 'WALK_TOWARD_OBJECT':
+				
+					if(this.timer < this.duration){
+					
+						var radians = game.physics.arcade.angleBetween(this.subject, this.object);     
+						
+						var degrees = radians * (180/Math.PI);
+						
+						game.physics.arcade.velocityFromAngle(degrees, 300, this.subject.body.velocity);  
+						
+						this.subject.scale.x = -1;
+						
+						if(this.subject.body.onFloor()){
+						
+							this.subject.body.velocity.x = -walk_speed
+
+						}
+						
+						this.subject.animations.play(action_animation);
+						
+					}
+
+				
+				break;	
+				
 
 				case 'JUMP':
 				
@@ -202,8 +227,10 @@ function Action ($name,$subject,$data){
 							var projectile_type = find_object_type(projectile_name);
 							var projectile = projectile_type.instanciate(absolute_shoot_point)
 
-							projectile.body.velocity.x += ( shot_speed_vector.x)* this.subject.scale.x
-							projectile.body.velocity.y += (-this.increment + shot_speed_vector.y)* this.subject.scale.y
+							//projectile.body.velocity.x += ( shot_speed_vector.x)* this.subject.scale.x
+							//projectile.body.velocity.y += (-this.increment + shot_speed_vector.y)* this.subject.scale.y
+							projectile.body.velocity.x += (((Math.random()*200)-100)+ shot_speed_vector.x)* this.subject.scale.x
+							projectile.body.velocity.y += (((Math.random()*200)-100) + shot_speed_vector.y)* this.subject.scale.y
 							//projectile.body.velocity.y -= 200
 							
 						
@@ -218,7 +245,7 @@ function Action ($name,$subject,$data){
 
 							this.subject.animations.play(action_animation);
 							
-							if(this.increment < 200){
+							/*if(this.increment < 200){
 							
 								this.increment +=100;
 								
@@ -228,7 +255,7 @@ function Action ($name,$subject,$data){
 							
 								this.increment = 0;
 								
-							}
+							}*/
 							
 						}
 						

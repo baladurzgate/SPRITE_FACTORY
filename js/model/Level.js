@@ -247,4 +247,65 @@ function Level ($name,$tilemap,$json){
 		return false;	
 		
 	}
+	
+	this.basket = []
+	
+	this.getRandomSprite = function(_prop,_value){
+	
+		this.basket = [];
+		
+		var basket_size = 0;
+		
+		var prop = _prop != undefined ? _prop : 'no_prop_defined';
+		
+		var value = _value != undefined ? _value : 'no_value_defined';
+	
+		for (var lo = 0 ; lo < level_objects.length;lo++){
+			
+			if(level_objects[lo].Object_type.getType() == 'sprite' && level_objects[lo].alive == true ){
+			
+				if(prop != 'no_prop_defined' && value != 'no_value_defined'){
+					
+					if( level_objects[lo]._prop  != undefined && level_objects[lo]._prop  == _value){
+					
+						basket.push(level_objects[lo]);
+						
+						basket_size++
+						
+					}
+					
+				
+				}else{
+				
+					this.basket.push(level_objects[lo])
+					
+					basket_size++
+				
+				}
+				
+			}
+			
+		}
+
+		if(this.basket.length > 0){
+		
+			return this.basket[Math.round(Math.random()*(basket_size-1))];
+		
+		}else{
+		
+			return false;
+		
+		}
+		
+		
+	}
+	
+	
+	this.getRandomPoint = function(){
+	
+		return {x:Math.random()*600,y:Math.random*200};
+		
+		
+	}
+	
 }
