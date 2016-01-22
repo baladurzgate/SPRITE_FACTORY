@@ -21,7 +21,7 @@ var loadState = {
 			GAME_OBJECT_TYPES[o].loadMedia();
 			
 		}
-	
+
 	
 	},
 	

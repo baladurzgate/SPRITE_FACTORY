@@ -23,40 +23,74 @@ var editorState = {
 			GAME_OBJECT_TYPES[i].fill_pool();
 			
 		}
-		
+
+
+
 	},
 
 	
 	GUI : {
 		
+		
 		editor : '',
-		outliner : '',
-		display : '',
+		panel:{
+			menu : '',
+			outliner : '',
+			properties : '',
+			creation:''
+		},
 		displayed_game_object : '',		
 		edited_object_type:'',
+		grid:'',
+		grid_cursor:'',
+		tiled_mouse:{x:0,y:0},
+		map:'',
+		layer:'',
 		
 		init:function(){
 			
 			this.editor = jQuery("#editor")
-			this.outliner = jQuery('#outliner')	
-			this.properties_panel = jQuery('#properties')
+			this.panel.menu = jQuery('#menu')	
+			this.panel.outliner = jQuery('#outliner')	
+			this.panel.properties = jQuery('#properties')
+			this.panel.creation = jQuery('#creation')
 			this.display_object_types_list();	
 			this.displayed_game_object = game.add.sprite();
+			this.diplay_creation_panel();
+			
+			this.draw_grid(32,32)
+			
+			//  Creates a blank tilemap
+			this.map = game.add.tilemap();
+
+			//  Add a Tileset image to the map
+			this.map.addTilesetImage('32_tileset');
+
+			//  Creates a new blank layer and sets the map dimensions.
+			//  In this case the map is 40x30 tiles in size and the tiles are 32x32 pixels in size.
+			this.layer = this.map.create('layer1', Math.floor(game.width/32),  Math.floor(game.height/32), 32, 32);
+			
+			this.map.setCollisionBetween(2, 10);
+			
+			GAME_LEVELS[2].setTileMap(this.map);
+			GAME_LEVELS[2].addLayer(this.layer);
+			//GAME_LEVELS[2].update_collisions();
+		
 		},
 		
 		display_object_types_list:function(){
 			
-			jQuery(this.outliner).empty();
+			jQuery(this.panel.outliner).empty();
 
 			var GAME_OBJECT_TYPES_list = jQuery('<ul></ul>')
-			jQuery(this.outliner).append(GAME_OBJECT_TYPES_list)
+			jQuery(this.panel.outliner).append(GAME_OBJECT_TYPES_list)
 			
 			var GUI = this;
 			
 			for (var i = 0 ; i<GAME_OBJECT_TYPES.length; i++){
 				
 				var game_object =jQuery('<li><button class = "game_object" name = "'+GAME_OBJECT_TYPES[i].getName()+'"> '+GAME_OBJECT_TYPES[i].getName()+'</button> </li>')
-				jQuery(this.outliner).append(game_object)
+				jQuery(this.panel.outliner).append(game_object)
 				
 				jQuery(game_object).click(function(e){
 					GUI.edit_object_type(e.target.name);
@@ -77,7 +111,7 @@ var editorState = {
 
 			var add_game_object_button = jQuery('<li><button class ="add_button">+</button></li>');
 			
-			jQuery(this.outliner).append(add_game_object_button)
+			jQuery(this.panel.outliner).append(add_game_object_button)
 			
 			jQuery(add_game_object_button).click(function(e){
 				
@@ -86,7 +120,7 @@ var editorState = {
 			
 			var save_game_data_button = jQuery('<li><button class ="game_object">SAVE</button></li>');
 			
-			jQuery(this.outliner).append(save_game_data_button)
+			jQuery(this.panel.outliner).append(save_game_data_button)
 			
 			jQuery(save_game_data_button).click(function(e){
 				
@@ -104,15 +138,17 @@ var editorState = {
 			
 			//if(this.displayed_game_object != undefined && this.displayed_game_object != "" && this.displayed_game_object != "empty"){
 
-				this.displayed_game_object.destroy();
+				//this.displayed_game_object.destroy();
 				
-				this.displayed_game_object.kill();
+				//this.displayed_game_object.kill();
 			
 			//}
 			
 			//game.world.removeAll();
 			
-			this.edited_object_type.instanciate({x:Math.random()*600,y:100});			
+			this.displayed_game_object = this.edited_object_type.instanciate({x:Math.random()*game.width,y:game.length});			
+			
+			
 			
 		},
 	
@@ -137,9 +173,18 @@ var editorState = {
 		
 		},
 		
+		diplay_creation_panel: function(){
+		
+		
+			
+			this.panel.creation.display = 'block';
+		
+		
+		},
+		
 		display_properties:function(){
 			
-			jQuery(this.properties_panel).empty();
+			jQuery(this.panel.properties).empty();
 	
 			if(this.edited_object_type!= undefined){
 				
@@ -149,7 +194,7 @@ var editorState = {
 					
 					this.edited_object_type.properties[p].link_to_GUI(this);
 					
-					jQuery(this.properties_panel).append(this.edited_object_type.properties[p].create_jquery_object())
+					jQuery(this.panel.properties).append(this.edited_object_type.properties[p].create_jquery_object())
 					
 					
 				}
@@ -157,6 +202,87 @@ var editorState = {
 				
 			}
 
+		},
+		
+		draw_grid: function(tile_width,tile_height){
+		
+			if(this.grid == ''){
+			
+				this.grid = game.add.graphics(0, 0);
+				this.grid.lineStyle(1, 0xAAAAAA, 1);
+			
+			}
+		
+			
+			// set a fill and line style
+			
+			
+			this.grid.moveTo(0,0);
+			
+			var horizontal_lines = Math.round(game.height/tile_height);
+			var vertical_lines = Math.round(game.width/tile_width);
+			
+			for (var h = 0 ; h < horizontal_lines ; h ++){
+				this.grid.moveTo(0,h*tile_height);
+				this.grid.lineTo(game.width,h*tile_height);
+			
+			}
+			
+			for (var v = 0 ; v < vertical_lines ; v ++){
+			
+				this.grid.moveTo(v*tile_width,0);
+				this.grid.lineTo(v*tile_width,game.height);
+					
+			
+			}			
+		},
+		
+		update_grid_cursor:function(){
+		
+			if(this.grid_cursor == ''){
+		
+				this.grid_cursor = game.add.graphics(0, 0);
+				this.grid_cursor.lineStyle(2, 0x0000FF, 1);
+				this.grid_cursor.drawRect(0, 0, 32, 32);				
+			}
+			
+			this.grid_cursor.x = this.tiled_mouse.x;
+			this.grid_cursor.y = this.tiled_mouse.y
+
+		},
+		
+		update_tiled_mouse:function(){
+		
+			this.tiled_mouse.x = Math.floor((game.input.mousePointer.x)/32)*32;
+			this.tiled_mouse.y = Math.floor((game.input.mousePointer.y)/32)*32;
+			
+			/*if(game.input.activePointer.isDown){
+				
+				var obstacle = game.add.sprite(this.tiled_mouse.x, this.tiled_mouse.y,null);
+				console.log(obstacle);
+				obstacle.anchor.set(1, 1);
+				obstacle.width = obstacle.height = 32;
+				var square = game.add.graphics(0, 0);
+				square.beginFill(0xAAAAAA);
+				square.drawRect(0,0, 32, 32);			
+				square.endFill();				
+				obstacle.addChild(square)
+				game.physics.arcade.enable(obstacle);
+				obstacle.body.width = 32;
+				obstacle.body.height = 32;
+			}*/
+			
+			//var currentTile = game.math.snapToFloor(pointer.x, 32) / 32;
+					
+			if (game.input.mousePointer.isDown)
+			{
+			
+				var layer =  GAME_LEVELS[2].getTileMap().layers[0]
+				console.log(layer);
+				GAME_LEVELS[2].getTileMap().putTile(9,this.layer.getTileX(this.grid_cursor.x), this.layer.getTileY(this.grid_cursor.y), layer.name);
+			}
+
+		
 		},
 		
 		update_output_info : function(_text){
@@ -169,12 +295,16 @@ var editorState = {
 	
 	update : function(){
 	
-		GAME_LEVELS[2].update_behaviours();
+		this.GUI.update_tiled_mouse();
+		this.GUI.update_grid_cursor();
+	
 		GAME_LEVELS[2].update_collisions();
+		GAME_LEVELS[2].update_behaviours();
+		game.physics.arcade.collide(this.GUI.displayed_game_object,this.GUI.layer);
 			
 	},
 	
-	/*render:function() {
+	render:function() {
 	
 		
 		for (var i = 0 ; i < GAME_LEVELS[2].getLevelObjects().length  ;i++){
@@ -182,8 +312,11 @@ var editorState = {
 			game.debug.body(GAME_LEVELS[2].getLevelObjects()[i]);
 		
 		}
-
-	},*/
+		
+		//game.debug.pointer( game.input.activePointer );
+			
+			
+	},
 	
 	save_GAME_DATA:function(){
 	

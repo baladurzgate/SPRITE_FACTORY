@@ -1,6 +1,6 @@
 if(editor){
 	
-	var game = new Phaser.Game(600,200,Phaser.AUTO,'preview');	
+	var game = new Phaser.Game(320,320,Phaser.AUTO,'preview');	
 	game.state.add('boot', bootState);
 	game.state.add('init', initState);
 	game.state.add('load',loadState);

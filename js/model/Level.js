@@ -15,7 +15,33 @@ function Level ($name,$tilemap,$json){
 		return name;
 		
 	}
+	this.getTileMap = function(){
+		
+		return tilemap;
+		
+	}
+		
+	this.setTileMap = function($tilemap){
 	
+		tilemap = $tilemap ;
+		
+		json = true;
+		
+		/*for (var l = 0 ; l < tilemap.layers.length ; l ++){
+				
+			layers.push(tilemap.layers[l]);
+		}*/
+		
+		console.log(layers);
+				
+	}
+	
+	this.addLayer = function(layer){
+	
+		layers.push(layer);
+	
+	}
+
 	
 	this.getTilesets = function(){
 			
@@ -139,7 +165,7 @@ function Level ($name,$tilemap,$json){
 	}
 	
 	this.update_collisions = function(){
-		
+	
 		if(this.useLayers()){
 			
 			for (var l = 0 ; l < layers.length ; l ++){
@@ -303,7 +329,7 @@ function Level ($name,$tilemap,$json){
 	
 	this.getRandomPoint = function(){
 	
-		return {x:Math.random()*600,y:Math.random*200};
+		return {x:Math.random()*game.width,y:Math.random*game.height};
 		
 		
 	}
