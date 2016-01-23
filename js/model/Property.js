@@ -226,15 +226,15 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 			
 			case 'point' : 
 			
-					var input = jQuery('<table ></table>');
+					var input = jQuery('<table></table>');
 			
-					var coords =  jQuery('<tr><td></td></tr>')
+					var coords =  jQuery('<tr></tr>')
 					
 					value.x = value.x != undefined ? value.x : 0;
 					value.y = value.y != undefined ? value.y : 0;
 
-					var inputx = jQuery('<input id = "'+input_name+'_x" name = "'+input_name+'"type = "number" step = "'+prop_data.step+'" min = "'+prop_data.min+'" max = "'+prop_data.max+'" value = "'+value.x+'">')
-					var inputy = jQuery('<input id = "'+input_name+'_y" name = "'+input_name+'"type = "number" step = "'+prop_data.step+'" min = "'+prop_data.min+'" max = "'+prop_data.max+'" value = "'+value.y+'">')
+					var inputx = jQuery('<td>X</td><td><input  class = "w-30p" size ="3" id = "'+input_name+'_x" name = "'+input_name+'"type = "number" step = "'+prop_data.step+'" min = "'+prop_data.min+'" max = "'+prop_data.max+'" value = "'+value.x+'"></td>')
+					var inputy = jQuery('<td>Y</td><td><input class = "w-30p" size ="3" id = "'+input_name+'_y" name = "'+input_name+'"type = "number" step = "'+prop_data.step+'" min = "'+prop_data.min+'" max = "'+prop_data.max+'" value = "'+value.y+'"></td>')
 					
 					jQuery(input).append(coords);
 					jQuery(coords).append(inputx);
@@ -826,13 +826,13 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 		
 			if(depth > 0){
 				
-				var property_tag = jQuery('<tr class = ""></tr>');
+				var property_tag = jQuery('<tr class = "sub_prop"></tr>');
 				
-				var prop_name_tag = jQuery('<td class = ""> '+input_name+' </td>');
+				var prop_name_tag = jQuery('<td class = "w-50p"> '+input_name+' </td>');
 				
 				jQuery(property_tag).append(prop_name_tag)
 				
-				prop_value_tag = jQuery('<td  class = ""></td>');
+				prop_value_tag = jQuery('<td  class = "w-50p"></td>');
 				
 				jQuery(property_tag).append(prop_value_tag)		
 
@@ -844,9 +844,9 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 					
 						case 'drawer':
 						
-							var property_tag = jQuery('<li class = "property"></li>');
+							var property_tag = jQuery('<li class = "property row"></li>');
 							
-							var prop_name_tag = jQuery('<div class = "prop_name"> '+input_name+' </div>');
+							var prop_name_tag = jQuery('<div class = "prop_name row"> '+input_name+' </div>');
 							
 							jQuery(property_tag).append(prop_name_tag)
 							
@@ -864,15 +864,15 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 						
 						case 'line':
 						
-							var property_tag = jQuery('<li class = "property"></li>');
+							var property_tag = jQuery('<tr class = "line_prop"></tr>');
 							
-							var prop_name_tag = jQuery('<div class = "prop_name line"> '+input_name+' </div>');
+							var prop_name_tag = jQuery('<td class = "w-50p"> '+input_name+' </td>');
 							
 							jQuery(property_tag).append(prop_name_tag)
 							
-							prop_value_tag = jQuery('<div class = "prop_value_compact line"></div>');
+							prop_value_tag = jQuery('<td  class = "w-50p"></td>');
 							
-							jQuery(prop_name_tag).append(prop_value_tag)	
+							jQuery(property_tag).append(prop_value_tag)	
 						
 						
 						break;

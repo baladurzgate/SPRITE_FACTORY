@@ -24,8 +24,6 @@ var editorState = {
 			
 		}
 
-
-
 	},
 
 	
@@ -57,30 +55,26 @@ var editorState = {
 			this.display_object_types_list();	
 			this.displayed_game_object = game.add.sprite();
 			this.diplay_creation_panel();
+			this.display_menu_panel();
 			
 			this.draw_grid(32,32)
 			
-			//  Creates a blank tilemap
 			this.map = game.add.tilemap();
 
-			//  Add a Tileset image to the map
 			this.map.addTilesetImage('32_tileset');
 
-			//  Creates a new blank layer and sets the map dimensions.
-			//  In this case the map is 40x30 tiles in size and the tiles are 32x32 pixels in size.
 			this.layer = this.map.create('layer1', Math.floor(game.width/32),  Math.floor(game.height/32), 32, 32);
 			
 			this.map.setCollisionBetween(2, 10);
 			
 			GAME_LEVELS[2].setTileMap(this.map);
 			GAME_LEVELS[2].addLayer(this.layer);
-			//GAME_LEVELS[2].update_collisions();
 		
 		},
 		
-		display_menu:function(){
+		display_menu_panel:function(){
 		
-			var save_game_data_button = jQuery('<li><button class ="game_object">SAVE</button></li>');
+			var save_game_data_button = jQuery('<button class ="game_object">SAVE</button>');
 			
 			jQuery(this.panel.menu).append(save_game_data_button)
 			
@@ -114,7 +108,6 @@ var editorState = {
 				jQuery(object_type_li).append(object_type_options)
 				jQuery(object_type_options).append(object_type_select_button)
 				
-				
 				jQuery(object_type_select_button).click(function(e){
 					GUI.edit_object_type(e.target.name);
 				})
@@ -128,10 +121,6 @@ var editorState = {
 					context.display_object_types_list();
 
 				})	
-
-				 //$(game_object).draggable();
-
-				
 				
 			}		
 
@@ -142,10 +131,7 @@ var editorState = {
 			jQuery(add_game_object_button).click(function(e){
 				
 				
-			})	
-			
-
-					
+			})		
 			
 		},
 		
@@ -164,8 +150,6 @@ var editorState = {
 			//game.world.removeAll();
 			
 			this.displayed_game_object = this.edited_object_type.instanciate({x:Math.random()*game.width,y:game.length});			
-			
-			
 			
 		},
 	
@@ -192,11 +176,8 @@ var editorState = {
 		
 		diplay_creation_panel: function(){
 		
-		
-			
 			this.panel.creation.display = 'block';
-		
-		
+			
 		},
 		
 		display_properties:function(){
@@ -213,10 +194,8 @@ var editorState = {
 					
 					jQuery(this.panel.properties).append(this.edited_object_type.properties[p].create_jquery_object())
 					
-					
 				}
-
-				
+			
 			}
 
 		},
@@ -229,10 +208,6 @@ var editorState = {
 				this.grid.lineStyle(1, 0xAAAAAA, 1);
 			
 			}
-		
-			
-			// set a fill and line style
-			
 			
 			this.grid.moveTo(0,0);
 			
@@ -250,8 +225,8 @@ var editorState = {
 				this.grid.moveTo(v*tile_width,0);
 				this.grid.lineTo(v*tile_width,game.height);
 					
-			
 			}			
+			
 		},
 		
 		update_grid_cursor:function(){
@@ -307,7 +282,6 @@ var editorState = {
 		
 		}
 		
-		
 	},
 	
 	update : function(){
@@ -322,16 +296,12 @@ var editorState = {
 	
 	render:function() {
 	
-		
 		for (var i = 0 ; i < GAME_LEVELS[2].getLevelObjects().length  ;i++){
 		
 			game.debug.body(GAME_LEVELS[2].getLevelObjects()[i]);
 		
 		}
 		
-		//game.debug.pointer( game.input.activePointer );
-			
-			
 	},
 	
 	save_GAME_DATA:function(){
@@ -344,8 +314,6 @@ var editorState = {
 			console.log(response)
 		});
 
-
-	
 	},
 	
 
