@@ -506,6 +506,7 @@
 				{
 					"name": "standard",
 					"actions": [
+						"DUPLICATE",
 						"WALK_LEFT",
 						"WALK_LEFT",
 						"JUMP",

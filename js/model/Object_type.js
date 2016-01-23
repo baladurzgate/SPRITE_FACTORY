@@ -280,11 +280,11 @@ function Object_type ($model_data){
 
 				obj_instance.obect_type_name = model_data.name;		
 				
-				obj_instance.anchor.set(anchor.x, anchor.y);
+				//obj_instance.anchor.set(anchor.x, anchor.y);
 				
 				obj_instance.properties = instance_data.properties != undefined ? instance_data.properties : false;
 					
-				
+				console.log(obj_instance);
 		
 			break;
 				

@@ -78,6 +78,21 @@ var editorState = {
 		
 		},
 		
+		display_menu:function(){
+		
+			var save_game_data_button = jQuery('<li><button class ="game_object">SAVE</button></li>');
+			
+			jQuery(this.panel.menu).append(save_game_data_button)
+			
+			jQuery(save_game_data_button).click(function(e){
+				
+				editorState.save_GAME_DATA();
+				console.log(GAME_DATA)
+				
+			})		
+		
+		},
+		
 		display_object_types_list:function(){
 			
 			jQuery(this.panel.outliner).empty();
@@ -89,22 +104,33 @@ var editorState = {
 			
 			for (var i = 0 ; i<GAME_OBJECT_TYPES.length; i++){
 				
-				var game_object =jQuery('<li><button class = "game_object" name = "'+GAME_OBJECT_TYPES[i].getName()+'"> '+GAME_OBJECT_TYPES[i].getName()+'</button> </li>')
-				jQuery(this.panel.outliner).append(game_object)
+				var object_type_li =jQuery('<li class = "object_type_li"></li>')
+				var object_type_header =jQuery('<div class = "object_type_header" >'+GAME_OBJECT_TYPES[i].getName()+'</div>')
+				var object_type_options =jQuery('<div class = "object_type_options" ></div>')
 				
-				jQuery(game_object).click(function(e){
+				var object_type_select_button =jQuery('<button class = "select_button" name = "'+GAME_OBJECT_TYPES[i].getName()+'"> INSTANCIATE </button>')
+				jQuery(this.panel.outliner).append(object_type_li)
+				jQuery(object_type_li).append(object_type_header)
+				jQuery(object_type_li).append(object_type_options)
+				jQuery(object_type_options).append(object_type_select_button)
+				
+				
+				jQuery(object_type_select_button).click(function(e){
 					GUI.edit_object_type(e.target.name);
 				})
 				
-				var delete_button = jQuery('<button class ="delete_button" index = "'+i+'">x</button>');
-				jQuery(game_object).append(delete_button)
+				var object_type_delete_button = jQuery('<button class ="delete_button" index = "'+i+'">x</button>');
+				jQuery(object_type_options).append(object_type_delete_button)
 				var context = this;
-				jQuery(delete_button).click(function(){
+				jQuery(object_type_delete_button).click(function(){
 
 					GAME_OBJECT_TYPES.splice(jQuery(this).attr('index'),1);
 					context.display_object_types_list();
 
 				})	
+
+				 //$(game_object).draggable();
+
 				
 				
 			}		
@@ -118,16 +144,7 @@ var editorState = {
 				
 			})	
 			
-			var save_game_data_button = jQuery('<li><button class ="game_object">SAVE</button></li>');
-			
-			jQuery(this.panel.outliner).append(save_game_data_button)
-			
-			jQuery(save_game_data_button).click(function(e){
-				
-				editorState.save_GAME_DATA();
-				console.log(GAME_DATA)
-				
-			})
+
 					
 			
 		},
@@ -300,7 +317,6 @@ var editorState = {
 	
 		GAME_LEVELS[2].update_collisions();
 		GAME_LEVELS[2].update_behaviours();
-		game.physics.arcade.collide(this.GUI.displayed_game_object,this.GUI.layer);
 			
 	},
 	

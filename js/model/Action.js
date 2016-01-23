@@ -195,13 +195,13 @@ function Action ($name,$subject,$data){
 						
 						this.subject.animations.play(action_animation);
 						
-						var clone = this.subject.object_model.instanciate({x:this.subject.x,y:this.subject.y})
+						/*var clone = this.subject.Object_type.instanciate({x:this.subject.x,y:this.subject.y})
 						
 						clone.body.velocity.x += (Math.random()*200)-100
 						clone.body.velocity.y -= 300
 						
 						this.subject.body.velocity.x*=0.5;
-						this.subject.body.velocity.y*=0.5;
+						this.subject.body.velocity.y*=0.5;*/
 						
 						if(action_sound != false){
 							
