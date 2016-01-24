@@ -57,9 +57,9 @@ var editorState = {
 			this.panel.creation = jQuery('#creation')
 			
 			this.build_outliner();
-			//this.display_object_types_list();	
-			//this.display_images_list();	
-			//this.display_sounds_list();	
+			this.display_object_types_list();	
+			this.display_images_list();	
+			this.display_sounds_list();	
 			this.displayed_game_object = game.add.sprite();
 			this.diplay_creation_panel();
 			this.display_menu_panel();
