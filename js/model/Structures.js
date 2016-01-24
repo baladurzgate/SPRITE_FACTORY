@@ -1,11 +1,53 @@
 var structure = {};
 
+
+
+structure.asset = {
+		
+		name : {
+			input_type:'string',
+			isArray:false,
+			default_value:'unamed',
+			display_type:'line'
+		},
+		type : {
+			input_type:'select',
+			options:['image','sound','tilemap','text'],
+			isArray:false,
+			default_value:'empty',
+			update_all:true,
+			display_type:'line'
+
+		},		
+		path: {
+			input_type:'string',
+			isArray:false,
+			default_value:'unamed',
+			display_type:'...'
+		}
+
+}
+
+structure.level = {
+		
+		name : {
+			input_type:'string',
+			isArray:false,
+			default_value:'unamed',
+			display_type:'line'
+		},
+
+}
+
+
+
+
 structure.object_type = {
 		
 		name : {
 			input_type:'string',
 			isArray:false,
-			default_value:'unamed_game_Object_typeect',
+			default_value:'unamed',
 			display_type:'line'
 		},
 		type : {
@@ -29,9 +71,14 @@ structure.object_type = {
 			
 		},			
 		images: {
-			input_type:'image',
+			/*input_type:'image',
 			isArray:true,
-			default_value:[]
+			default_value:[]*/
+			input_type:'link',
+			match_type:'image',
+			isArray:false,
+			default_value:undefined,
+			display_type:'line'
 		},	
 		anchor:{
 			input_type:'point',
@@ -268,7 +315,7 @@ structure.action = {
 			isArray:false,
 			default_value:'normal'
 		},
-		type: {
+		action_type: {
 			input_type:'string',
 			isArray:false,	
 		},

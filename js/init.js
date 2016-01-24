@@ -4,18 +4,76 @@ var initState = {
 
 	preload : function(){
 	
-		for (var i = 0 ; i < GAME_DATA.Levels.length ; i ++){
-			
-			if(GAME_DATA.Levels[i].map != undefined && !isInArray(GAME_DATA.Levels[i].map,LOADING_FILES) ){
+		if(GAME_DATA.Levels){
+		
+			for (var i = 0 ; i < GAME_DATA.Levels.length ; i ++){
 				
-				game.load.tilemap(GAME_DATA.Levels[i].name, GAME_DATA.Levels[i].map, null, Phaser.Tilemap.TILED_JSON);
-				
-				game.load.text(GAME_DATA.Levels[i].name+'json',GAME_DATA.Levels[i].map);
-				
-				LOADING_FILES.push(GAME_DATA.Levels[i].map);
+				if(GAME_DATA.Levels[i].map != undefined && !isInArray(GAME_DATA.Levels[i].map,LOADING_FILES) ){
+					
+					game.load.tilemap(GAME_DATA.Levels[i].name, GAME_DATA.Levels[i].map, null, Phaser.Tilemap.TILED_JSON);
+					
+					game.load.text(GAME_DATA.Levels[i].name+'json',GAME_DATA.Levels[i].map);
+					
+					LOADING_FILES.push(GAME_DATA.Levels[i].map);
+					
+				}
 				
 			}
-			
+		
+		}
+		
+		if(GAME_DATA.Assets.images){
+
+			for (var i = 0 ; i < GAME_DATA.Assets.images.length ; i ++){
+				
+				if(!isInArray(GAME_DATA.Assets.images[i].name,LOADING_FILES)){
+						
+					switch (GAME_DATA.Assets.images[i].type){
+							
+						case 'image' : 
+						
+							game.load.image(GAME_DATA.Assets.images[i].name,GAME_DATA.Assets.images[i].path);
+						
+						break;
+						
+						case 'atlas' : 
+						
+							game.load.atlas(GAME_DATA.Assets.images[i].name,GAME_DATA.Assets.images[i].path,GAME_DATA.Assets.images[i].path);
+							
+						break;
+						
+						case 'spritesheet' : 
+						
+							game.load.spritesheet(GAME_DATA.Assets.images[i].name,GAME_DATA.Assets.images[i].path,GAME_DATA.Assets.images[i].width,GAME_DATA.Assets.images[i].height,GAME_DATA.Assets.images[i].numberOfFrames);
+						
+						break;
+							
+							
+					}
+					
+				}
+				
+				GAME_ASSETS.images.push(GAME_DATA.Assets.images[i]);
+				
+			}	
+		
+		}
+		
+		if(GAME_DATA.Assets.sounds){
+
+			for (var s = 0 ; s < GAME_DATA.Assets.sounds.length ; s ++){
+				
+				if(!isInArray(GAME_DATA.Assets.sounds[s].name,LOADING_FILES)){
+					
+					//game.load.audio(GAME_DATA.Assets.sounds[s].name,GAME_DATA.Assets.sounds[s].file_wave,GAME_DATA.Assets.sounds[s].file_mp3,GAME_DATA.Assets.sounds[s].file_ogg)
+					game.load.audio(GAME_DATA.Assets.sounds[s].name,GAME_DATA.Assets.sounds[s].file_mp3)
+					
+				}
+				
+				GAME_ASSETS.sounds.push(GAME_DATA.Assets.sounds[s]);
+				
+			}		
+		
 		}
 	
 	},
@@ -57,7 +115,7 @@ var initState = {
 			GAME_OBJECT_TYPES.push(O);
 			
 		}
-	
+
 		game.state.start('load');
 	
 	}

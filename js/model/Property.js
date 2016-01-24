@@ -693,6 +693,26 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 						
 						break;
 						
+						case 'image':
+						
+							for(var o = 0 ; o <GAME_ASSETS.images.length ;o++){
+							
+								selected_attr = "";
+							
+								if(GAME_ASSETS.images[o].name == value){
+									
+									selected_attr = 'selected="selected"';
+								
+								}
+								
+								var option = jQuery('<option value = "'+GAME_ASSETS.images[o].name+'" '+selected_attr+'>'+GAME_ASSETS.images[o].name+'</option>');
+								
+								jQuery(input).append(option);
+								
+							}
+
+						break;	
+						
 						case 'sound':
 						
 								for(var s in GAME_SOUNDS){

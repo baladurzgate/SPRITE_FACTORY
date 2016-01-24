@@ -1,4 +1,51 @@
 {
+	
+	"Assets":{
+	
+		"images": [
+			{
+				"name": "bob",
+				"path": "assets/bob.png",
+				"type": "spritesheet",
+				"numberOfFrames": 28,
+				"width": 32,
+				"height": 32
+			},
+			{
+				"name": "spider",
+				"path": "assets/spider.png",
+				"type": "spritesheet",
+				"numberOfFrames": 33,
+				"width": 32,
+				"height": 32
+			},			
+			{
+				"name": "yellowman",
+				"path": "assets/yellowman.png",
+				"type": "spritesheet",
+				"numberOfFrames": 8,
+				"width": 64,
+				"height": 64
+			}
+
+		],
+		"sounds": [
+			{
+				"name": "spider_jump",
+				"file_wave": "assets/ym_jump.wave",
+				"file_ogg": "assets/ym_jump.ogg",
+				"file_mp3": "assets/ym_jump.mp3"
+			},
+			{
+				"name": "spider_shoot",
+				"file_wave": "assets/Laser_Shoot27.wave",
+				"file_ogg": "assets/Laser_Shoot27.ogg",
+				"file_mp3": "assets/Laser_Shoot27.mp3"
+			}
+		]
+
+	},
+
 	"Levels": [
 		{
 			"name": "menu",
@@ -14,6 +61,7 @@
 			"name": "sandbox"
 		}
 	],
+	
 	"Object_types": [
 		{
 			"name": "dot",
