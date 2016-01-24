@@ -58,10 +58,13 @@ var editorState = {
 			
 			this.build_outliner();
 			this.display_object_types_list();	
-			this.display_images_list();	
-			this.display_sounds_list();	
+			this.update_asset_list('sounds');
+			this.update_asset_list('images');
+			
 			this.displayed_game_object = game.add.sprite();
+			
 			this.diplay_creation_panel();
+			
 			this.display_menu_panel();
 			
 			this.draw_grid(32,32)
@@ -102,10 +105,55 @@ var editorState = {
 			var tab_links_ul = jQuery('<ul></ul>');
 			jQuery(this.panel.outliner).append(tab_links_ul)
 			
+			
+			
 			for (var asset_type in GAME_ASSETS){
 			
-				var tab_link_li = jQuery('<li class = "tab_link" >'+asset_type+'</li>');
+				var tab_link_li = jQuery('<li class = "tab_link" name = "'+asset_type+'" ></li>');
+				var link_button = jQuery('<button  class = "link_button" asset_type = "'+asset_type+'" >'+asset_type+'</button>');
 				jQuery(tab_links_ul).append(tab_link_li )
+				jQuery(tab_link_li).append(link_button )
+				
+				jQuery(link_button).click(function(e){
+				
+					var asset_type = jQuery(e.target).attr('asset_type');
+					
+					 jQuery(e.target).attr( "class","link_button tab_active" );
+					 
+					jQuery('.link_button').each(function(){
+
+						if(jQuery(this).attr('asset_type') != asset_type){
+
+							jQuery(this).attr( "class","link_button tab_link" );
+
+						}
+
+					 });
+
+					jQuery('.tab_content').each(function(){
+
+						if(jQuery(this).attr('id') == asset_type){
+						
+							console.log(this)
+						
+							jQuery(this).show();
+							
+							jQuery(this).attr( "class","tab_content tab_active" );
+
+						}else{
+						
+							jQuery(this).hide();
+							
+							jQuery(this).attr( "class","tab_content" );
+						
+						}
+
+
+					 });
+					
+					
+				})				
+		
 				
 			}
 		
@@ -115,7 +163,9 @@ var editorState = {
 				jQuery(this.panel.outliner).append(tab_content)
 				this.panel[asset_type] = tab_content;
 
-			}		
+			}	
+
+		
 		
 		},
 		
@@ -130,9 +180,9 @@ var editorState = {
 			
 			for (var i = 0 ; i<GAME_OBJECT_TYPES.length; i++){
 				
-				var object_type_li =jQuery('<li class = "object_type_li"></li>')
-				var object_type_header =jQuery('<div class = "object_type_header" >'+GAME_OBJECT_TYPES[i].getName()+'</div>')
-				var object_type_options =jQuery('<div class = "object_type_options" ></div>')
+				var object_type_li =jQuery('<li class = "outliner_element_li"></li>')
+				var object_type_header =jQuery('<div class = "outliner_element_header" >'+GAME_OBJECT_TYPES[i].getName()+'</div>')
+				var object_type_options =jQuery('<div class = "outliner_element_options" ></div>')
 				var object_type_select_button =jQuery('<button class = "select_button" name = "'+GAME_OBJECT_TYPES[i].getName()+'"> INSTANCIATE </button>')
 				
 				jQuery(this.panel.object_types).append(object_type_li)
@@ -167,23 +217,78 @@ var editorState = {
 			
 		},
 		
-		display_images_list:function(){
+		update_asset_list:function(_atype){
 		
-			jQuery(this.panel.images).empty();
-			
-			//var images_list_prop = new Property(GAME_ASSETS,GAME_ASSETS,'images',{input_type:'image',isArray:true,default_value:[]})
-			
-			//jQuery(this.panel.images).append(images_list_prop.create_jquery_object())
+			var atype = _atype;
 		
-		},
-		
-		display_sounds_list:function(){
-		
-			jQuery(this.panel.sounds).empty();
+			jQuery(this.panel[atype]).empty();
+
+			var atype_list = jQuery('<ul></ul>')
+			jQuery(this.panel[atype]).append(atype_list)
 			
-			//var sounds_list_prop = new Property(GAME_ASSETS,GAME_ASSETS,'sounds',{input_type:'sound',isArray:true,default_value:[]})
+			var GUI = this;
 			
-			//jQuery(this.panel.sounds).append(sounds_list_prop.create_jquery_object())
+			
+			for (var i = 0 ; i<GAME_ASSETS[atype].length; i++){
+			
+				var asset_name = GAME_ASSETS[atype][i].name
+
+				var li =jQuery('<li class = "outliner_element_li"></li>')
+				var header =jQuery('<div class = "outliner_element_header" >'+asset_name+'</div>')
+				var options =jQuery('<div class = "outliner_element_options" ></div>')
+				
+				jQuery(this.panel[atype]).append(li);
+				
+				jQuery(li).append(header);
+				
+				jQuery(li).append(options);
+				
+				if(atype == 'images'){
+			
+					var snapshot =jQuery('<img name = "image_'+i+'"src = "'+GAME_ASSETS[atype][i].path+'">');
+					jQuery(li).append(snapshot);
+				}
+				
+				
+				if(atype == 'sounds'){
+				
+					var select_button =jQuery('<button class = "select_button" name = "'+asset_name+'"> PLAY </button>')
+					jQuery(options).append(select_button)
+					
+					jQuery(select_button).click(function(e){
+					
+						
+							GAME_ASSETS[e.target.name].play();
+						
+
+					})
+					
+				}
+				
+				var delete_button = jQuery('<button class ="delete_button" index = "'+i+'">x</button>');
+				jQuery(options).append(delete_button)
+				var context = this;
+				
+				jQuery(delete_button).click(function(){
+
+					GAME_ASSETS[atype].splice(jQuery(this).attr('index'),1);
+					context.update_asset_list(atype);
+
+				})	
+				
+			}				
+
+			var add_button = jQuery('<li><button class ="add_button">+</button></li>');
+			
+			jQuery(this.panel[atype]).append(add_button)
+			
+			jQuery(add_button).click(function(e){
+				
+				
+			})			
+		
+		
+		
 		
 		},
 		/*var IMAGES_LIST_ul = jQuery('<ul></ul>')
@@ -273,26 +378,6 @@ var editorState = {
 		},
 		
 		display_properties:function(){
-			
-			jQuery(this.panel.properties).empty();
-	
-			if(this.edited_object_type!= undefined){
-				
-				var object_type_data = this.edited_object_type.getModelData();
-
-				for(var p in this.edited_object_type.properties){
-					
-					this.edited_object_type.properties[p].link_to_GUI(this);
-					
-					jQuery(this.panel.properties).append(this.edited_object_type.properties[p].create_jquery_object())
-					
-				}
-			
-			}
-
-		},
-		
-		display_images:function(){
 			
 			jQuery(this.panel.properties).empty();
 	
