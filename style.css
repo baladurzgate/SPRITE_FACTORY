@@ -83,6 +83,93 @@ footer {
 
 
 
+
+/*------------------PADDING-----------------*/
+
+
+.object_type_li,
+.object_type_header,
+.object_type_options,
+.prop_value,
+.prop_name,
+.panel,
+.array_element,
+.array_element_name,
+.tab_content,
+.tab_link
+{
+
+	padding : 5px;
+
+}
+
+.param_value  input,
+.param
+.param_label{
+
+	padding :2px;
+
+}
+
+li,
+ul,
+.prop_value_compact{
+
+
+	padding:0px;
+
+}
+
+/*------------------MARGIN-----------------*/
+
+li,
+ul,
+input[type='checkbox']
+{
+	
+	margin:0px;
+	
+}
+
+.array_element{
+	
+	margin-bottom:5px;
+
+}
+
+.param_value  inpu,
+.param_label{
+
+	margin-right : 3px;
+
+}
+
+
+
+/*----------------TABS------------------*/
+
+
+.tab_link{
+
+padding-left:10px;
+padding-right:10px;
+
+	display:inline-block;	
+	text-align:center;
+
+}
+
+.tab_content{
+
+	/*margin-top:5px;*/
+	position:absolute;
+
+
+}
+
+
+
+
 /*-----------------------------------------------------------COSMETIC---------------------------------------------/*
 
 
@@ -109,7 +196,7 @@ input[type='text'],
 	color:#55AA00;
 
 }
-
+.tab_content,
 .panel,
 .property,
 .object_type_li,
@@ -120,6 +207,7 @@ background-color : #eeeeee;
 
 
 }
+
 
 .prop_name,
 .object_type_header,
@@ -197,6 +285,7 @@ input[type='text'],
 
 /*-----------------BOX_SHADOW----------------*/
 
+.tab_link,
 .panel,
 .object_type_header,
 .object_type_li,
@@ -210,69 +299,6 @@ input[type='text'],
 	box-shadow:0px 0px 3px 0px #aaaaaa;
 
 }
-
-
-
-
-
-/*------------------PADDING-----------------*/
-
-
-.object_type_li,
-.object_type_header,
-.object_type_options,
-.prop_value,
-.prop_name,
-.panel,
-.array_element,
-.array_element_name
-{
-
-	padding : 5px;
-
-}
-
-.param_value  input,
-.param
-.param_label{
-
-	padding :2px;
-
-}
-
-li,
-ul,
-.prop_value_compact{
-
-
-	padding:0px;
-
-}
-
-/*------------------MARGIN-----------------*/
-
-li,
-ul,
-input[type='checkbox']
-{
-	
-	margin:0px;
-	
-}
-
-.array_element{
-	
-	margin-bottom:5px;
-
-}
-
-.param_value  inpu,
-.param_label{
-
-	margin-right : 3px;
-
-}
-
 
 /*---------INPUTS------------*/
 
