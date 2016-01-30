@@ -44,7 +44,6 @@ function Object_type ($model_data){
 			}
 			
 			
-			
 		}	
 		
 		if(model_data.sounds){

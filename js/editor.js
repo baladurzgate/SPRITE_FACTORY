@@ -49,8 +49,6 @@ var editorState = {
 		layer:'',
 		
 		init:function(){
-		
-			
 			
 			this.editor = jQuery("#editor")
 			this.panel.menu = jQuery('#menu')	
@@ -58,19 +56,14 @@ var editorState = {
 			this.panel.properties = jQuery('#properties')
 			this.panel.creation = jQuery('#creation')
 			
-			
 			this.build_outliner();
-			this.update_asset_list('Object_types');
-			this.update_asset_list('sounds');
-			this.update_asset_list('images');
+			this.update_asset_list('all assets');
 			
 			this.displayed_game_object = game.add.sprite();
 			
 			this.diplay_creation_panel();
 			
 			this.display_menu_panel();
-			
-			//CREATE A SMALL TILEMAP FOR TESTING
 			
 			this.draw_grid(32,32)
 			
@@ -96,6 +89,7 @@ var editorState = {
 			jQuery(save_game_data_button).click(function(e){
 				
 				editorState.save_GAME_DATA();
+				console.log(GAME_DATA)
 				
 			})		
 		
@@ -108,9 +102,7 @@ var editorState = {
 				
 			var tab_links_ul = jQuery('<ul></ul>');
 			jQuery(this.panel.outliner).append(tab_links_ul)
-			
-			
-			
+
 			for (var asset_type in GAME_ASSETS){
 			
 				var tab_link_li = jQuery('<li class = "tab_link" name = "'+asset_type+'" ></li>');
@@ -137,6 +129,8 @@ var editorState = {
 					jQuery('.tab_content').each(function(){
 
 						if(jQuery(this).attr('id') == asset_type){
+						
+							console.log(this)
 						
 							jQuery(this).show();
 							
@@ -171,146 +165,160 @@ var editorState = {
 		
 		},
 		
-		display_object_types_list:function(){
-			
-			jQuery(this.panel.object_types).empty();
-
-			var object_types_list = jQuery('<ul></ul>')
-			jQuery(this.panel.object_types).append(object_types_list)
-			
-			var GUI = this;
-			
-			for (var i = 0 ; i<GAME_ASSETS.Object_types.length; i++){
-				
-				var object_type_li =jQuery('<li class = "outliner_element_li"></li>')
-				var object_type_header =jQuery('<div class = "outliner_element_header" >'+GAME_ASSETS.Object_types[i].getName()+'</div>')
-				var object_type_options =jQuery('<div class = "outliner_element_options" ></div>')
-				var object_type_select_button =jQuery('<button class = "select_button" name = "'+GAME_ASSETS.Object_types[i].getName()+'"> INSTANCIATE </button>')
-				
-				jQuery(this.panel.object_types).append(object_type_li)
-				jQuery(object_type_li).append(object_type_header)
-				jQuery(object_type_li).append(object_type_options)
-				jQuery(object_type_options).append(object_type_select_button)
-				
-				jQuery(object_type_select_button).click(function(e){
-					GUI.edit_object_type(e.target.name);
-				})
-				
-				var object_type_delete_button = jQuery('<button class ="delete_button" index = "'+i+'">x</button>');
-				jQuery(object_type_options).append(object_type_delete_button)
-				var context = this;
-				jQuery(object_type_delete_button).click(function(){
-
-					GAME_ASSETS.Object_types.splice(jQuery(this).attr('index'),1);
-					context.display_object_types_list();
-
-				})	
-				
-			}				
-
-			var add_object_types_button = jQuery('<li><button class ="add_button">+</button></li>');
-			
-			jQuery(this.panel.object_types).append(add_object_types_button)
-			
-			jQuery(add_object_types_button).click(function(e){
-				
-				
-			})		
-			
-		},
-		
 		update_asset_list:function(_atype){
 		
 			var atype = _atype;
-		
-			jQuery(this.panel[atype]).empty();
 
-			var atype_list = jQuery('<ul></ul>')
-			jQuery(this.panel[atype]).append(atype_list)
-			
 			var GUI = this;
 			
+			//RECURSIVE
 			
-			for (var i = 0 ; i<GAME_ASSETS[atype].length; i++){
+			if(_atype == 'all assets'){
 			
-				var asset_name = GAME_ASSETS[atype][i].name != undefined ? GAME_ASSETS[atype][i].name : GAME_ASSETS[atype][i].getName() != undefined ? GAME_ASSETS[atype][i].getName() : '' ;
-
-				var li =jQuery('<li class = "outliner_element_li"></li>')
-				var header =jQuery('<div class = "outliner_element_header" >'+asset_name+'</div>')
-				var options =jQuery('<div class = "outliner_element_options" ></div>')
+				for (var asset_type in GAME_ASSETS){
 				
-				jQuery(this.panel[atype]).append(li);
+					if(GAME_ASSETS[asset_type].length>0){
+					
+						this.update_asset_list(asset_type);
+					
+					}
 				
-				jQuery(li).append(header);
-				
-				jQuery(li).append(options);
-				
-				if(atype == 'images'){
-			
-					var snapshot =jQuery('<img name = "image_'+i+'"src = "'+GAME_ASSETS[atype][i].path+'">');
-					jQuery(li).append(snapshot);
 				}
-				
-				
-				if(atype == 'sounds'){
-				
-					var select_button =jQuery('<button class = "select_button" name = "'+asset_name+'"> PLAY </button>')
-					jQuery(options).append(select_button)
-					
-					jQuery(select_button).click(function(e){
-					
-						
-							GAME_ASSETS[e.target.name].play();
-						
-
-					})
-					
-				}
-				
-				if(atype == 'Object_types'){
-				
-					var select_button =jQuery('<button class = "select_button" name = "'+asset_name+'"> INSTANCIATE </button>')
-					jQuery(options).append(select_button)
-					
-					
-					jQuery(select_button).click(function(e){
-					
-						
-							GUI.edit_object_type(e.target.name);
-						
-
-					})
-					
-				}
-				
-				var delete_button = jQuery('<button class ="delete_button" index = "'+i+'">x</button>');
-				jQuery(options).append(delete_button)
-				var context = this;
-				
-				jQuery(delete_button).click(function(){
-
-					GAME_ASSETS[atype].splice(jQuery(this).attr('index'),1);
-					context.update_asset_list(atype);
-
-				})	
-				
-			}				
-
-			var add_button = jQuery('<li><button class ="add_button">+</button></li>');
 			
-			jQuery(this.panel[atype]).append(add_button)
+			}else{
 			
-			jQuery(add_button).click(function(e){
+				jQuery(this.panel[atype]).empty();
+
+
+				var atype_list = jQuery('<ul></ul>')
+				jQuery(this.panel[atype]).append(atype_list)
 				
 				
-			})			
+				for (var i = 0 ; i<GAME_ASSETS[atype].length; i++){
+				
+					var asset_name = GAME_ASSETS[atype][i].name != undefined ? GAME_ASSETS[atype][i].name : GAME_ASSETS[atype][i].getName() != undefined ? GAME_ASSETS[atype][i].getName() : '' ;
+
+					var li =jQuery('<li class = "outliner_element_li"></li>')
+					var header =jQuery('<div class = "outliner_element_header" >'+asset_name+'</div>')
+					var options =jQuery('<div class = "outliner_element_options" ></div>')
+					
+					jQuery(this.panel[atype]).append(li);
+					
+					jQuery(li).append(header);
+					
+					jQuery(li).append(options);
+					
+					if(atype == 'images'){
+				
+						var snapshot =jQuery('<img name = "image_'+i+'"src = "'+GAME_ASSETS[atype][i].path+'">');
+						jQuery(li).append(snapshot);
+					}
+					
+					
+					if(atype == 'sounds'){
+					
+						var select_button =jQuery('<button class = "select_button" name = "'+asset_name+'"> PLAY </button>')
+						jQuery(options).append(select_button)
+						
+						jQuery(select_button).click(function(e){
+						
+							
+								GAME_ASSETS[e.target.name].play();
+							
+
+						})
+						
+					}
+					
+					if(atype == 'Object_types'){
+					
+						var select_button =jQuery('<button class = "select_button" name = "'+asset_name+'"> INSTANCIATE </button>')
+						jQuery(options).append(select_button)
+						
+						
+						jQuery(select_button).click(function(e){
+						
+							
+								GUI.edit_object_type(e.target.name);
+							
+
+						})
+						
+					}
+					
+					var delete_button = jQuery('<button class ="delete_button" index = "'+i+'">x</button>');
+					jQuery(options).append(delete_button)
+					var context = this;
+					
+					jQuery(delete_button).click(function(){
+
+						GAME_ASSETS[atype].splice(jQuery(this).attr('index'),1);
+						context.update_asset_list(atype);
+
+					})	
+					
+				}				
+
+				var add_button = jQuery('<li><button class ="add_button">+</button></li>');
+				
+				jQuery(this.panel[atype]).append(add_button)
+				
+				jQuery(add_button).click(function(e){
+					
+					
+				})					
+			}
+			
+	
 		
 		
 		
 		
 		},
+		/*var IMAGES_LIST_ul = jQuery('<ul></ul>')
+		jQuery(this.panel.object_types).append(IMAGES_LIST_ul)
+		
+		var GUI = this;
+		
+		for (var i = 0 ; i<GAME_ASSETS.images.length; i++){
+			
+			var object_type_li =jQuery('<li class = "object_type_li"></li>')
+			var object_type_header =jQuery('<div class = "object_type_header" >'+GAME_ASSETS.images.name+'</div>')
+			var object_type_options =jQuery('<div class = "object_type_options" ></div>')
+			jQuery(this.panel.outliner).append(object_type_li)
+			jQuery(object_type_li).append(object_type_header)
+			jQuery(object_type_li).append(object_type_options)
+			jQuery(object_type_options).append(object_type_select_button)
+			
+			jQuery(object_type_select_button).click(function(e){
+				GUI.edit_object_type(e.target.name);
+			})
+			
+			var object_type_delete_button = jQuery('<button class ="delete_button" index = "'+i+'">x</button>');
+			jQuery(object_type_options).append(object_type_delete_button)
+			var context = this;
+			jQuery(object_type_delete_button).click(function(){
 
+				GAME_ASSETS.Object_types.splice(jQuery(this).attr('index'),1);
+				context.display_object_types_list();
+
+			})	
+			
+		}				
+
+		var add_game_object_button = jQuery('<li><button class ="add_button">+</button></li>');
+		
+		jQuery(this.panel.object_types).append(add_game_object_button)
+		
+		jQuery(add_game_object_button).click(function(e){
+			
+			
+		})	*/	
+		
+		
 		preview_object_type:function(){
+		
+			console.log(this.displayed_game_object);
 			
 			//if(this.displayed_game_object != undefined && this.displayed_game_object != "" && this.displayed_game_object != "empty"){
 
@@ -420,12 +428,30 @@ var editorState = {
 		
 			this.tiled_mouse.x = Math.floor((game.input.mousePointer.x)/32)*32;
 			this.tiled_mouse.y = Math.floor((game.input.mousePointer.y)/32)*32;
+			
+			/*if(game.input.activePointer.isDown){
+				
+				var obstacle = game.add.sprite(this.tiled_mouse.x, this.tiled_mouse.y,null);
+				console.log(obstacle);
+				obstacle.anchor.set(1, 1);
+				obstacle.width = obstacle.height = 32;
+				var square = game.add.graphics(0, 0);
+				square.beginFill(0xAAAAAA);
+				square.drawRect(0,0, 32, 32);			
+				square.endFill();				
+				obstacle.addChild(square)
+				game.physics.arcade.enable(obstacle);
+				obstacle.body.width = 32;
+				obstacle.body.height = 32;
+			}*/
+			
+			//var currentTile = game.math.snapToFloor(pointer.x, 32) / 32;
 					
 			if (game.input.mousePointer.isDown)
 			{
 			
 				var layer =  GAME_LEVELS[2].getTileMap().layers[0]
-
+				console.log(layer);
 				GAME_LEVELS[2].getTileMap().putTile(9,this.layer.getTileX(this.grid_cursor.x), this.layer.getTileY(this.grid_cursor.y), layer.name);
 			}
 

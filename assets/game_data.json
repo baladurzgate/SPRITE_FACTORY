@@ -42,28 +42,10 @@
 				"file_ogg": "assets/Laser_Shoot27.ogg",
 				"file_mp3": "assets/Laser_Shoot27.mp3"
 			}
-		]
-
-	},
-
-	"Levels": [
-		{
-			"name": "menu",
-			"map": "assets/menu_map.json",
-			"collision_from": 7,
-			"collision_to": 15
-		},
-		{
-			"name": "options",
-			"map": "assets/options_map.json"
-		},
-		{
-			"name": "sandbox"
-		}
-	],
-	
+		],
 	"Object_types": [
 		{
+		
 			"name": "dot",
 			"type": "sprite",
 			"behaviour": "dynamic",
@@ -767,7 +749,27 @@
 				"y": "1"
 			}
 		}
+	]
+
+	},
+
+	"Levels": [
+		{
+			"name": "menu",
+			"map": "assets/menu_map.json",
+			"collision_from": 7,
+			"collision_to": 15
+		},
+		{
+			"name": "options",
+			"map": "assets/options_map.json"
+		},
+		{
+			"name": "sandbox"
+		}
 	],
+	
+
 	"gui": [
 		{
 			"name": "start_button",

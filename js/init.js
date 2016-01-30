@@ -108,11 +108,11 @@ var initState = {
 				
 		}
 		
-		for (var o = 0 ; o < GAME_DATA.Object_types.length ; o ++){
+		for (var o = 0 ; o < GAME_DATA.Assets.Object_types.length ; o ++){
 			
-			var O = new Object_type(GAME_DATA.Object_types[o]);
+			var Ot = new Object_type(GAME_DATA.Assets.Object_types[o]);
 			
-			GAME_OBJECT_TYPES.push(O);
+			GAME_ASSETS.Object_types.push(Ot);
 			
 		}
 
@@ -131,12 +131,12 @@ var initState = {
 
 function find_object_type($name){
 	
-	for (var o = 0 ; o < GAME_OBJECT_TYPES.length ; o++){
+	for (var o = 0 ; o < GAME_ASSETS.Object_types.length ; o++){
 	
 			
-		if(GAME_OBJECT_TYPES[o].getName() == $name){
+		if(GAME_ASSETS.Object_types[o].getName() == $name){
 
-			return GAME_OBJECT_TYPES[o];
+			return GAME_ASSETS.Object_types[o];
 			
 		}
 		

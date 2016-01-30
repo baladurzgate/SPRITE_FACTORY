@@ -1,8 +1,7 @@
 var LOADING_FILES = new Array();
-var GAME_DATA = {}
-var GAME_ASSETS = {object_types:[],images:[],sounds:[],texts:[],tilemaps:[]}
+var GAME_DATA = {};
+var GAME_ASSETS = {Object_types:[],images:[],sounds:[],texts:[],tilemaps:[]};
 var GAME_LEVELS = new Array();
-var GAME_OBJECT_TYPES = new Array();
 var GAME_SOUNDS = {};
 var CURRENT_LEVEL;
 
