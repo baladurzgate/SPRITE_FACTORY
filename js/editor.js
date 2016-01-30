@@ -18,9 +18,9 @@ var editorState = {
 		
 	//	display_level_list(200,20,style)
 	
-		for (var i = 0 ; i<GAME_OBJECT_TYPES.length; i++){
+		for (var i = 0 ; i<GAME_ASSETS.Object_types.length; i++){
 		
-			GAME_OBJECT_TYPES[i].fill_pool();
+			GAME_ASSETS.Object_types[i].fill_pool();
 			
 		}
 
@@ -49,6 +49,8 @@ var editorState = {
 		layer:'',
 		
 		init:function(){
+		
+			
 			
 			this.editor = jQuery("#editor")
 			this.panel.menu = jQuery('#menu')	
@@ -56,8 +58,9 @@ var editorState = {
 			this.panel.properties = jQuery('#properties')
 			this.panel.creation = jQuery('#creation')
 			
+			
 			this.build_outliner();
-			this.display_object_types_list();	
+			this.update_asset_list('Object_types');
 			this.update_asset_list('sounds');
 			this.update_asset_list('images');
 			
@@ -66,6 +69,8 @@ var editorState = {
 			this.diplay_creation_panel();
 			
 			this.display_menu_panel();
+			
+			//CREATE A SMALL TILEMAP FOR TESTING
 			
 			this.draw_grid(32,32)
 			
@@ -173,17 +178,17 @@ var editorState = {
 			
 			jQuery(this.panel.object_types).empty();
 
-			var GAME_OBJECT_TYPES_list = jQuery('<ul></ul>')
-			jQuery(this.panel.object_types).append(GAME_OBJECT_TYPES_list)
+			var object_types_list = jQuery('<ul></ul>')
+			jQuery(this.panel.object_types).append(object_types_list)
 			
 			var GUI = this;
 			
-			for (var i = 0 ; i<GAME_OBJECT_TYPES.length; i++){
+			for (var i = 0 ; i<GAME_ASSETS.Object_types.length; i++){
 				
 				var object_type_li =jQuery('<li class = "outliner_element_li"></li>')
-				var object_type_header =jQuery('<div class = "outliner_element_header" >'+GAME_OBJECT_TYPES[i].getName()+'</div>')
+				var object_type_header =jQuery('<div class = "outliner_element_header" >'+GAME_ASSETS.Object_types[i].getName()+'</div>')
 				var object_type_options =jQuery('<div class = "outliner_element_options" ></div>')
-				var object_type_select_button =jQuery('<button class = "select_button" name = "'+GAME_OBJECT_TYPES[i].getName()+'"> INSTANCIATE </button>')
+				var object_type_select_button =jQuery('<button class = "select_button" name = "'+GAME_ASSETS.Object_types[i].getName()+'"> INSTANCIATE </button>')
 				
 				jQuery(this.panel.object_types).append(object_type_li)
 				jQuery(object_type_li).append(object_type_header)
@@ -199,7 +204,7 @@ var editorState = {
 				var context = this;
 				jQuery(object_type_delete_button).click(function(){
 
-					GAME_OBJECT_TYPES.splice(jQuery(this).attr('index'),1);
+					GAME_ASSETS.Object_types.splice(jQuery(this).attr('index'),1);
 					context.display_object_types_list();
 
 				})	
@@ -231,7 +236,7 @@ var editorState = {
 			
 			for (var i = 0 ; i<GAME_ASSETS[atype].length; i++){
 			
-				var asset_name = GAME_ASSETS[atype][i].name
+				var asset_name = GAME_ASSETS[atype][i].name != undefined ? GAME_ASSETS[atype][i].name : GAME_ASSETS[atype][i].getName() != undefined ? GAME_ASSETS[atype][i].getName() : '' ;
 
 				var li =jQuery('<li class = "outliner_element_li"></li>')
 				var header =jQuery('<div class = "outliner_element_header" >'+asset_name+'</div>')
@@ -259,6 +264,22 @@ var editorState = {
 					
 						
 							GAME_ASSETS[e.target.name].play();
+						
+
+					})
+					
+				}
+				
+				if(atype == 'Object_types'){
+				
+					var select_button =jQuery('<button class = "select_button" name = "'+asset_name+'"> INSTANCIATE </button>')
+					jQuery(options).append(select_button)
+					
+					
+					jQuery(select_button).click(function(e){
+					
+						
+							GUI.edit_object_type(e.target.name);
 						
 
 					})
@@ -315,7 +336,7 @@ var editorState = {
 			var context = this;
 			jQuery(object_type_delete_button).click(function(){
 
-				GAME_OBJECT_TYPES.splice(jQuery(this).attr('index'),1);
+				GAME_ASSETS.Object_types.splice(jQuery(this).attr('index'),1);
 				context.display_object_types_list();
 
 			})	
@@ -353,11 +374,11 @@ var editorState = {
 	
 		edit_object_type:function(_objectName){
 		
-			for (var i = 0 ; i<GAME_OBJECT_TYPES.length; i++){
+			for (var i = 0 ; i<GAME_ASSETS.Object_types.length; i++){
 				
-				if(GAME_OBJECT_TYPES[i].getName() == _objectName){
+				if(GAME_ASSETS.Object_types[i].getName() == _objectName){
 					
-					this.edited_object_type= GAME_OBJECT_TYPES[i];
+					this.edited_object_type= GAME_ASSETS.Object_types[i];
 					
 					this.preview_object_type();
 					
