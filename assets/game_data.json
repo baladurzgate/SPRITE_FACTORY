@@ -66,7 +66,7 @@
 			"name": "dot",
 			"type": "sprite",
 			"behaviour": "dynamic",
-			"images": ["bob"],
+			"image": "bob",
 			"frames": [],
 			"animations": [
 				{
@@ -186,8 +186,7 @@
 			"name": "yellowman",
 			"type": "sprite",
 			"behaviour": "dynamic",
-			"images": ["yellowman"]
-			,
+			"image":"yellowman",
 			"frames": [],
 			"animations": [
 				{
@@ -376,7 +375,7 @@
 			"name": "spider",
 			"type": "sprite",
 			"behaviour": "dynamic",
-			"images": ["spider"],
+			"image": "spider",
 			"frames": [],
 			"movement": {
 				"idle_brake": 0,
@@ -578,7 +577,7 @@
 			"type": "sprite",
 			"behaviour": "projectile",
 			"projectile_lifespan": 100,
-			"images": ["poison_projectile"],
+			"image": "poison_projectile",
 			"frames": [],
 			"animations": [
 				{
@@ -678,7 +677,7 @@
 		{
 			"name": "start_button",
 			"type": "button",
-			"images": ["button_tileset"],
+			"image": "button_tileset",
 			"button_animation": {
 				"overFrame": 1,
 				"downFrame": 0,

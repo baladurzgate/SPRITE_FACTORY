@@ -67,7 +67,9 @@ function Level ($name,$tilemap,$json){
 				if(!isInArray('assets/'+tilesets[i].name+'.png',LOADING_FILES)){
 						
 					game.load.image(tilesets[i].name,'assets/'+tilesets[i].name+'.png');
+					
 					LOADING_FILES.push('assets/'+tilesets[i].name+'.png');
+					
 					console.log('assets/'+tilesets[i].name+'.png')
 						
 				}else{
@@ -96,6 +98,7 @@ function Level ($name,$tilemap,$json){
 	this.select_player = function (){
 		
 		 var player = GAME_LEVELS[0].getObjectsByProp('name','player');
+		 
 		player.controled_by = 'player'
 		
 		return player;

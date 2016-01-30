@@ -11,61 +11,6 @@ function Object_type ($model_data){
 	
 	var pool_size = 20;
 	
-	this.loadMedia = function(){
-		
-		for (var i = 0 ; i < model_data.images.length ; i ++){
-			
-			if(!isInArray(model_data.images[i].name,LOADING_FILES)){
-					
-				switch (model_data.images[i].type){
-						
-					case 'image' : 
-					
-						game.load.image(model_data.images[i].name,model_data.images[i].path);
-					
-					break;
-					
-					case 'atlas' : 
-					
-						game.load.atlas(model_data.images[i].name,model_data.images[i].path,model_data.images[i].atlaspath);
-						
-					break;
-					
-					case 'spritesheet' : 
-					
-						game.load.spritesheet(model_data.images[i].name,model_data.images[i].path,model_data.images[i].width,model_data.images[i].height,model_data.images[i].numberOfFrames);
-					
-					break;
-						
-						
-				}
-				
-					
-			}
-			
-			
-		}	
-		
-		if(model_data.sounds){
-
-			for (var s = 0 ; s < model_data.sounds.length ; s ++){
-				
-				if(!isInArray(model_data.sounds[s].name,LOADING_FILES)){
-					
-					//game.load.audio(model_data.sounds[s].name,model_data.sounds[s].file_wave,model_data.sounds[s].file_mp3,model_data.sounds[s].file_ogg)
-					game.load.audio(model_data.sounds[s].name,model_data.sounds[s].file_mp3)
-					
-				}
-				
-			}		
-		
-		}
-
-		
-		this.init_structure();
-					
-	}
-	
 	this.getModelData = function(){
 		
 		return model_data;
@@ -79,7 +24,6 @@ function Object_type ($model_data){
 		}
 		
 	}
-	
 	
 	this.getName = function (){
 			
@@ -179,7 +123,7 @@ function Object_type ($model_data){
 					
 					if(pool.length < pool_size){
 				
-						obj_instance = group.create(instance_data.x,instance_data.y,model_data.images[0]);
+						obj_instance = group.create(instance_data.x,instance_data.y,model_data.image);
 						
 						if(!create_alive) obj_instance.kill();
 						
@@ -226,7 +170,7 @@ function Object_type ($model_data){
 						
 							pool_size++;
 						
-							obj_instance = group.create(instance_data.x,instance_data.y,model_data.images[0]);
+							obj_instance = group.create(instance_data.x,instance_data.y,model_data.image);
 							
 							obj_instance.checkWorldBounds = true;
 							
@@ -248,7 +192,7 @@ function Object_type ($model_data){
 				}else{
 				
 				
-					obj_instance = game.add.sprite(instance_data.x,instance_data.y,model_data.images[0])
+					obj_instance = game.add.sprite(instance_data.x,instance_data.y,model_data.image)
 					
 					if(model_data.physical){
 				
@@ -276,7 +220,7 @@ function Object_type ($model_data){
 				
 				var upFrame= model_data.button_animation != undefined && model_data.button_animation.upFrame != undefined  ? model_data.button_animation.upFrame : 0;
 		
-				var obj_instance = game.add.button(instance_data.x,instance_data.y, model_data.images[0], function(){alert('clic')}, this, overFrame, outFrame,downFrame, upFrame);
+				var obj_instance = game.add.button(instance_data.x,instance_data.y, model_data.image, function(){alert('clic')}, this, overFrame, outFrame,downFrame, upFrame);
 				
 				obj_instance.Object_type = this;
 

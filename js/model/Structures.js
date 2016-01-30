@@ -70,7 +70,7 @@ structure.object_type = {
 			display_type:'line'
 			
 		},			
-		images: {
+		image: {
 			/*input_type:'image',
 			isArray:true,
 			default_value:[]*/

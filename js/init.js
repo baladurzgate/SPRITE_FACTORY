@@ -116,7 +116,10 @@ var initState = {
 			
 			var Ot = new Object_type(GAME_DATA.Assets.Object_types[o]);
 			
+			Ot.init_structure();
+			
 			GAME_ASSETS.Object_types.push(Ot);
+			
 			
 		}
 

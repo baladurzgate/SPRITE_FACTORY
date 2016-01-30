@@ -626,17 +626,17 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 						
 						case 'object_type':
 						
-							for(var o = 0 ; o <GAME_OBJECT_TYPES.length ;o++){
+							for(var o = 0 ; o <GAME_ASSETS.Object_types.length ;o++){
 							
 								selected_attr = "";
 							
-								if(GAME_OBJECT_TYPES[o].getName() == value){
+								if(GAME_ASSETS.Object_types[o].getName() == value){
 									
 									selected_attr = 'selected="selected"';
 								
 								}
 								
-								var option = jQuery('<option value = "'+GAME_OBJECT_TYPES[o].getName()+'" '+selected_attr+'>'+GAME_OBJECT_TYPES[o].getName()+'</option>');
+								var option = jQuery('<option value = "'+GAME_ASSETS.Object_types[o].getName()+'" '+selected_attr+'>'+GAME_ASSETS.Object_types[o].getName()+'</option>');
 								
 								jQuery(input).append(option);
 								
@@ -646,19 +646,19 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 						
 						case 'projectile':
 						
-							for(var o = 0 ; o <GAME_OBJECT_TYPES.length ;o++){
+							for(var o = 0 ; o <GAME_ASSETS.Object_types.length ;o++){
 
-								if(GAME_OBJECT_TYPES[o].getModelData().type == 'sprite' && GAME_OBJECT_TYPES[o].getModelData().behaviour == 'projectile'){
+								if(GAME_ASSETS.Object_types[o].getModelData().type == 'sprite' && GAME_ASSETS.Object_types[o].getModelData().behaviour == 'projectile'){
 								
 									selected_attr = "";
 								
-									if(GAME_OBJECT_TYPES[o].getName() == value){
+									if(GAME_ASSETS.Object_types[o].getName() == value){
 										
 										selected_attr = 'selected="selected"';
 									
 									}
 									
-									var option = jQuery('<option value = "'+GAME_OBJECT_TYPES[o].getName()+'" '+selected_attr+'>'+GAME_OBJECT_TYPES[o].getName()+'</option>');
+									var option = jQuery('<option value = "'+GAME_ASSETS.Object_types[o].getName()+'" '+selected_attr+'>'+GAME_ASSETS.Object_types[o].getName()+'</option>');
 									
 								}
 								
@@ -741,8 +741,6 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 					jQuery(input).append(empty_option);
 					
 				}
-				
-
 				
 				jQuery(input).change(function(e) {
 				

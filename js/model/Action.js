@@ -69,12 +69,12 @@ function Action ($name,$subject,$data){
 						if(this.subject.body.onFloor()){
 						
 							this.subject.body.velocity.x*=idle_brake;
+							
 							this.subject.body.velocity.y*=idle_brake;
 						
 						}
 						
 						this.subject.animations.play(action_animation);
-						
 						
 					}
 
@@ -387,8 +387,6 @@ function Action ($name,$subject,$data){
 			}
 
 		}		
-		
-		
 		
 	}
 	
