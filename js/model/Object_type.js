@@ -7,6 +7,7 @@ function Object_type ($model_data){
 	var collide = true;
 	
 	var group = false;
+	
 	var pool = [];
 	
 	var pool_size = 20;
@@ -251,11 +252,19 @@ function Object_type ($model_data){
 	
 	this.reset_sprite = function(_instance,$instance_data){
 	
+
+	
 		var obj_instance=_instance;
 
 		obj_instance.Object_type = this;
 
 		obj_instance.obect_type_name = model_data.name;		
+		
+		if(obj_instance.key != model_data.image){
+		
+			obj_instance.loadTexture(model_data.image)
+		
+		}
 
 		var anchor = model_data.anchor != undefined ? model_data.anchor : {x:0.5,y:0.5};		
 	

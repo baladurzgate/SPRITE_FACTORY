@@ -1,6 +1,6 @@
-function Property ($ouput,$object_data,$name,$prop_data,$depth){
+function Property ($output,$object_data,$name,$prop_data,$depth){
 	
-	var ouput = $ouput;
+	var output = $output;
 	
 	var object_data = $object_data;
 
@@ -67,17 +67,17 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 
 						if(context.parent == undefined){
 							
-							ouput.getModelData()[input_name] = e.target.value;
+							output.getModelData()[input_name] = e.target.value;
 							
 						}else{
 							
 							if(context.parent_index == undefined){
 								
-								ouput.getModelData()[context.parent][input_name] = e.target.value;
+								output.getModelData()[context.parent][input_name] = e.target.value;
 								
 							}else{
 								
-								ouput.getModelData()[context.parent][context.parent_index][input_name] = e.target.value;
+								output.getModelData()[context.parent][context.parent_index][input_name] = e.target.value;
 								
 							}
 							
@@ -117,17 +117,17 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 							
 						if(context.parent == undefined){
 							
-							ouput.getModelData()[input_name] = e.target.checked;
+							output.getModelData()[input_name] = e.target.checked;
 							
 						}else{
 							
 							if(context.parent_index == undefined){
 								
-								ouput.getModelData()[context.parent][input_name] = e.target.checked;
+								output.getModelData()[context.parent][input_name] = e.target.checked;
 								
 							}else{
 								
-								ouput.getModelData()[context.parent][context.parent_index][input_name] = e.target.checked;
+								output.getModelData()[context.parent][context.parent_index][input_name] = e.target.checked;
 								
 							}
 							
@@ -155,17 +155,17 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 
 						if(context.parent == undefined){
 							
-							ouput.getModelData()[input_name] = parseInt(e.target.value);
+							output.getModelData()[input_name] = parseInt(e.target.value);
 							
 						}else{
 							
 							if(context.parent_index == undefined){
 								
-								ouput.getModelData()[context.parent][input_name] = parseInt(e.target.value);
+								output.getModelData()[context.parent][input_name] = parseInt(e.target.value);
 								
 							}else{
 								
-								ouput.getModelData()[context.parent][context.parent_index][input_name] = parseInt(e.target.value);
+								output.getModelData()[context.parent][context.parent_index][input_name] = parseInt(e.target.value);
 								
 							}
 							
@@ -196,17 +196,17 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 						
 						if(context.parent == undefined){
 							
-							ouput.getModelData()[input_name] = parseFloat(e.target.value);
+							output.getModelData()[input_name] = parseFloat(e.target.value);
 							
 						}else{
 							
 							if(context.parent_index == undefined){
 								
-								ouput.getModelData()[context.parent][input_name] = parseFloat(e.target.value);
+								output.getModelData()[context.parent][input_name] = parseFloat(e.target.value);
 								
 							}else{
 								
-								ouput.getModelData()[context.parent][context.parent_index][input_name] = parseFloat(e.target.value);
+								output.getModelData()[context.parent][context.parent_index][input_name] = parseFloat(e.target.value);
 								
 							}
 							
@@ -246,17 +246,17 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 
 						if(context.parent == undefined){
 							
-							ouput.getModelData()[input_name].x = e.target.value;
+							output.getModelData()[input_name].x = e.target.value;
 							
 						}else{
 							
 							if(context.parent_index == undefined){
 								
-								ouput.getModelData()[context.parent][input_name].x = e.target.value;
+								output.getModelData()[context.parent][input_name].x = e.target.value;
 								
 							}else{
 								
-								ouput.getModelData()[context.parent][context.parent_index][input_name].x = e.target.value;
+								output.getModelData()[context.parent][context.parent_index][input_name].x = e.target.value;
 								
 							}
 							
@@ -276,17 +276,17 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 							
 						if(context.parent == undefined){
 							
-							ouput.getModelData()[input_name].y = e.target.value;
+							output.getModelData()[input_name].y = e.target.value;
 							
 						}else{
 							
 							if(context.parent_index == undefined){
 								
-								ouput.getModelData()[context.parent][input_name].y = e.target.value;
+								output.getModelData()[context.parent][input_name].y = e.target.value;
 								
 							}else{
 								
-								ouput.getModelData()[context.parent][context.parent_index][input_name].y = e.target.value;
+								output.getModelData()[context.parent][context.parent_index][input_name].y = e.target.value;
 								
 							}
 							
@@ -350,11 +350,11 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 					
 						if(context.parent_index == undefined){
 							
-							ouput.getModelData()[input_name] = array;
+							output.getModelData()[input_name] = array;
 							
 						}else{
 							
-							ouput.getModelData()[input_name][context.parent_index] = array;
+							output.getModelData()[input_name][context.parent_index] = array;
 							
 						}
 						
@@ -362,11 +362,11 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 						
 						if(context.parent_index == undefined){
 							
-							ouput.getModelData()[context.parent][input_name] = array;
+							output.getModelData()[context.parent][input_name] = array;
 							
 						}else{
 							
-							ouput.getModelData()[context.parent][context.parent_index][input_name] = array;
+							output.getModelData()[context.parent][context.parent_index][input_name] = array;
 							
 						}
 						
@@ -387,7 +387,7 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 
 			case 'select' : 
 			
-				input =  jQuery('<select id = "'+ouput.getName()+'-'+input_name+'"name = "'+input_name+'"  value = "'+value+'">')
+				input =  jQuery('<select id = "'+output.getName()+'-'+input_name+'"name = "'+input_name+'"  value = "'+value+'">')
 				
 				if(prop_data.options != undefined){
 					
@@ -423,20 +423,20 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 					if(context.parent == undefined){
 					
 						
-						ouput.getModelData()[input_name] = value;
+						output.getModelData()[input_name] = value;
 
 						
 					}else{
 							
 							if(context.parent_index == undefined){
 								
-								ouput.getModelData()[context.parent][input_name] = value;
+								output.getModelData()[context.parent][input_name] = value;
 								
 								
 								
 							}else{
 								
-								ouput.getModelData()[context.parent][context.parent_index][input_name] = value;
+								output.getModelData()[context.parent][context.parent_index][input_name] = value;
 								
 							}
 							
@@ -469,7 +469,7 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 					
 					jQuery(input).change(function(e) {
 
-						ouput.changeData(e.target.name,e.target.value)
+						output.changeData(e.target.name,e.target.value)
 
 						if(linked_GUI != undefined){
 							
@@ -512,7 +512,7 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 							
 							if(value[0][p] != undefined ){
 								
-								sub_properties[p] = new Property(ouput,value[i],p,structure.image[p],depth+1)
+								sub_properties[p] = new Property(output,value[i],p,structure.image[p],depth+1)
 								sub_properties[p].link_to_GUI(linked_GUI)
 								sub_properties[p].parent = input_name;
 								sub_properties[p].parent_index = i;
@@ -670,20 +670,20 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 						
 						case 'animation':
 						
-							if(ouput.getModelData().animations != undefined){
+							if(output.getModelData().animations != undefined){
 							
-								for(var a = 0 ; a <ouput.getModelData().animations.length ;a++){
+								for(var a = 0 ; a <output.getModelData().animations.length ;a++){
 									
 									selected_attr = "";
 									
 							
-									if(ouput.getModelData().animations[a].name == value){
+									if(output.getModelData().animations[a].name == value){
 										
 										selected_attr = 'selected="selected"';
 									
 									}
 
-									var option = jQuery('<option value = "'+ouput.getModelData().animations[a].name+'"  '+selected_attr+'>'+ouput.getModelData().animations[a].name+'</option>');
+									var option = jQuery('<option value = "'+output.getModelData().animations[a].name+'"  '+selected_attr+'>'+output.getModelData().animations[a].name+'</option>');
 			
 									jQuery(input).append(option);
 									
@@ -745,20 +745,22 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 				jQuery(input).change(function(e) {
 				
 					value =  e.target.value != 'empty' ? e.target.value : prop_data.default_value;
+					
+					console.log(value)
 						
 					if(context.parent == undefined){
 						
-						ouput.getModelData()[input_name] = value;
+						output.getModelData()[input_name] = value;
 						
 					}else{
 							
 							if(context.parent_index == undefined){
 								
-								ouput.getModelData()[context.parent][input_name] = value ;
+								output.getModelData()[context.parent][input_name] = value ;
 								
 							}else{
 								
-								ouput.getModelData()[context.parent][context.parent_index][input_name] = value ;
+								output.getModelData()[context.parent][context.parent_index][input_name] = value ;
 								
 							}
 							
@@ -769,6 +771,10 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 						linked_GUI.preview_object_type();	
 						
 					}
+					
+					//console.log(output.getModelData()[context.parent][input_name])
+					console.log(output.getModelData()[input_name])
+					console.log(value)
 				
 				})
 			
@@ -804,7 +810,7 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 						
 				if(prop_data.conditions[c].prop && prop_data.conditions[c].value){
 				
-					if(ouput.getModelData()[prop_data.conditions[c].prop]==prop_data.conditions[c].value){
+					if(output.getModelData()[prop_data.conditions[c].prop]==prop_data.conditions[c].value){
 						
 						check++;
 						
@@ -923,14 +929,14 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 		
 		for(var p in structure[$type]){
 		
-			sub_properties[p] = new Property(ouput,value,p,structure[$type][p],depth+1)
+			sub_properties[p] = new Property(output,value,p,structure[$type][p],depth+1)
 			sub_properties[p].link_to_GUI(linked_GUI);
 			sub_properties[p].parent = input_name;
 			jQuery(table).append(sub_properties[p].create_jquery_object())
 			
 			if(value == prop_data.default_value){
 			
-				ouput.getModelData()[input_name][p]= sub_properties[p].getDefaultValue();
+				output.getModelData()[input_name][p]= sub_properties[p].getDefaultValue();
 				
 			
 			}
@@ -974,7 +980,7 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 					
 					if(value[i][p] != undefined ){
 						
-						sub_properties[p] = new Property(ouput,value[i],p,structure[$type][p],depth+1)
+						sub_properties[p] = new Property(output,value[i],p,structure[$type][p],depth+1)
 						sub_properties[p].link_to_GUI(linked_GUI)
 						sub_properties[p].parent = input_name;
 						sub_properties[p].parent_index = i;
@@ -993,7 +999,7 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 				jQuery(li).append(delete_button)
 				jQuery(delete_button).click(function(e){
 
-					ouput.getModelData()[input_name].splice(jQuery(this).attr('index'),1);
+					output.getModelData()[input_name].splice(jQuery(this).attr('index'),1);
 					context.update_input();
 					
 					if(linked_GUI != undefined){
@@ -1020,7 +1026,7 @@ function Property ($ouput,$object_data,$name,$prop_data,$depth){
 					new_element[p] = structure[$type][p].default_value != undefined ? structure[$type][p].default_value : "";
 				}
 				
-				ouput.getModelData()[input_name].push(new_element);
+				output.getModelData()[input_name].push(new_element);
 				
 				if(linked_GUI != undefined){
 				

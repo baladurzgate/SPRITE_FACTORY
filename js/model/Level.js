@@ -71,6 +71,8 @@ function Level ($name,$tilemap,$json){
 					LOADING_FILES.push('assets/'+tilesets[i].name+'.png');
 					
 					console.log('assets/'+tilesets[i].name+'.png')
+					
+					GAME_ASSETS.images.push({name:tilesets[i].name,type:'tileset',path:'assets/'+tilesets[i].name+'.png'});
 						
 				}else{
 					
