@@ -5,6 +5,8 @@ var GAME_LEVELS = new Array();
 var GAME_SOUNDS = {};
 var CURRENT_LEVEL;
 
+var GDM = new Game_data_manager();
+
 
 var bootState = {
 

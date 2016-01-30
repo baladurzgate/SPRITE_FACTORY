@@ -294,6 +294,8 @@ var editorState = {
 		
 			var new_element = {}
 			
+			new_element.serial = GDM.generate_serial()
+			
 			for (var p in structure[atype]){
 				
 				new_element[p] = structure[atype][p].default_value != undefined ? structure[atype][p].default_value : "";
