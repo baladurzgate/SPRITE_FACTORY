@@ -4,6 +4,8 @@ var initState = {
 
 	preload : function(){
 	
+		AssetManager.preload();
+	
 		if(GAME_DATA.Levels){
 		
 			for (var i = 0 ; i < GAME_DATA.Levels.length ; i ++){
@@ -85,6 +87,8 @@ var initState = {
 	
 	
 	create : function(){
+	
+		AssetManager.build();
 			
 		for (var l = 0 ; l < GAME_DATA.Levels.length ; l ++){
 			
