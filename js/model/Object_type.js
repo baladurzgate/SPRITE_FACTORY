@@ -179,7 +179,7 @@ function Object_type ($model_data){
 					
 					if(pool.length < pool_size){
 				
-						obj_instance = group.create(instance_data.x,instance_data.y,model_data.images[0].name);
+						obj_instance = group.create(instance_data.x,instance_data.y,model_data.images[0]);
 						
 						if(!create_alive) obj_instance.kill();
 						
@@ -226,7 +226,7 @@ function Object_type ($model_data){
 						
 							pool_size++;
 						
-							obj_instance = group.create(instance_data.x,instance_data.y,model_data.images[0].name);
+							obj_instance = group.create(instance_data.x,instance_data.y,model_data.images[0]);
 							
 							obj_instance.checkWorldBounds = true;
 							
@@ -248,7 +248,7 @@ function Object_type ($model_data){
 				}else{
 				
 				
-					obj_instance = game.add.sprite(instance_data.x,instance_data.y,model_data.images[0].name)
+					obj_instance = game.add.sprite(instance_data.x,instance_data.y,model_data.images[0])
 					
 					if(model_data.physical){
 				
@@ -269,11 +269,14 @@ function Object_type ($model_data){
 				var anchor = model_data.anchor != undefined ? model_data.anchor : {x:0.5,y:0.5};
 			
 				var overFrame = model_data.button_animation != undefined && model_data.button_animation.overFrame != undefined  ? model_data.button_animation.overFrame : 0;
+				
 				var outFrame = model_data.button_animation != undefined && model_data.button_animation.outFrame != undefined  ? model_data.button_animation.outFrame : 0;
+				
 				var downFrame = model_data.button_animation != undefined && model_data.button_animation.downFrame != undefined  ? model_data.button_animation.downFrame : 0;
+				
 				var upFrame= model_data.button_animation != undefined && model_data.button_animation.upFrame != undefined  ? model_data.button_animation.upFrame : 0;
 		
-				var obj_instance = game.add.button(instance_data.x,instance_data.y, model_data.images[0].name, function(){alert('clic')}, this, overFrame, outFrame,downFrame, upFrame);
+				var obj_instance = game.add.button(instance_data.x,instance_data.y, model_data.images[0], function(){alert('clic')}, this, overFrame, outFrame,downFrame, upFrame);
 				
 				obj_instance.Object_type = this;
 

@@ -51,9 +51,12 @@ var initState = {
 							
 					}
 					
+					LOADING_FILES.push(GAME_DATA.Assets.images[i].path);
+					GAME_ASSETS.images.push(GAME_DATA.Assets.images[i]);
+					
 				}
 				
-				GAME_ASSETS.images.push(GAME_DATA.Assets.images[i]);
+				
 				
 			}	
 		
@@ -67,6 +70,7 @@ var initState = {
 					
 					//game.load.audio(GAME_DATA.Assets.sounds[s].name,GAME_DATA.Assets.sounds[s].file_wave,GAME_DATA.Assets.sounds[s].file_mp3,GAME_DATA.Assets.sounds[s].file_ogg)
 					game.load.audio(GAME_DATA.Assets.sounds[s].name,GAME_DATA.Assets.sounds[s].file_mp3)
+					LOADING_FILES.push(GAME_DATA.Assets.sounds[s].name);
 					
 				}
 				

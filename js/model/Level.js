@@ -31,8 +31,6 @@ function Level ($name,$tilemap,$json){
 				
 			layers.push(tilemap.layers[l]);
 		}*/
-		
-		console.log(layers);
 				
 	}
 	
@@ -69,7 +67,13 @@ function Level ($name,$tilemap,$json){
 				if(!isInArray('assets/'+tilesets[i].name+'.png',LOADING_FILES)){
 						
 					game.load.image(tilesets[i].name,'assets/'+tilesets[i].name+'.png');
+					LOADING_FILES.push('assets/'+tilesets[i].name+'.png');
+					console.log('assets/'+tilesets[i].name+'.png')
 						
+				}else{
+					
+					console.log('ALREADY_LOADED assets/'+tilesets[i].name+'.png')
+				
 				}
 				
 			}			
@@ -130,11 +134,11 @@ function Level ($name,$tilemap,$json){
 					
 					for (var o in json.layers[lo].objects){
 						
-						for (var go = 0 ; go < GAME_OBJECT_TYPES.length;go++){
+						for (var go = 0 ; go < GAME_ASSETS.Object_types.length;go++){
 							
-							if(json.layers[lo].objects[o].type == GAME_OBJECT_TYPES[go].getName()){
+							if(json.layers[lo].objects[o].type == GAME_ASSETS.Object_types[go].getName()){
 									
-								var obj = GAME_OBJECT_TYPES[go].instanciate(json.layers[lo].objects[o]);
+								var obj = GAME_ASSETS.Object_types[go].instanciate(json.layers[lo].objects[o]);
 								
 								break;
 								

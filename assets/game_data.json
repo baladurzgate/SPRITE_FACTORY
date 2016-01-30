@@ -26,7 +26,24 @@
 				"numberOfFrames": 8,
 				"width": 64,
 				"height": 64
+			},
+			{
+				"name": "poison_projectile",
+				"path": "assets/poison_projectile.png",
+				"type": "spritesheet",
+				"numberOfFrames": 21,
+				"width": 32,
+				"height": 32
+			},
+			{
+				"name": "button_tileset",
+				"path": "assets/button_tileset.png",
+				"type": "spritesheet",
+				"numberOfFrames": 4,
+				"width": 64,
+				"height": 64
 			}
+
 
 		],
 		"sounds": [
@@ -49,16 +66,7 @@
 			"name": "dot",
 			"type": "sprite",
 			"behaviour": "dynamic",
-			"images": [
-				{
-					"name": "bob",
-					"path": "assets/bob.png",
-					"type": "spritesheet",
-					"numberOfFrames": 28,
-					"width": 32,
-					"height": 32
-				}
-			],
+			"images": ["bob"],
 			"frames": [],
 			"animations": [
 				{
@@ -178,16 +186,8 @@
 			"name": "yellowman",
 			"type": "sprite",
 			"behaviour": "dynamic",
-			"images": [
-				{
-					"name": "yellowman",
-					"path": "assets/yellowman.png",
-					"type": "spritesheet",
-					"numberOfFrames": 8,
-					"width": 64,
-					"height": 64
-				}
-			],
+			"images": ["yellowman"]
+			,
 			"frames": [],
 			"animations": [
 				{
@@ -376,16 +376,7 @@
 			"name": "spider",
 			"type": "sprite",
 			"behaviour": "dynamic",
-			"images": [
-				{
-					"name": "spider",
-					"path": "assets/spider.png",
-					"type": "spritesheet",
-					"numberOfFrames": 33,
-					"width": 32,
-					"height": 32
-				}
-			],
+			"images": ["spider"],
 			"frames": [],
 			"movement": {
 				"idle_brake": 0,
@@ -587,16 +578,7 @@
 			"type": "sprite",
 			"behaviour": "projectile",
 			"projectile_lifespan": 100,
-			"images": [
-				{
-					"name": "poison_projectile",
-					"path": "assets/poison_projectile.png",
-					"type": "spritesheet",
-					"numberOfFrames": 21,
-					"width": 32,
-					"height": 32
-				}
-			],
+			"images": ["poison_projectile"],
 			"frames": [],
 			"animations": [
 				{
@@ -696,16 +678,7 @@
 		{
 			"name": "start_button",
 			"type": "button",
-			"images": [
-				{
-					"name": "button_tileset",
-					"path": "assets/button_tileset.png",
-					"type": "spritesheet",
-					"numberOfFrames": 4,
-					"width": 64,
-					"height": 64
-				}
-			],
+			"images": ["button_tileset"],
 			"button_animation": {
 				"overFrame": 1,
 				"downFrame": 0,

@@ -275,50 +275,11 @@ var editorState = {
 		
 		
 		},
-		/*var IMAGES_LIST_ul = jQuery('<ul></ul>')
-		jQuery(this.panel.object_types).append(IMAGES_LIST_ul)
-		
-		var GUI = this;
-		
-		for (var i = 0 ; i<GAME_ASSETS.images.length; i++){
-			
-			var object_type_li =jQuery('<li class = "object_type_li"></li>')
-			var object_type_header =jQuery('<div class = "object_type_header" >'+GAME_ASSETS.images.name+'</div>')
-			var object_type_options =jQuery('<div class = "object_type_options" ></div>')
-			jQuery(this.panel.outliner).append(object_type_li)
-			jQuery(object_type_li).append(object_type_header)
-			jQuery(object_type_li).append(object_type_options)
-			jQuery(object_type_options).append(object_type_select_button)
-			
-			jQuery(object_type_select_button).click(function(e){
-				GUI.edit_object_type(e.target.name);
-			})
-			
-			var object_type_delete_button = jQuery('<button class ="delete_button" index = "'+i+'">x</button>');
-			jQuery(object_type_options).append(object_type_delete_button)
-			var context = this;
-			jQuery(object_type_delete_button).click(function(){
-
-				GAME_ASSETS.Object_types.splice(jQuery(this).attr('index'),1);
-				context.display_object_types_list();
-
-			})	
-			
-		}				
-
-		var add_game_object_button = jQuery('<li><button class ="add_button">+</button></li>');
-		
-		jQuery(this.panel.object_types).append(add_game_object_button)
-		
-		jQuery(add_game_object_button).click(function(e){
-			
-			
-		})	*/	
 		
 		
 		preview_object_type:function(){
 		
-			console.log(this.displayed_game_object);
+
 			
 			//if(this.displayed_game_object != undefined && this.displayed_game_object != "" && this.displayed_game_object != "empty"){
 
@@ -428,24 +389,6 @@ var editorState = {
 		
 			this.tiled_mouse.x = Math.floor((game.input.mousePointer.x)/32)*32;
 			this.tiled_mouse.y = Math.floor((game.input.mousePointer.y)/32)*32;
-			
-			/*if(game.input.activePointer.isDown){
-				
-				var obstacle = game.add.sprite(this.tiled_mouse.x, this.tiled_mouse.y,null);
-				console.log(obstacle);
-				obstacle.anchor.set(1, 1);
-				obstacle.width = obstacle.height = 32;
-				var square = game.add.graphics(0, 0);
-				square.beginFill(0xAAAAAA);
-				square.drawRect(0,0, 32, 32);			
-				square.endFill();				
-				obstacle.addChild(square)
-				game.physics.arcade.enable(obstacle);
-				obstacle.body.width = 32;
-				obstacle.body.height = 32;
-			}*/
-			
-			//var currentTile = game.math.snapToFloor(pointer.x, 32) / 32;
 					
 			if (game.input.mousePointer.isDown)
 			{
