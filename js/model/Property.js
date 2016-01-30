@@ -230,8 +230,7 @@ function Property ($output,$object_data,$name,$prop_data,$depth){
 			
 					var coords =  jQuery('<tr></tr>')
 					
-					value.x = value.x != undefined ? value.x : 0;
-					value.y = value.y != undefined ? value.y : 0;
+					value = value != undefined ? value : {x:0,y:0};
 
 					var inputx = jQuery('<td>X</td><td><input  class = "w-30p" size ="3" id = "'+input_name+'_x" name = "'+input_name+'"type = "number" step = "'+prop_data.step+'" min = "'+prop_data.min+'" max = "'+prop_data.max+'" value = "'+value.x+'"></td>')
 					var inputy = jQuery('<td>Y</td><td><input class = "w-30p" size ="3" id = "'+input_name+'_y" name = "'+input_name+'"type = "number" step = "'+prop_data.step+'" min = "'+prop_data.min+'" max = "'+prop_data.max+'" value = "'+value.y+'"></td>')
@@ -981,10 +980,13 @@ function Property ($output,$object_data,$name,$prop_data,$depth){
 					if(value[i][p] != undefined ){
 						
 						sub_properties[p] = new Property(output,value[i],p,structure[$type][p],depth+1)
-						sub_properties[p].link_to_GUI(linked_GUI)
-						sub_properties[p].parent = input_name;
-						sub_properties[p].parent_index = i;
 						
+						sub_properties[p].link_to_GUI(linked_GUI)
+						
+						sub_properties[p].parent = input_name;
+						
+						sub_properties[p].parent_index = i;
+
 					}
 					
 				}
@@ -996,10 +998,13 @@ function Property ($output,$object_data,$name,$prop_data,$depth){
 				}
 				
 				var delete_button = jQuery('<button class ="delete_button" index = "'+i+'">x</button>');
+				
 				jQuery(li).append(delete_button)
+				
 				jQuery(delete_button).click(function(e){
 
 					output.getModelData()[input_name].splice(jQuery(this).attr('index'),1);
+					
 					context.update_input();
 					
 					if(linked_GUI != undefined){

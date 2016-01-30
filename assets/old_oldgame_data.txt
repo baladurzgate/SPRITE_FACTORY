@@ -1,5 +1,61 @@
 {
 	"Assets": {
+		"images": [
+			{
+				"name": "bob",
+				"path": "assets/bob.png",
+				"type": "spritesheet",
+				"numberOfFrames": 28,
+				"width": 32,
+				"height": 32
+			},
+			{
+				"name": "spider",
+				"path": "assets/spider.png",
+				"type": "spritesheet",
+				"numberOfFrames": 33,
+				"width": 32,
+				"height": 32
+			},
+			{
+				"name": "yellowman",
+				"path": "assets/yellowman.png",
+				"type": "spritesheet",
+				"numberOfFrames": 8,
+				"width": 64,
+				"height": 64
+			},
+			{
+				"name": "poison_projectile",
+				"path": "assets/poison_projectile.png",
+				"type": "spritesheet",
+				"numberOfFrames": 21,
+				"width": 32,
+				"height": 32
+			},
+			{
+				"name": "button_tileset",
+				"path": "assets/button_tileset.png",
+				"type": "spritesheet",
+				"numberOfFrames": 4,
+				"width": 64,
+				"height": 64
+			}
+		],
+		"sounds": [
+			{
+				"name": "spider_jump",
+				"file_wave": "assets/ym_jump.wave",
+				"file_ogg": "assets/ym_jump.ogg",
+				"file_mp3": "assets/ym_jump.mp3"
+			},
+			{
+				"name": "spider_shoot",
+				"file_wave": "assets/Laser_Shoot27.wave",
+				"file_ogg": "assets/Laser_Shoot27.ogg",
+				"file_mp3": "assets/Laser_Shoot27.mp3"
+			}
+		],
 		"Object_types": [
 			{
 				"name": "dot",
@@ -663,102 +719,8 @@
 					"y": "1"
 				},
 				"projectile_type": "empty"
-			},
-			{
-				"name": "unamed_object_type",
-				"type": "sprite",
-				"behaviour": "dynamic",
-				"image": null,
-				"anchor": {
-					"x": 0.5,
-					"y": 0.5
-				},
-				"frames": [],
-				"animations": [],
-				"button_animation": {},
-				"physical": {},
-				"movement": {},
-				"attack": {},
-				"stats": {},
-				"actions": [],
-				"projectile_type": "empty",
-				"patterns": [],
-				"sounds": []
 			}
-		],
-		"images": [
-			{
-				"name": "bob",
-				"path": "assets/bob.png",
-				"type": "spritesheet",
-				"numberOfFrames": 28,
-				"width": 32,
-				"height": 32
-			},
-			{
-				"name": "spider",
-				"path": "assets/spider.png",
-				"type": "spritesheet",
-				"numberOfFrames": 33,
-				"width": 32,
-				"height": 32
-			},
-			{
-				"name": "yellowman",
-				"path": "assets/yellowman.png",
-				"type": "spritesheet",
-				"numberOfFrames": 8,
-				"width": 64,
-				"height": 64
-			},
-			{
-				"name": "poison_projectile",
-				"path": "assets/poison_projectile.png",
-				"type": "spritesheet",
-				"numberOfFrames": 21,
-				"width": 32,
-				"height": 32
-			},
-			{
-				"name": "button_tileset",
-				"path": "assets/button_tileset.png",
-				"type": "spritesheet",
-				"numberOfFrames": 4,
-				"width": 64,
-				"height": 64
-			},
-			{
-				"name": "32_tileset",
-				"type": "tileset",
-				"path": "assets/32_tileset.png"
-			},
-			{
-				"name": "red_fire",
-				"type": "tileset",
-				"path": "assets/red_fire.png"
-			},
-			{
-				"name": "64_objectset",
-				"type": "tileset",
-				"path": "assets/64_objectset.png"
-			}
-		],
-		"sounds": [
-			{
-				"name": "spider_jump",
-				"file_wave": "assets/ym_jump.wave",
-				"file_ogg": "assets/ym_jump.ogg",
-				"file_mp3": "assets/ym_jump.mp3"
-			},
-			{
-				"name": "spider_shoot",
-				"file_wave": "assets/Laser_Shoot27.wave",
-				"file_ogg": "assets/Laser_Shoot27.ogg",
-				"file_mp3": "assets/Laser_Shoot27.mp3"
-			}
-		],
-		"texts": [],
-		"tilemaps": []
+		]
 	},
 	"Levels": [
 		{
@@ -773,6 +735,12 @@
 		},
 		{
 			"name": "sandbox"
+		}
+	],
+	"gui": [
+		{
+			"name": "start_button",
+			"image": ""
 		}
 	]
 }

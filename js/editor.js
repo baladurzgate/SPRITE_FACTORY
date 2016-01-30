@@ -248,6 +248,7 @@ var editorState = {
 					
 					var delete_button = jQuery('<button class ="delete_button" index = "'+i+'">x</button>');
 					jQuery(options).append(delete_button)
+					
 					var context = this;
 					
 					jQuery(delete_button).click(function(){
@@ -257,16 +258,25 @@ var editorState = {
 
 					})	
 					
-				}				
+				}
+
+				var context = this;				
 
 				var add_button = jQuery('<li><button class ="add_button">+</button></li>');
 				
 				jQuery(this.panel[atype]).append(add_button)
 				
+				
 				jQuery(add_button).click(function(e){
+				
+					var singular_atype = atype.slice(0, atype.length-1);
+				
+					context.add_asset(singular_atype);
 					
+					context.update_asset_list(atype);
 					
-				})					
+				})		
+				
 			}
 			
 	
@@ -274,6 +284,39 @@ var editorState = {
 		
 		
 		
+		},
+		
+		add_asset:function(_atype){
+		
+			console.log(_atype)
+		
+			var atype = _atype;
+		
+			var new_element = {}
+			
+			for (var p in structure[atype]){
+				
+				new_element[p] = structure[atype][p].default_value != undefined ? structure[atype][p].default_value : "";
+			}
+			
+			
+			if(atype == 'Object_type'){
+			
+				var Ot = new Object_type(new_element);
+			
+				Ot.init_structure();
+			
+				GAME_ASSETS.Object_types.push(Ot);
+			
+			}else{
+			
+				GAME_ASSETS[atype+'s'].push(new_element);
+			
+			}
+			
+
+						
+			
 		},
 		
 		
@@ -431,10 +474,49 @@ var editorState = {
 	save_GAME_DATA:function(){
 	
 		var data = {
-			GD : JSON.stringify(GAME_DATA,null, "\t")
+			Assets : {},
+			Levels : [],
+		}
+	
+		for(var ga  in GAME_ASSETS){
+		
+			data.Assets[ga] = [];
+		
+			if(ga == 'Object_types'){
+			
+				for (var ot = 0 ; ot < GAME_ASSETS[ga].length ; ot++){
+
+					data.Assets[ga].push(GAME_ASSETS[ga][ot].getModelData());
+					
+				}
+			
+			
+			}else{
+			
+				for (var a = 0 ; a < GAME_ASSETS[ga].length ; a++){
+
+					data.Assets[ga].push(GAME_ASSETS[ga][a]);
+					
+				}				
+			}
+		
 		}
 		
-		jQuery.post('php/write_game_data.php', data, function(response) {
+		for (var l = 0 ; l < GAME_DATA.Levels.length;l++){
+		
+		
+			data.Levels.push(GAME_DATA.Levels[l]);
+		
+		}
+		
+		
+		
+	
+		var jsondata = {
+			GD : JSON.stringify(data,null, "\t")
+		}
+		
+		jQuery.post('php/write_game_data.php', jsondata, function(response) {
 			console.log(response)
 		});
 

@@ -47,7 +47,7 @@ structure.object_type = {
 		name : {
 			input_type:'string',
 			isArray:false,
-			default_value:'unamed',
+			default_value:'unamed_object_type',
 			display_type:'line'
 		},
 		type : {
@@ -77,12 +77,12 @@ structure.object_type = {
 			input_type:'link',
 			match_type:'image',
 			isArray:false,
-			default_value:undefined,
+			default_value:null,
 			display_type:'line'
 		},	
 		anchor:{
 			input_type:'point',
-			default_value:{x:0.5,y:.05},
+			default_value:{x:0.5,y:0.5},
 			step:0.01,		
 			display_type:'line'			
 		},
@@ -136,7 +136,7 @@ structure.object_type = {
 			input_type:'link',
 			match_type:'projectile',
 			isArray:false,
-			default_value:undefined,
+			default_value:'empty',
 			conditions:[{prop:'type',value:'sprite'},{prop:'behaviour',value:'dynamic'}]
 		},		
 		patterns: {
@@ -193,6 +193,7 @@ structure.sound={
 		name : {
 			input_type:'string',
 			isArray:false,
+			default_value:'unamed_sound',
 		},
 		file_wave : {
 			input_type:'file',
@@ -213,20 +214,24 @@ structure.animation = {
 	
 		name : {
 			input_type:'string',
-			isArray:false
+			isArray:false,
+			default_value:'unamed_animation'
 			
 		},
 		frames : {
 			input_type:'sequence',
-			sequence_type:'int'
+			sequence_type:'int',
+			default_value:0,
 		},
 		frameRate : {
 			input_type:'int',
-			isArray:false
+			isArray:false,
+			default_value:25
 		},	
 		loop : {
 			input_type:'bool',
-			isArray:false
+			isArray:false,
+			default_value:true
 		}
 
 }
@@ -268,6 +273,7 @@ structure.physical = {
 			step:0.01,
 			min:0.00,
 			max:20.00,
+			default_value:1
 		},
 		bounce : {
 			input_type:'point',
@@ -275,28 +281,34 @@ structure.physical = {
 			step:0.01,
 			min:0.00,
 			max:10,
+			default_value:0
 		},
 		allowGravity : {
 			input_type:'bool',
-			isArray:false
+			isArray:false,
+			default_value:false
 		},	
 		collideWorldBounds : {
 			input_type:'bool',
-			isArray:false
+			isArray:false,
+			default_value:false,
 		},	
 		immovable : {
 			input_type:'bool',
-			isArray:false
+			isArray:false,
+			default_value:false,
 		},	
 		width: {
 			input_type:'int',
 			isArray:false,
 			min:0,
+			default_value:10,
 		},		
 		height: {
 			input_type:'int',
 			isArray:false,
 			min:0,
+			default_value:10,
 		}	
 }
 
@@ -430,35 +442,40 @@ structure.movement = {
 		isArray:false,
 		step:0.01,
 		min:0,
-		max:1	
+		max:1,
+		default_value:0.9,
 	},
 	walk_speed : {
 		input_type:'int',
 		isArray:false,
 		step:1,
 		min:0,
-		max:2000
+		max:2000,
+		default_value:100,
 	},
 	run_speed : {
 		input_type:'int',
 		isArray:false,
 		step:1,
 		min:0,
-		max:2000
+		max:2000,
+		default_value:200,
 	},
 	jump_strength : {
 		input_type:'int',
 		isArray:false,
 		step:1,
 		min:0,
-		max:2000
+		max:2000,
+		default_value:100,
 	},
 	fly_speed : {
 		input_type:'number',
 		isArray:false,
 		step:0.1,
 		min:0.0,
-		max:2000.0
+		max:2000.0,
+		default_value:10,
 	}
 	
 }
@@ -468,12 +485,14 @@ structure.stats = {
 	start_health : {
 		input_type:'int',
 		isArray:false,
-		min:0
+		min:0,
+		default_value:100,
 	},
 	max_health : {
 		input_type:'int',
 		isArray:false,
-		min:0
+		min:0,
+		default_value:100,
 	},
 	
 }

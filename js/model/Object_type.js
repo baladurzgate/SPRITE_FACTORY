@@ -53,7 +53,7 @@ function Object_type ($model_data){
 			
 			if(model_data[prop] == undefined){
 				
-				model_data[prop] = structure.object_type[prop].default_value;
+				model_data[prop] = structure.object_type[prop].default_value != undefined ? structure.object_type[prop].default_value : null;
 			
 			}
 		
@@ -296,12 +296,17 @@ function Object_type ($model_data){
 		if(model_data.physical){
 			
 			obj_instance.body.mass = model_data.physical.mass;
+			
 			obj_instance.body.bounce = model_data.physical.bounce;
+			
 			obj_instance.body.collideWorldBounds = model_data.physical.collideWorldBounds;
+			
 			obj_instance.body.allowGravity = model_data.physical.allowGravity;
+			
 			obj_instance.body.immovable = model_data.physical.immovable;	
 			
 			obj_instance.body.width = model_data.physical.width != undefined ? model_data.physical.width	: 5;
+			
 			obj_instance.body.height = model_data.physical.height != undefined ? model_data.physical.height	: 5;
 			
 		}
