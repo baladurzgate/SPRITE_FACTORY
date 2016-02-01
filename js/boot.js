@@ -5,7 +5,7 @@ var GAME_LEVELS = new Array();
 var GAME_SOUNDS = {};
 var CURRENT_LEVEL;
 
-var GDM = new Game_data_manager();
+var AssetManager = new AssetManager();
 
 
 var bootState = {
@@ -20,15 +20,23 @@ var bootState = {
 
 		//}
 	
+<<<<<<< HEAD
+=======
+		game.load.text('GAME_DATA','assets/GAME_DATA.json');
+		
+>>>>>>> e9c4a23c3f48c507e0eb3e4d763f0cdbd295e618
 		
 	
 	},
 	
 	create: function (){
+	
 		
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 		
 		GAME_DATA = JSON.parse(game.cache.getText("GAME_DATA"));
+		
+		AM.loadModel(GAME_DATA)
 		
 		game.state.start('init');
 	

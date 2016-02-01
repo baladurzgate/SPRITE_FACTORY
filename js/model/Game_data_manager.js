@@ -1,4 +1,4 @@
-function Game_data_manager(){
+function AssetManager(){
 
 	this.local = {};
 
