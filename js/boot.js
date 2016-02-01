@@ -11,8 +11,16 @@ var GDM = new Game_data_manager();
 var bootState = {
 
 	preload: function (){
+
+		//if(!isInArray(LOADING_FILES,'assets/GAME_DATA.json')){
+			
+			game.load.text('GAME_DATA','assets/GAME_DATA.json');
+
+			LOADING_FILES.push('assets/GAME_DATA.json');
+
+		//}
 	
-		game.load.text('GAME_DATA','assets/GAME_DATA.json');
+		
 	
 	},
 	

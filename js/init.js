@@ -9,12 +9,19 @@ var initState = {
 			for (var i = 0 ; i < GAME_DATA.Levels.length ; i ++){
 				
 				if(GAME_DATA.Levels[i].map != undefined && !isInArray(GAME_DATA.Levels[i].map,LOADING_FILES) ){
-					
-					game.load.tilemap(GAME_DATA.Levels[i].name, GAME_DATA.Levels[i].map, null, Phaser.Tilemap.TILED_JSON);
-					
-					game.load.text(GAME_DATA.Levels[i].name+'json',GAME_DATA.Levels[i].map);
-					
-					LOADING_FILES.push(GAME_DATA.Levels[i].map);
+
+					if(!isInArray(GAME_DATA.Levels[i].name+'json',LOADING_FILES)){
+
+						game.load.text(GAME_DATA.Levels[i].name+'json',GAME_DATA.Levels[i].map);
+						LOADING_FILES.push(GAME_DATA.Levels[i].name+'json');
+
+					}
+					if(!isInArray(GAME_DATA.Levels[i].name,LOADING_FILES)){
+
+						game.load.tilemap(GAME_DATA.Levels[i].name, GAME_DATA.Levels[i].map, null, Phaser.Tilemap.TILED_JSON);
+						LOADING_FILES.push(GAME_DATA.Levels[i].name);
+
+					}	
 					
 				}
 				
